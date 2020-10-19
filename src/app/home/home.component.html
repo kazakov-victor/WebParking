@@ -1,0 +1,314 @@
+<div id="middle" class="dashboard">
+  <div class="row">
+    <div class="col-lg-12 text-center" style="z-index: 1">
+      <h2 class="dashboatle">
+        <span class="title">Основные показатели компании
+        </span>
+        <span class="pull-right">
+          <div id="daterange" class="btn btn-info">
+            <span>Период</span> <b class="caret"></b>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-info dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+              Шаг  <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="#">День</a></li>
+              <li><a href="#">Неделя</a></li>
+              <li><a href="#">Месяц</a></li>
+            </ul>
+            </div>
+          <div class="btn-group">
+                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">
+                      <fa-icon [icon]="faFilter"></fa-icon>
+                      <fa-icon [icon]="faCaretDown"></fa-icon>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <form method="POST" style="width: 200px">
+                                <fieldset>
+                                    <div class="checkbox col-sm-12" style="max-height: 88px;overflow: auto">
+                                        <label>
+                                            <input type="checkbox" name="types[]" value="repair" checked=""> Заказы                        </label>
+                                        <label>
+                                            <input type="checkbox" name="types[]" value="warranty"> Гарантийные                        </label>
+                                        <label>
+                                            <input type="checkbox" name="types[]" value="not-warranty"> Не гарантийные                        </label>
+                                        <label>
+                                            <input type="checkbox" name="types[]" value="sale" checked=""> Продажи                        </label>
+                                        <label>
+                                            <input type="checkbox" name="types[]" value="internet"> Заказы с интернета                        </label>
+                                    </div>
+
+
+                                  <div class="checkbox col-sm-12">
+                                        <button type="submit" class="btn btn-primary btn-info" name="apply-filter"> Применить </button>
+                                        <div class="btn-lock" id="btn-lock" data-type="dashboard_filter_main">
+                    <input type="hidden" name="filter-name" value="dashboard_filter_main">
+                    <input type="hidden" name="lock-button" value="">
+                            <button type="button" onclick="return lock_filter(this);"
+                                    title="Сохранить настройки фильтра"
+                                    class="btn btn-default btn-lock-save" data-lock="1">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                                    </div>
+
+                                </fieldset>
+                            </form>
+                        </li>
+                    </ul>
+          </div>
+        </span>
+      </h2>
+    </div>
+  </div>
+
+  <div class="row m-t-sm js-branch-chart">
+    <div class="col-lg-12">
+      <div class="hpanel">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="text-center small">
+                <i class="fa fa-laptop"></i> Сравнительный анализ заказов по филиалам
+              </div>
+              <div style="height: 250px">
+                <div class="chartjs-size-monitor">
+                  <div class="chartjs-size-monitor-expand">
+                    <div class=""></div>
+                  </div>
+                  <div class="chartjs-size-monitor-shrink">
+                    <div class=""></div>
+                  </div>
+                </div>
+                <canvas id="branch-chart" width="1525" height="304" class="chartjs-render-monitor"
+                        style="display: block; height: 250px; width: 1251px;"></canvas>
+
+              </div>
+            </div>
+            <div class="col-md-12 m-t-sm">
+              <form method="POST" class="text-center">
+                <div class="btn-group">
+                  <select class="multiselect input-small" data-type="branches" multiple="multiple"
+                          name="branches_id[]" style="display: none;">
+                    <option value="1">Офис</option>
+                  </select>
+                  <div class="btn-group multiselect-btn-group" style="width: 150px;">
+                    <button type="button" class="multiselect dropdown-toggle btn btn-default input-small"
+                            data-toggle="dropdown" title="Выбрать"
+                            style="width: 150px; overflow: hidden; text-overflow: ellipsis;"><span
+                      class="multiselect-selected-text">Выбрать</span> <b class="caret"></b></button>
+                    <ul class="multiselect-container dropdown-menu"
+                        style="max-height: 200px; overflow: hidden auto;">
+                      <li class="multiselect-item filter" value="0">
+                        <div class="input-group"><span class="input-group-addon"><i
+                          class="glyphicon glyphicon-search"></i></span><input
+                          class="form-control multiselect-search" type="text" placeholder="Поиск"><span
+                          class="input-group-btn"><button class="btn btn-default multiselect-clear-filter"
+                                                          type="button"><i
+                          class="glyphicon glyphicon-remove-circle"></i></button></span></div>
+                      </li>
+                      <li class="multiselect-item multiselect-all">
+                        <div class="checkbox"><a tabindex="0" class="multiselect-all"><label class="checkbox"><input
+                          type="checkbox" value="multiselect-all"> Выбрать все</label></a></div>
+                      </li>
+                      <li>
+                        <div class="checkbox"><a tabindex="0"><label class="checkbox"><input type="checkbox"
+                                                                                             value="1"> Офис</label></a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <button type="submit" class="btn btn-primary"> Применить</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="row m-t-sm js-repair-chart">
+    <div class="col-lg-12">
+      <div class="hpanel">
+        <div class="panel-body">
+          <div class="row row-15">
+            <div class="col-md-12">
+              <div class="text-center small">
+                <i class="fa fa-laptop"></i> Сравнительный анализ заказов по категории/модели/товару
+              </div>
+              <div style="height: 250px">
+                <div class="chartjs-size-monitor">
+                  <div class="chartjs-size-monitor-expand">
+                    <div class=""></div>
+                  </div>
+                  <div class="chartjs-size-monitor-shrink">
+                    <div class=""></div>
+                  </div>
+                </div>
+                <canvas id="repair-chart" width="1525" height="304" class="chartjs-render-monitor"
+                        style="display: block; height: 250px; width: 1251px;"></canvas>
+
+              </div>
+            </div>
+            <div class="col-md-12 m-t-sm text-center">
+              <form method="POST" id="repair-chart-form"
+                    action="./home/?export=repair-chart-part">
+                <div class="col-md-2">
+                  <div><label>Тип заказа:</label></div>
+                  <div class="btn-group">
+                    <div id="load-order-type-btn" data-href="/home/dashboard/ajax?act=order-type-select"
+                         data-child="#load-category-btn"><select class="multiselect input-small"
+                                                                 data-type="orders_type" multiple="multiple"
+                                                                 name="orders_type[]" style="display: none;">
+                      <option value="repair">Аренда и прокат</option>
+                      <option value="sale">Продажи</option>
+                      <option value="warranty">Гарантийные</option>
+                      <option value="not-warranty">Не гарантийные</option>
+                      <option value="internet">Заказы из интернета</option>
+                    </select>
+                      <div class="btn-group multiselect-btn-group" style="width: 150px;">
+                        <button type="button" class="multiselect dropdown-toggle btn btn-default input-small"
+                                data-toggle="dropdown" title="Выбрать"
+                                style="width: 150px; overflow: hidden; text-overflow: ellipsis;"><span
+                          class="multiselect-selected-text">Выбрать</span> <b class="caret"></b></button>
+                        <ul class="multiselect-container dropdown-menu"
+                            style="max-height: 200px; overflow: hidden auto;">
+                          <li class="multiselect-item filter" value="0">
+                            <div class="input-group"><span class="input-group-addon"><i
+                              class="glyphicon glyphicon-search"></i></span><input
+                              class="form-control multiselect-search" type="text" placeholder="Поиск"><span
+                              class="input-group-btn"><button class="btn btn-default multiselect-clear-filter"
+                                                              type="button"><i
+                              class="glyphicon glyphicon-remove-circle"></i></button></span></div>
+                          </li>
+                          <li class="multiselect-item multiselect-all">
+                            <div class="checkbox"><a tabindex="0" class="multiselect-all"><label
+                              class="checkbox"><input type="checkbox" value="multiselect-all"> Выбрать
+                              все</label></a></div>
+                          </li>
+                          <li>
+                            <div class="checkbox"><a tabindex="0"><label class="checkbox"><input type="checkbox"
+                                                                                                 value="repair">
+                              Аренда и прокат</label></a></div>
+                          </li>
+                          <li>
+                            <div class="checkbox"><a tabindex="0"><label class="checkbox"><input type="checkbox"
+                                                                                                 value="sale">
+                              Продажи</label></a></div>
+                          </li>
+                          <li>
+                            <div class="checkbox"><a tabindex="0"><label class="checkbox"><input type="checkbox"
+                                                                                                 value="warranty">
+                              Гарантийные</label></a></div>
+                          </li>
+                          <li>
+                            <div class="checkbox"><a tabindex="0"><label class="checkbox"><input type="checkbox"
+                                                                                                 value="not-warranty">
+                              Не гарантийные</label></a></div>
+                          </li>
+                          <li>
+                            <div class="checkbox"><a tabindex="0"><label class="checkbox"><input type="checkbox"
+                                                                                                 value="internet">
+                              Заказы из интернета</label></a></div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div><label>Категории:</label></div>
+                  <div class="btn-group">
+                    <div id="load-category-btn" data-href="/home/dashboard/ajax?act=category-select"
+                         data-child="#load-models-btn">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div><label>Модели:</label></div>
+                  <div class="btn-group">
+                    <div id="load-models-btn" data-href="/home/dashboard/ajax?act=models-select"
+                         data-child="#load-items-btn, #load-services-btn" data-parent="">
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div><label>Товары:</label></div>
+                  <div class="btn-group">
+                    <div id="load-items-btn" data-href="/home/dashboard/ajax?act=items-select" data-parent="">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div><label>Услуги:</label></div>
+                  <div class="btn-group">
+                    <div id="load-services-btn" data-href="/home/dashboard/ajax?act=services-select"
+                         data-parent="">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-1">
+                  <button type="button" class="btn btn-primary" style="margin-top: 23px;"
+                          onclick="return load_repair_chart_part(this);"> Применить
+                  </button>
+                </div>
+                <div class="col-md-1">
+                  <button type="submit" class="btn btn-default" style="margin-top: 23px;">
+                    Экспорт
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="modal fade chart-comments" id="chart-comments" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">×</span></button>
+          <div class="chart-comments-title" title="История изменений">
+            События за <span class="chart-comments-date"></span>
+          </div>
+        </div>
+        <div class="modal-body">
+          <ul class="chart-comments-list"></ul>
+          <div class="chart-comments-new">
+
+            <form method="post" id="chart-new-comment-form"
+                  action="./home/dashboard/comment">
+              <input name="date" type="hidden" class="chart-comments-date-input">
+              <input name="chart" type="hidden" class="chart-comments-chart-input">
+              <div class="input-group">
+                <input autocomplete="off" name="text" type="text" class="form-control"
+                       placeholder="Добавьте событие...">
+                <span class="input-group-btn">
+                                <button type="submit" class="btn btn-success">Добавить</button>
+                            </span>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

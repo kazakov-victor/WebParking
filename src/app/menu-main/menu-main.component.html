@@ -1,0 +1,244 @@
+<nav id="menu">
+  <div id="navigation">
+
+    <div class="logo-element">
+      <span title="User name">СФ</span><br>
+    </div>
+
+    <div class="profile-picture">
+      <img src="../assets/images/default.png" width="79"
+           class="img-circle m-b upload_avatar_btn" data-uid="1"
+           alt="logo">
+      <div class="manager_fail_percent" id="profile-stats-percent">
+      </div>
+      <div class="stats-label text-color">
+        <span class="font-extra-bold font-uppercase">Имя пользователя</span>
+        <div class="dropdown">
+          <a class="dropdown-toggle" href="./home/#" data-toggle="dropdown"
+             style="color:inherit">
+            <small class="text-muted" style="color:inherit">Учредитель <b class="caret"></b></small>
+          </a> <br>
+          <ul class="dropdown-menu animated fadeInRight m-t-xs">
+            <li>
+              <a href="./home/#" id="profile-edit-location">Изменить филиал</a>
+            </li>
+            <li>
+              <a href="./home/#" id="show-languages-select">Изменить язык</a>
+            </li>
+            <li>
+              <hr class="m-t-xs m-b-xs">
+            </li>
+            <li>
+              <a href="./home/#">
+                Выйти </a>
+            </li>
+          </ul>
+          <div>
+            <small class="cursor-pointer js-show-ratings">Рейтинг: 10/10</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ul class="nav" id="side-menu">
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a [routerLink]="['/']">
+          <fa-icon [icon]="faChartBar"></fa-icon>
+          <span class="nav-label">Главная</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/contract" >
+          <fa-icon [icon]="faHandShake"></fa-icon>
+          <span class="nav-label">Договора</span>
+          <span class="arrow">
+            <span><fa-icon [icon]="faAngleLeft"></fa-icon></span>
+          </span>
+        </a>
+        <ul class="nav nav-second-level collapse" aria-expanded="false">
+          <li (click)="setItemMenu(2)">
+            <a  href="./contract">
+              Список </a>
+          </li>
+          <li (click)="setItemMenu(3)">
+            <a
+              href="./contract">
+              Новый </a>
+          </li>
+          <li (click)="setItemMenu(4)">
+            <a data-action="" data-href="#reports" href="./home/accountings#reports">
+              Отчеты </a>
+          </li>
+          <li (click)="setItemMenu(5)">
+            <a data-action="" data-href="#reports" href="./home/accountings#reports">
+              Настройки </a>
+          </li>
+        </ul>
+
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/accountant" routerLinkActive="active">
+          <fa-icon [icon]="faMoneyCheckAlt"></fa-icon>
+          <span class="nav-label">Бухгалтерия</span>
+          <span class="arrow">
+            <span><fa-icon [icon]="faAngleLeft"></fa-icon></span>
+          </span>
+        </a>
+        <ul class="nav nav-second-level collapse" aria-expanded="false">
+          <li>
+            <a data-action="" data-href="#cashboxes" href="./home/accountings#cashboxes">
+              Кассы </a>
+          </li>
+          <li>
+            <a data-action="" data-href="#transactions"
+               href="./home/accountings#transactions">
+              Транзакции </a>
+          </li>
+          <li>
+            <a data-action="" data-href="#reports" href="./home/accountings#reports">
+              Отчеты </a>
+          </li>
+          <li>
+            <a data-action="" data-href="#a_orders" href="./home/accountings#a_orders">
+              Заказы </a>
+          </li>
+          <li>
+            <a data-action="" data-href="#contractors"
+               href="./home/accountings#contractors">
+              Контрагенты </a>
+          </li>
+          <li>
+            <a data-action="" data-href="#settings" href="./home/accountings#settings">
+              Настройки </a>
+          </li>
+        </ul>
+      </li>
+
+      <li routerLinkActive="active" class="">
+        <a data-href="/home/clients?tab=clients" href="./home/clients?tab=clients">
+          <fa-icon [icon]="faUser"></fa-icon>
+          <span class="nav-label">Клиенты</span>
+          <span class="arrow">
+            <span><fa-icon [icon]="faAngleLeft"></fa-icon></span>
+          </span>
+        </a>
+        <ul class="nav nav-second-level collapse" aria-expanded="false">
+          <li>
+            <a data-action="" data-href="?tab=clients" href="./home/clients?tab=clients">
+              Клиенты </a>
+          </li>
+          <li>
+            <a data-action="" data-href="?tab=calls" href="./home/clients?tab=calls">
+              Звонки </a>
+          </li>
+          <li>
+            <a data-action="" data-href="?tab=requests" href="./home/clients?tab=requests">
+              Заявки </a>
+          </li>
+          <li>
+            <a data-action="" data-href="?tab=statistics"
+               href="./home/clients?tab=statistics">
+              Отчеты </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="">
+        <a data-href="/home/users#edit_tab_users" href="./home/users#edit_tab_users">
+          <fa-icon [icon]="faUsers"></fa-icon>
+          <span class="nav-label">Сотрудники</span>
+          <span class="arrow">
+            <span><fa-icon [icon]="faAngleLeft"></fa-icon></span>
+          </span>
+        </a>
+        <ul class="nav nav-second-level collapse" aria-expanded="false">
+          <li>
+            <a data-action="" data-href="#edit_tab_users"
+               href="./home/users#edit_tab_users">
+              Список пользователей </a>
+          </li>
+          <li>
+            <a data-action="" data-href="#edit_tab_roles"
+               href="./home/users#edit_tab_roles">
+              Список ролей </a>
+          </li>
+          <li>
+            <a data-action="" data-href="#login_log" href="./home/users#login_log">
+              Журнал опозданий </a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="./home/#" class="nav-additional">
+          <fa-icon [icon]="faGear"></fa-icon>
+          <span class="nav-label">Еще</span>
+          <span class="arrow">
+            <span><fa-icon [icon]="faAngleLeft"></fa-icon></span>
+          </span>
+        </a>
+        <ul class="nav nav-second-level collapse addition">
+          <li>
+            <a href="./home/logistics">
+              <span class="nav-label">Логистика</span>
+              <span class="arrow">
+                <span><fa-icon [icon]="faAngleLeft"></fa-icon></span>
+            </span>
+            </a>
+            <ul class="nav nav-third-level collapse" aria-expanded="false">
+              <li>
+                <a data-action="" data-href="#motions" href="./home/logistics#motions">
+                  Логистика </a>
+              </li>
+              <li>
+                <a data-action="" data-href="#settings" href="./home/logistics#settings">
+                  Настройки </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="./home/tasks">
+              <span class="nav-label">Задачи</span>
+              <span class="arrow">
+                <span><fa-icon [icon]="faAngleLeft"></fa-icon></span>
+            </span>
+            </a>
+            <ul class="nav nav-third-level collapse" aria-expanded="false">
+              <li>
+                <a data-action="" data-href="#alltasks" href="./home/tasks#alltasks">
+                  Задачи </a>
+              </li>
+              <li>
+                <a data-action="" data-href="#newtask" href="./home/tasks#newtask">
+                  Создать задачу </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="./home/widgets">
+              <span class="nav-label">Виджеты</span>
+            </a>
+          </li>
+          <li>
+            <a href="./home/import">
+              <span class="nav-label">Импорт</span>
+            </a>
+          </li>
+          <li>
+            <a href="./home/statistics">
+              <span class="nav-label">Статистика</span>
+            </a>
+          </li>
+          <li>
+            <a href="./home/settings">
+              <span class="nav-label">Настройки</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
