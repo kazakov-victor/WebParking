@@ -1,0 +1,25 @@
+<p>accountrant-menu works!</p>
+<ul class="nav nav-tabs">
+  <li routerLinkActive="active">
+    <a class="click_tab default"
+       [routerLink]="['/accountant/cashflow']">
+      Кассы                </a>
+  </li>
+  <li routerLinkActive="active">
+    <a class="click_tab default"
+       [routerLink]="['/accountant/transaction']">
+      Транзакции                </a>
+  </li>
+  <li routerLinkActive="active">
+    <a class="click_tab default active"
+       [routerLink]="['/accountant/report']">
+      Отчеты                </a>
+  </li>
+  <li routerLinkActive="active">
+    <a class="click_tab"
+       [routerLink]="['/accountant/payment']">
+      Заказы<span class="tab_count tc_count tc_sum_accountings_orders hide"
+                  id="tc_sum_accountings_orders">0</span>
+    </a>
+  </li>
+</ul>

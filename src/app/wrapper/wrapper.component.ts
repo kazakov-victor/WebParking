@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import {faCar, faInfo, faPhone, faRandom, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import {Source} from '../shared/source.interface';
 import {ObservableService} from '../shared/observable.service';
 import {MenuService} from '../shared/menu.service';
@@ -11,8 +11,12 @@ import {MenuService} from '../shared/menu.service';
 })
 export class WrapperComponent implements OnInit {
   faSignOutAlt = faSignOutAlt;
+  faRandom = faRandom;
+  faInfo = faInfo;
+  faPhone = faPhone;
+  faLogo = faCar;
   @Input() isBigMenu;
-  @Input() itemMenu;
+
 
   constructor(private observableService: ObservableService, private menuService: MenuService) {}
 
@@ -22,11 +26,4 @@ export class WrapperComponent implements OnInit {
     this.isBigMenu = !this.isBigMenu;
     this.observableService.addToInventory(this.isBigMenu);
     }
-
-    setItem(item: number): void {
-    this.itemMenu = item;
-    console.log('item - ', this.itemMenu);
-    this.observableService.addToInventory(this.itemMenu);
-    }
-
 }

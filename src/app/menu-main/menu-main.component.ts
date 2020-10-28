@@ -16,22 +16,17 @@ export class MenuMainComponent implements OnInit {
   faUser = faUser;
   faUsers = faUsers;
   faGear = faCogs;
-  @Input() itemMenu;
-  /*
-
-  viewSource(): void {
-    this.isBigMenu = !this.isBigMenu;
-    console.log('article - ', this.isBigMenu);
-    this.observableService.addToInventory(this.isBigMenu);
-    }
-   */
+  itemMenu: number;
 
   constructor(private menuService: MenuService) { }
 
   ngOnInit(): void {
+    this.menuService.inventoryChanged$.subscribe( itemMenu => {
+      this.itemMenu = itemMenu;
+    });
   }
   setItemMenu(item: number): void{
     console.log('item - ', item);
-    this.menuService.addToInventory(this.itemMenu);
+    this.menuService.addToInventory(item);
   }
 }

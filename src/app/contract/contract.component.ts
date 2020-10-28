@@ -1,14 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-
-export interface ContractDTO {
-  contract_id: number;
-  number: number;
-  balance: number;
-  dtfrom: string;
-  dtto: string;
-  note: string;
-}
+import {MenuService} from '../shared/menu.service';
 
 @Component({
   selector: 'app-contract',
@@ -16,17 +8,16 @@ export interface ContractDTO {
   styleUrls: ['./contract.component.scss']
 })
 export class ContractComponent implements OnInit {
+    itemMenu: number;
 
-    @Input() sheetChoice = 3;
-    contractDTOS: ContractDTO[] = [];
-  constructor(private http: HttpClient) { }
+  constructor(private menuService: MenuService) { }
 
   ngOnInit(): void {
-    this.http.get<ContractDTO[]>('http://localhost:8080/contractlist')
-      .subscribe(response => {
-        console.log('Response - ', response);
-        this.contractDTOS = response;
-      });
+
+    /* получение данных из другого компонента
+    this.menuService.inventoryChanged$.subscribe( itemMenu => {
+      this.itemMenu = itemMenu;
+    }); */
   }
 
 }

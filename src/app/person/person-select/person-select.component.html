@@ -1,0 +1,12 @@
+<form>
+
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  <div>
+    <select>
+      <option *ngFor="let person of persons$ | async "
+              value="person.person_id" >
+        {{person.surname}} {{person.name}} {{person.phone}}
+      </option>
+    </select>
+  </div>
+</form>

@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import { faCogs, faUser, faUsers} from '@fortawesome/free-solid-svg-icons';
-import { slideInAnimation } from './animations';
 import {ObservableService} from './shared/observable.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [ slideInAnimation ]
+  animations: [  ]
 })
 export class AppComponent implements OnInit{
   title = 'WebParking';

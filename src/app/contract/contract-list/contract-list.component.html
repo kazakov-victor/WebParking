@@ -1,0 +1,34 @@
+<div class="tab-content">
+<div class="hpanel">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="text-center small">
+        <table class="table content_tab tab-pane clearfix">
+          <thead>
+          <tr>
+            <td>contract_id</td>
+            <td>number</td>
+            <td>balance</td>
+            <td>dtfrom</td>
+            <td>dtto</td>
+            <td>note</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let contract of contractDTOS">
+            <td>{{contract.contract_id}}</td>
+            <td>{{contract.number}}</td>
+            <td>{{contract.balance}}</td>
+            <td>{{contract.dtfrom}}</td>
+            <td>{{contract.dtto}}</td>
+            <td>{{contract.note}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+

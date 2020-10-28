@@ -1,0 +1,98 @@
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h3> Информация о новом договоре </h3>
+              </div>
+            </div>
+
+
+            <div class="panel-body">
+                <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+
+
+                      <div class="form-control">
+                        <label>Номер</label>
+                        <input type="text" placeholder="" formControlName="number">
+                        <div *ngIf="form.get('number').invalid && form.get('number').touched"
+                             class="validation">
+                        <small *ngIf="form.get('number').errors.required">Номер не может быть пустым</small>
+                  <!--      <small *ngIf="form.get('number').errors.">Номер не может быть пустым</small>
+                 -->     </div>
+                      </div>
+                      <div class="">
+                        <label>Контрагент</label>
+                        <input type="text" placeholder="Контрагент" formControlName="contract_id">
+                        <div class="validation"></div>
+                      </div>
+                      <div class="form-control">
+                        <label>Баланс</label>
+                        <input type="text" placeholder="Баланс" formControlName="balance">
+                        <div class="validation"></div>
+                      </div>
+                      <div class="form-control">
+                        <label>Дата начала</label>
+                        <input type="date" placeholder="" formControlName="dtfrom">
+                        <div class="validation"></div>
+                      </div>
+                      <div class="form-control">
+                        <label>Дата окончания</label>
+                        <input type="date" placeholder="" formControlName="dtto">
+                        <div class="validation"></div>
+                      </div>
+                      <div class="form-control">
+                        <label>Примечание</label>
+                        <input type="text" placeholder="" formControlName="note">
+                        <div class="validation"></div>
+                      </div>
+                    <button type="submit" id="submitButton" class="btn btn-success"
+                            [disabled]="form.invalid">Сохранить</button>
+
+                    <!--
+                                            <td>
+                                              <select name="person_id" id="person_id" >
+                                                <option each="person , itemStat: ${persons}"
+                                                        value="${person.person_id}"
+                                                        text="${person.surname}+' '+${person.name}+' '
+                                                                +${person.second_name}">
+                                                </option>
+                                              </select>
+                                            </td>
+                    -->
+
+                  <!--
+                      <tr></tr>
+                      <tr >
+
+                        <td> Услуги </td>
+                      </tr>
+
+                      <td width="25%"> Наименование </td>
+                      <td width="25%"> Дата начала </td>
+                      <td width="25%"> Дата завершения </td>
+                      <td width="25%"> Количество</td>
+                      <tr each="income, itemStat : ${incomes}">
+                        <td><input hidden type="text"  name="|incomes[${itemStat.index}].income_type_id|"
+                                   value="${income.getIncomeType().getIncome_type_id()}"/></td>
+
+                        <td><input type="text" name="|incomes[${itemStat.index}].getIncomeType().name|"
+                                   value="${income.getIncomeType().getName()}" disabled/></td>
+                        <td><input type="date"
+                                   name="|incomes[${itemStat.index}].dtfrom|"
+                                   value="${income.getDtfrom()}"/></td>
+                        <td><input type="date"
+                                   name="|incomes[${itemStat.index}].dtto|"/></td>
+                        <td><input name="|incomes[${itemStat.index}].quantity|"/></td>
+                      </tr>
+                      <tr>
+                         </tr>
+-->
+
+
+                </form>
+            </div>
+          </div>
+
+
+
+
+

@@ -1,6 +1,5 @@
 <nav id="menu">
   <div id="navigation">
-
     <div class="logo-element">
       <span title="User name">СФ</span><br>
     </div>
@@ -48,7 +47,7 @@
         </a>
       </li>
       <li routerLinkActive="active">
-        <a routerLink="/contract" >
+        <a [routerLink]="['/contract/list']">
           <fa-icon [icon]="faHandShake"></fa-icon>
           <span class="nav-label">Договора</span>
           <span class="arrow">
@@ -56,28 +55,23 @@
           </span>
         </a>
         <ul class="nav nav-second-level collapse" aria-expanded="false">
-          <li (click)="setItemMenu(2)">
-            <a  href="./contract">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/contract/list']">
               Список </a>
           </li>
-          <li (click)="setItemMenu(3)">
-            <a
-              href="./contract">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/contract/new']">
               Новый </a>
           </li>
-          <li (click)="setItemMenu(4)">
-            <a data-action="" data-href="#reports" href="./home/accountings#reports">
-              Отчеты </a>
-          </li>
-          <li (click)="setItemMenu(5)">
-            <a data-action="" data-href="#reports" href="./home/accountings#reports">
-              Настройки </a>
+          <li routerLinkActive="active">
+            <a  [routerLink]="['/contract/edit']">
+              Редактировать </a>
           </li>
         </ul>
 
       </li>
       <li routerLinkActive="active">
-        <a routerLink="/accountant" routerLinkActive="active">
+        <a [routerLink]="['/accountant/cashflow']" routerLinkActive="active">
           <fa-icon [icon]="faMoneyCheckAlt"></fa-icon>
           <span class="nav-label">Бухгалтерия</span>
           <span class="arrow">
@@ -85,37 +79,27 @@
           </span>
         </a>
         <ul class="nav nav-second-level collapse" aria-expanded="false">
-          <li>
-            <a data-action="" data-href="#cashboxes" href="./home/accountings#cashboxes">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/accountant/cashflow']">
               Кассы </a>
           </li>
-          <li>
-            <a data-action="" data-href="#transactions"
-               href="./home/accountings#transactions">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/accountant/transaction']">
               Транзакции </a>
           </li>
-          <li>
-            <a data-action="" data-href="#reports" href="./home/accountings#reports">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/accountant/report']">
               Отчеты </a>
           </li>
-          <li>
-            <a data-action="" data-href="#a_orders" href="./home/accountings#a_orders">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/accountant/payment']">
               Заказы </a>
-          </li>
-          <li>
-            <a data-action="" data-href="#contractors"
-               href="./home/accountings#contractors">
-              Контрагенты </a>
-          </li>
-          <li>
-            <a data-action="" data-href="#settings" href="./home/accountings#settings">
-              Настройки </a>
           </li>
         </ul>
       </li>
 
       <li routerLinkActive="active" class="">
-        <a data-href="/home/clients?tab=clients" href="./home/clients?tab=clients">
+        <a [routerLink]="['/client']">
           <fa-icon [icon]="faUser"></fa-icon>
           <span class="nav-label">Клиенты</span>
           <span class="arrow">
@@ -123,28 +107,27 @@
           </span>
         </a>
         <ul class="nav nav-second-level collapse" aria-expanded="false">
-          <li>
-            <a data-action="" data-href="?tab=clients" href="./home/clients?tab=clients">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/client']">
               Клиенты </a>
           </li>
-          <li>
-            <a data-action="" data-href="?tab=calls" href="./home/clients?tab=calls">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/client']">
               Звонки </a>
           </li>
-          <li>
-            <a data-action="" data-href="?tab=requests" href="./home/clients?tab=requests">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/client']">
               Заявки </a>
           </li>
-          <li>
-            <a data-action="" data-href="?tab=statistics"
-               href="./home/clients?tab=statistics">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/client']">
               Отчеты </a>
           </li>
         </ul>
       </li>
 
-      <li class="">
-        <a data-href="/home/users#edit_tab_users" href="./home/users#edit_tab_users">
+      <li class="" routerLinkActive="active">
+        <a [routerLink]="['/user']">
           <fa-icon [icon]="faUsers"></fa-icon>
           <span class="nav-label">Сотрудники</span>
           <span class="arrow">
@@ -152,25 +135,23 @@
           </span>
         </a>
         <ul class="nav nav-second-level collapse" aria-expanded="false">
-          <li>
-            <a data-action="" data-href="#edit_tab_users"
-               href="./home/users#edit_tab_users">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/user']">
               Список пользователей </a>
           </li>
-          <li>
-            <a data-action="" data-href="#edit_tab_roles"
-               href="./home/users#edit_tab_roles">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/user']">
               Список ролей </a>
           </li>
-          <li>
-            <a data-action="" data-href="#login_log" href="./home/users#login_log">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/user']">
               Журнал опозданий </a>
           </li>
         </ul>
       </li>
 
-      <li>
-        <a href="./home/#" class="nav-additional">
+      <li routerLinkActive="active">
+        <a [routerLink]="['/other']">
           <fa-icon [icon]="faGear"></fa-icon>
           <span class="nav-label">Еще</span>
           <span class="arrow">
@@ -178,19 +159,19 @@
           </span>
         </a>
         <ul class="nav nav-second-level collapse addition">
-          <li>
-            <a href="./home/logistics">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/other']">
               <span class="nav-label">Логистика</span>
               <span class="arrow">
                 <span><fa-icon [icon]="faAngleLeft"></fa-icon></span>
             </span>
             </a>
             <ul class="nav nav-third-level collapse" aria-expanded="false">
-              <li>
-                <a data-action="" data-href="#motions" href="./home/logistics#motions">
+              <li routerLinkActive="active">
+                <a [routerLink]="['/other']">
                   Логистика </a>
               </li>
-              <li>
+              <li routerLinkActive="active">
                 <a data-action="" data-href="#settings" href="./home/logistics#settings">
                   Настройки </a>
               </li>
@@ -214,6 +195,7 @@
               </li>
             </ul>
           </li>
+
           <li>
             <a href="./home/widgets">
               <span class="nav-label">Виджеты</span>
