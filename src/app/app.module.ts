@@ -8,7 +8,7 @@ import { ContractComponent } from './contract/contract.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AccountantComponent } from './accountant/accountant.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MenuMainComponent } from './menu-main/menu-main.component';
 import { WrapperComponent } from './wrapper/wrapper.component';
@@ -24,11 +24,17 @@ import { AccountrantReportsComponent } from './accountant/accountrant-reports/ac
 import { AccountrantTransactionComponent } from './accountant/accountrant-transaction/accountrant-transaction.component';
 import { AccountrantMenuComponent } from './accountant/accountrant-menu/accountrant-menu.component';
 import { ContractMenuComponent } from './contract/contract-menu/contract-menu.component';
-import { PersonSearchComponent } from './person/person-search/person-search.component';
-import { PersonNewComponent } from './person/person-new/person-new.component';
-import { PersonEditComponent } from './person/person-edit/person-edit.component';
-import { PersonSelectComponent } from './person/person-select/person-select.component';
+import { PersonSearchComponent } from './persons/person-search/person-search.component';
+import { PersonNewComponent } from './persons/person-new/person-new.component';
+import { PersonEditComponent } from './persons/person-edit/person-edit.component';
+import { PersonSelectComponent } from './persons/person-select/person-select.component';
 import { PersonFilterPipe } from './pipes/person-filter.pipe';
+import { PersonsComponent } from './persons/persons.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MyTelInput, PhoneControlComponent} from './phone/phone-control.component';
+import { PersonMenuComponent } from './persons/person-menu/person-menu.component';
+import { PersonListComponent } from './persons/person-list/person-list.component';
 
 
 @NgModule({
@@ -56,6 +62,11 @@ import { PersonFilterPipe } from './pipes/person-filter.pipe';
     PersonEditComponent,
     PersonSelectComponent,
     PersonFilterPipe,
+    PersonsComponent,
+    PhoneControlComponent,
+    MyTelInput,
+    PersonMenuComponent,
+    PersonListComponent,
 
   ],
   imports: [
@@ -65,7 +76,9 @@ import { PersonFilterPipe } from './pipes/person-filter.pipe';
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

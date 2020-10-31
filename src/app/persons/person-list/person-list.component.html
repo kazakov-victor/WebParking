@@ -1,0 +1,38 @@
+<div class="tab-content">
+  <div class="hpanel">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center small">
+          <table class="table content_tab tab-pane clearfix">
+            <thead>
+            <tr>
+              <td>Фамилия</td>
+              <td>Имя</td>
+              <td>Отчество</td>
+              <td>Телефон</td>
+              <td>Адрес</td>
+              <td>Действия</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let person of persons">
+              <td>{{person.surname}}</td>
+              <td>{{person.name}}</td>
+              <td>{{person.second_name}}</td>
+              <td>{{person.phone}}</td>
+              <td>{{person.address}}</td>
+              <td><button class="btn btn-danger"
+              routerLink="/persons/edit/{{person.person_id}}"
+              ></button></td>
+              <a>Удалить</a>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

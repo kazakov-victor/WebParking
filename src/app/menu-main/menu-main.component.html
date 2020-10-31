@@ -98,8 +98,8 @@
         </ul>
       </li>
 
-      <li routerLinkActive="active" class="">
-        <a [routerLink]="['/client']">
+      <li routerLinkActive="active">
+        <a [routerLink]="['/persons/list']">
           <fa-icon [icon]="faUser"></fa-icon>
           <span class="nav-label">Клиенты</span>
           <span class="arrow">
@@ -108,21 +108,18 @@
         </a>
         <ul class="nav nav-second-level collapse" aria-expanded="false">
           <li routerLinkActive="active">
-            <a [routerLink]="['/client']">
+            <a [routerLink]="['/persons/list']">
               Клиенты </a>
           </li>
           <li routerLinkActive="active">
-            <a [routerLink]="['/client']">
-              Звонки </a>
+            <a [routerLink]="['/persons/new']">
+              Новый </a>
           </li>
           <li routerLinkActive="active">
-            <a [routerLink]="['/client']">
-              Заявки </a>
+            <a [routerLink]="['/persons/edit']">
+              Edit </a>
           </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['/client']">
-              Отчеты </a>
-          </li>
+
         </ul>
       </li>
 

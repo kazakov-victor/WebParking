@@ -15,6 +15,10 @@ import {AccountrantCasflowComponent} from './accountant/accountrant-casflow/acco
 import {AccountrantPaymentComponent} from './accountant/accountrant-payment/accountrant-payment.component';
 import {AccountrantReportsComponent} from './accountant/accountrant-reports/accountrant-reports.component';
 import {AccountrantTransactionComponent} from './accountant/accountrant-transaction/accountrant-transaction.component';
+import {PersonsComponent} from './persons/persons.component';
+import {PersonNewComponent} from './persons/person-new/person-new.component';
+import {PersonEditComponent} from './persons/person-edit/person-edit.component';
+import {PersonListComponent} from './persons/person-list/person-list.component';
 
 const contractRouts: Routes = [
   {path: 'list', component: ContractListComponent},
@@ -27,10 +31,16 @@ const accountantRouts: Routes = [
   {path: 'report', component: AccountrantReportsComponent},
   {path: 'transaction', component: AccountrantTransactionComponent},
 ];
+const personRouts: Routes = [
+  {path: 'list', component: PersonListComponent},
+  {path: 'new', component: PersonNewComponent},
+  {path: 'edit/:id', component: PersonEditComponent},
+];
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'contract', component: ContractComponent, children: contractRouts},
   {path: 'accountant', component: AccountantComponent, children: accountantRouts},
+  {path: 'persons', component: PersonsComponent, children: personRouts},
   {path: 'user', component: UserComponent},
   {path: 'other', component: OtherComponent},
   {path: '', component: AppComponent, pathMatch: 'full'},

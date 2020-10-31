@@ -1,0 +1,53 @@
+<form [formGroup]="personNewForm" (ngSubmit)="submit()" id="person-form-add" class="person-form-add">
+  <div class="row">
+    <div class="col-md-6 col-xs-12 js-fields">
+      <table class="table table-borderless table-paddingless" id="create-person-fields-table">
+        <tbody>
+        <tr>
+          <div class="form-group">
+            <label>Фамилия : </label>
+            <input type="text" formControlName="surname"
+                   class="form-control"
+                   id="surname">
+          </div>
+          <div class="form-group">
+            <label>Имя : </label>
+            <input type="text" formControlName="name"
+                   class="form-control"
+                   id="name">
+          </div>
+          <div class="form-group">
+            <label>Отчество : </label>
+            <input type="text" formControlName="second_name"
+                   class="form-control"
+                   id="second_name">
+          </div>
+          <div class="form-group">
+            <label>Телефон : </label>
+            <input type="text" formControlName="phone"
+                   class="form-control"
+                   id="phone">
+          </div>
+          <div class="form-group">
+            <label>Адрес : </label>
+            <input type="text" formControlName="address"
+                   class="form-control"
+                   id="address">
+          </div>
+        </tr>
+        <tr>
+          <td>
+            <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
+              <div class="btn-group dropup col-6 js-request tooltips"
+                   title=""                               >
+                <button class="btn" type="submit">Сохранить</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</form>
+

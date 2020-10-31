@@ -1,12 +1,116 @@
-<div class="hpanel">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="text-center small">
-        <table class="table content_tab tab-pane clearfix">
+<div *ngIf="visible" id="popup_window" class="modal fade left modal-large in">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button type="button" class="close popup-window-close"
+              (click)="visible=false" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="modal-header">
+        <h4 class="modal-title">Ввод нового договора</h4>
+      </div>
+      <div class="modal-body">
+        <div class="tab-pane" id="repair">
+          <form [formGroup]="contractEditForm" (ngSubmit)="submit()" id="order-form-add" class="order-form-add">
+            <div class="row">
+              <div class="col-md-6 col-xs-12 js-fields">
+                <table class="table table-borderless table-paddingless" id="create-order-fields-table">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <input hidden formControlName="contract_id">
+                    </td>
+                  </tr>
+                  <tr>
+                    <div class="form-group">
+                      <label>Номер договора : </label>
+                      <input type="text" formControlName="number"
+                             class="form-control call_code_mask"
+                             id="number">
+                    </div>
+                  </tr>
+                  <tr>
+                    <td class="hide-field-td">
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <label>Клиент: </label>
+                        <input type="text" formControlName="person_id"
+                               class="form-control"
+                               id="person_id">
+                        <div class="clearfix"></div>
+                      </div>
+                    </td>
 
-        </table>
+                  </tr>
+                  <tr>
+                    <td class="hide-field-td">
+                    </td>
+                    <td>
+                      <div class="row row-5">
+                        <div class="col-sm-6 form-group">
+
+                          <input class="form-control" type="date"
+                                 placeholder="" formControlName="dtfrom"
+                          ></div>
+                        <div class="col-sm-6 form-group">
+
+                          <input class="form-control typeahead-double" type="date"
+                                 placeholder="Адрес" formControlName="dtto"
+                                 value="">
+                        </div>
+                      </div>
+
+                    </td>
+                  </tr>
+                  <tr class="  sortable" >
+                    <td class="hide-field-td">
+                    <td>
+                      <div class="form-group">
+                        <label>Входной баланс: </label>
+                        <input formControlName="balance" type="text" name="code"
+                               class="form-control call_code_mask"
+                               id="balance-edit">
+                      </div>
+
+                    </td>
+                  </tr>
+                  <tr class="  sortable" >
+                    <td class="hide-field-td">
+                    <td>
+                      <div class="form-group">
+                        <label>Примечание: </label>
+                        <input formControlName="note" type="text" name="code"
+                               class="form-control call_code_mask"
+                               id="crm_order_code">
+                      </div>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
+                        <div class="btn-group dropup col-6 js-request tooltips"
+                             title=""                               >
+                          <button class="btn" type="submit">Отправить</button>
+
+                          <button type="button" class="btn btn-info dropdown-toggle">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <br>
+            </div>
+          </form>
+
+        </div>
       </div>
     </div>
   </div>
 </div>
-

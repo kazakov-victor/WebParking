@@ -3,8 +3,6 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {PersonService} from '../../servises/person.service';
 import {BehaviorSubject, Observable, Subject, Subscription} from 'rxjs';
-
-import {PersonFilterPipe} from '../../pipes/person-filter.pipe';
 import {Person} from '../../servises/person';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 

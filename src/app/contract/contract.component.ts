@@ -8,16 +8,11 @@ import {MenuService} from '../shared/menu.service';
   styleUrls: ['./contract.component.scss']
 })
 export class ContractComponent implements OnInit {
-    itemMenu: number;
 
   constructor(private menuService: MenuService) { }
 
   ngOnInit(): void {
 
-    /* получение данных из другого компонента
-    this.menuService.inventoryChanged$.subscribe( itemMenu => {
-      this.itemMenu = itemMenu;
-    }); */
   }
 
 }

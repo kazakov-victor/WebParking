@@ -1,0 +1,9 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Номер телефона</mat-label>
+    <app-tel-input formControlName="tel" required></app-tel-input>
+    <mat-icon matSuffix>phone</mat-icon>
+    <mat-hint>Включая код оператора</mat-hint>
+  </mat-form-field>
+  <button class="btn" type="submit">Отправить</button>
+</form>

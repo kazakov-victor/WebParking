@@ -9,9 +9,7 @@ import {MessageService} from './message.service';
   providedIn: 'root'
 })
 export class PersonService {
-
-  private personUrl = 'http://localhost:8080/persons/search';  // URL to web api
-
+  private personUrl = 'http://localhost:8080/persons';  // URL to web api
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
                             charset: 'UTF-8' })
@@ -23,7 +21,7 @@ export class PersonService {
 
   /** GET persons from the server */
   getPersons(): Observable<Person[]> {
-    return this.http.get<Person[]>(this.personUrl)
+    return this.http.get<Person[]>(`${this.personUrl}/list`)
       .pipe(
         tap(_ => this.log('fetched persons')),
         catchError(this.handleError<Person[]>('getPersons', []))
@@ -46,7 +44,7 @@ export class PersonService {
 
   /** GET person by id. Will 404 if id not found */
   getPerson(id: number): Observable<Person> {
-    const url = `${this.personUrl}/${id}`;
+    const url = `${this.personUrl}/edit/${id}`;
     return this.http.get<Person>(url).pipe(
       tap(_ => this.log(`fetched person id=${id}`)),
       catchError(this.handleError<Person>(`getPerson id=${id}`))
@@ -60,7 +58,7 @@ export class PersonService {
       term = 'all';
     }
 
-    return this.http.get<Person[]>(`${this.personUrl}?keyword=${term}`).pipe(
+    return this.http.get<Person[]>(`${this.personUrl}/search?keyword=${term}`).pipe(
       tap(x => x.length ?
         this.log(`found persons matching "${term}"`) :
         this.log(`no persons matching "${term}"`)),
@@ -72,10 +70,10 @@ export class PersonService {
 
   /** POST: add a new person to the server */
   addPerson(person: Person): Observable<Person> {
-    return this.http.post<Person>(this.personUrl, person, this.httpOptions).pipe(
+    console.log('addPerson works', person);
+    return this.http.post<Person>(`${this.personUrl}/save`, person, this.httpOptions).pipe(
       tap((newPerson: Person) => this.log(`added person w/ id=${newPerson.person_id}`)),
-      catchError(this.handleError<Person>('addPerson'))
-    );
+      catchError(this.handleError<Person>('addPerson')));
   }
 
   /** DELETE: delete the person from the server */
@@ -91,7 +89,7 @@ export class PersonService {
 
   /** PUT: update the person on the server */
   updatePerson(person: Person): Observable<any> {
-    return this.http.put(this.personUrl, person, this.httpOptions).pipe(
+    return this.http.put(`${this.personUrl}/edit`, person, this.httpOptions).pipe(
       tap(_ => this.log(`updated person id=${person.person_id}`)),
       catchError(this.handleError<any>('updatePerson'))
     );
