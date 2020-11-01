@@ -79,9 +79,9 @@ export class PersonService {
   /** DELETE: delete the person from the server */
   deletePerson(person: Person | number): Observable<Person> {
     const id = typeof person === 'number' ? person : person.person_id;
-    const url = `${this.personUrl}/${id}`;
+    const url = `${this.personUrl}/delete/${id}`;
 
-    return this.http.delete<Person>(url, this.httpOptions).pipe(
+    return this.http.post<Person>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted person id=${id}`)),
       catchError(this.handleError<Person>('deletePerson'))
     );

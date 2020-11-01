@@ -2328,7 +2328,7 @@ caption, th {
   margin-bottom: 20px
 }
 
-.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+.table > tbody > tr > td,  .table > tbody > tr > a > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
   padding: 8px;
   line-height: 1.428571429;
   vertical-align: top;
@@ -10709,7 +10709,7 @@ span.js-return-pay {
   color: red
 }
 
-.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+.table > tbody > tr > td, .table > tbody > tr > a > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
   padding: 4px
 }
 

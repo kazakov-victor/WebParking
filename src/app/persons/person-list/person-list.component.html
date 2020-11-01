@@ -21,10 +21,14 @@
               <td>{{person.second_name}}</td>
               <td>{{person.phone}}</td>
               <td>{{person.address}}</td>
-              <td><button class="btn btn-danger"
-              routerLink="/persons/edit/{{person.person_id}}"
-              ></button></td>
-              <a>Удалить</a>
+              <td>
+                <button class="btn btn-danger"
+                        routerLink="/persons/edit/{{person.person_id}}"
+                ></button>
+                <button class="delete" title="delete hero"
+                        (click)="delete(person)">x</button>
+              </td>
+
             </tr>
             </tbody>
           </table>

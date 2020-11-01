@@ -33,4 +33,8 @@ export class PersonListComponent implements OnInit, OnDestroy {
   edit(personId: number): void {
     this.personService.getPerson(personId).subscribe();
   }
+  delete(person: Person): void {
+    this.persons = this.persons.filter(p => p !== person);
+    this.personService.deletePerson(person).subscribe();
+  }
 }
