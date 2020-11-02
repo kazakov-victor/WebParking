@@ -22,7 +22,7 @@ import {PersonListComponent} from './persons/person-list/person-list.component';
 
 const contractRouts: Routes = [
   {path: 'list', component: ContractListComponent},
-  {path: 'edit', component: ContractEditComponent},
+  {path: 'edit/:id', component: ContractEditComponent},
   {path: 'new', component: ContractNewComponent},
 ];
 const accountantRouts: Routes = [
@@ -35,12 +35,13 @@ const personRouts: Routes = [
   {path: 'list', component: PersonListComponent},
   {path: 'new', component: PersonNewComponent},
   {path: 'edit/:id', component: PersonEditComponent},
+  {path: 'save', component: PersonListComponent},
 ];
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'contract', component: ContractComponent, children: contractRouts},
   {path: 'accountant', component: AccountantComponent, children: accountantRouts},
-  {path: 'persons', component: PersonsComponent, children: personRouts},
+  {path: 'person', component: PersonsComponent, children: personRouts},
   {path: 'user', component: UserComponent},
   {path: 'other', component: OtherComponent},
   {path: '', component: AppComponent, pathMatch: 'full'},

@@ -12,16 +12,27 @@
             <td>dtfrom</td>
             <td>dtto</td>
             <td>note</td>
+            <td>Действие</td>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let contract of contractDTOS">
+          <tr *ngFor="let contract of contracts">
             <td>{{contract.contract_id}}</td>
             <td>{{contract.number}}</td>
             <td>{{contract.balance}}</td>
             <td>{{contract.dtfrom}}</td>
             <td>{{contract.dtto}}</td>
             <td>{{contract.note}}</td>
+            <td>
+              <button
+                      routerLink="/contract/edit/{{contract.contract_id}}">
+                <fa-icon [icon]="fEdit"></fa-icon>
+              </button>
+              <button class="delete" title="delete hero"
+                      (click)="delete(contract)">
+                <fa-icon [icon]="fTrash"></fa-icon>
+              </button>
+            </td>
           </tr>
           </tbody>
         </table>

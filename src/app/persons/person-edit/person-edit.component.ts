@@ -13,7 +13,9 @@ import { Location } from '@angular/common';
 export class PersonEditComponent implements OnInit {
   personEditForm: FormGroup;
   person: Person;
-  constructor(private route: ActivatedRoute, private location: Location, private personService: PersonService) { }
+  constructor(private route: ActivatedRoute,
+              private location: Location,
+              private personService: PersonService) { }
 
   ngOnInit(): void {
     this.getPerson();

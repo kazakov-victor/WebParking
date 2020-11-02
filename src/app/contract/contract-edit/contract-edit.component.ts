@@ -1,78 +1,71 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {BehaviorSubject, Observable, Subscription} from 'rxjs';
-import {Person} from '../../servises/person';
-import {PersonService} from '../../servises/person.service';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Contract} from '../../servises/contract';
+import {ActivatedRoute} from '@angular/router';
+import {formatDate, Location} from '@angular/common';
+import {ContractService} from '../../servises/contract.service';
 
 @Component({
   selector: 'app-contract-edit',
   templateUrl: './contract-edit.component.html',
-  styleUrls: ['./contract-edit.component.scss'],
-  animations: [
-    trigger('popup-window', [
-      state('start', style({ background: 'blue' })),
-      state('end', style({
-        background: 'red',
-        transform: 'scale(1.2)'
-      })),
-      state('special', style({
-        background: 'orange',
-        transform: 'scale(0.5)',
-        borderRadius: '50%'
-      })),
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('850ms ease-out')
-      ]),
-      transition(':leave', [
-        style({opacity: 1}),
-        animate(750, style({
-          opacity: 0,
-          // transform: 'scale(1.2)'
-        }))
-      ])
-    ])
-  ]
+  styleUrls: ['./contract-edit.component.scss']
 })
 
 export class ContractEditComponent implements OnInit {
-  visible = true;
   contractEditForm: FormGroup;
-  persons$: Observable<Person[]>;
-  private searchTerms = new BehaviorSubject<string>('all');
-  sub: Subscription;
-// Push a search term into the observable stream.
-  search(term: string): void {
-    this.searchTerms.next(term);
-  }
-  constructor(private personService: PersonService,
-              private fb: FormBuilder) { }
+  contract: Contract;
+
+  constructor(private route: ActivatedRoute,
+              private location: Location,
+              private contractService: ContractService) { }
 
   ngOnInit(): void {
-    this.contractEditForm = new FormGroup({
-      contract_id: new FormControl('', Validators.required),
-      number: new FormControl('1', [
-        Validators.nullValidator,
-        Validators.required,
-        Validators.minLength(5)
-      ]),
-      person_id: new FormControl(''),
-      balance: new FormControl('', Validators.nullValidator),
-      dtfrom: new FormControl(''),
-      dtto: new FormControl(''),
-      note: new FormControl(''),
-    });
+    this.getContract();
+  }
+   getContract(): void {
+     const id = +this.route.snapshot.paramMap.get('id');
+     this.contractService.getContract(id)
+       .subscribe((contract) => {
+         this.contract = contract;
+         this.contractEditForm = new FormGroup({
+           contract_id: new FormControl(this.contract.contract_id, Validators.required),
+           number: new FormControl(this.contract.number, Validators.required),
+           person: new FormGroup(
+             {surname: new FormControl(this.contract.personDTO.surname),
+                      name: new FormControl(this.contract.personDTO.name)
+             }
+       ),
 
+           balance: new FormControl(this.contract.balance, Validators.required),
+           dtfrom: new FormControl(this.contract.dtfrom
+             ? formatDate(this.contract.dtfrom, 'yyyy-MM-dd', 'en')
+             : this.contract.dtfrom),
+           dtto: new FormControl(this.contract.dtto
+             ? formatDate(this.contract.dtto, 'yyyy-MM-dd', 'en')
+             : this.contract.dtto),
+           note: new FormControl(this.contract.note),
+           /*incomes: new FormGroup(
+             {quantity: new FormControl(this.contract.incomes),
+               name: new FormControl(this.contract.incomes.forEach())
+             }
+           ),*/
+         });
+
+  });
   }
 
   submit(): void {
-    console.log('Form submitted', this.contractEditForm);
+    if (this.contractEditForm.invalid){
+      return;
+    }
+  }
+  goBack(): void {
+    this.location.back();
   }
 
-  compareFn(c1: any, c2: any): boolean {
-    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  save(): void {
+    this.contractService.updateContract(this.contract)
+      .subscribe(() => this.goBack());
   }
-
-  next(): void { }
 }
+

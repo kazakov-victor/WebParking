@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {PersonService} from '../../servises/person.service';
+import {ContractService} from '../../servises/contract.service';
 import {BehaviorSubject, Observable, Subject, Subscription} from 'rxjs';
-import {Person} from '../../servises/person';
+import {Contract} from '../../servises/contract';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-contract-new',
@@ -40,18 +42,20 @@ import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 export class ContractNewComponent implements OnInit {
   visible = true;
   contractNewForm: FormGroup;
-  persons$: Observable<Person[]>;
+  contracts$: Observable<Contract[]>;
   private searchTerms = new BehaviorSubject<string>('all');
   sub: Subscription;
 // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
   }
-  constructor(private personService: PersonService,
+  constructor(private contractService: ContractService,
+              private route: ActivatedRoute,
+              private location: Location,
               private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.persons$ = this.searchTerms.pipe(
+    this.contracts$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
 
@@ -59,7 +63,7 @@ export class ContractNewComponent implements OnInit {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.personService.searchPersons(term)),
+      switchMap((term: string) => this.contractService.searchContracts(term)),
     );
     this.contractNewForm = new FormGroup({
       number: new FormControl('', [
@@ -67,7 +71,7 @@ export class ContractNewComponent implements OnInit {
         Validators.required,
         Validators.minLength(5)
       ]),
-      person_id: new FormControl(''),
+     // contract_id: new FormControl(''),
       balance: new FormControl('', Validators.nullValidator),
       dtfrom: new FormControl(''),
       dtto: new FormControl(''),
@@ -76,11 +80,34 @@ export class ContractNewComponent implements OnInit {
 
   }
 
-  newPerson(): void {
+  newContract(): void {
   }
 
   submit(): void {
-    console.log('Form submitted', this.contractNewForm);
+    if (this.contractNewForm.invalid){
+      return;
+    }
+    const contract: Contract = {
+      number: this.contractNewForm.value.number.trim(),
+      personDTO: this.contractNewForm.value.personDTO,
+      balance: this.contractNewForm.value.balance,
+      dtfrom: this.contractNewForm.value.dtfrom,
+      dtto: this.contractNewForm.value.dtto,
+      note: this.contractNewForm.value.note,
+      incomes: this.contractNewForm.value.incomes.values().dtto
+    };
+    this.contractService.addContract(contract).subscribe();
+    this.contractNewForm.reset();
+  }
+
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  submitAndBack(): void {
+    this.submit();
+    this.goBack();
   }
 
   compareFn(c1: any, c2: any): boolean {

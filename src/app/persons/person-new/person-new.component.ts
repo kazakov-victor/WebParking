@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PersonService} from '../../servises/person.service';
 import {Person} from '../../servises/person';
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -12,7 +14,8 @@ import {Person} from '../../servises/person';
 export class PersonNewComponent implements OnInit {
   personNewForm: FormGroup;
   person: Person;
-  constructor(private personService: PersonService) { }
+  another: boolean;
+  constructor(private route: ActivatedRoute, private location: Location, private personService: PersonService) { }
 
   ngOnInit(): void {
     this.personNewForm = new FormGroup({
@@ -36,5 +39,16 @@ export class PersonNewComponent implements OnInit {
       address: this.personNewForm.value.address
     };
     this.personService.addPerson(person).subscribe();
+    this.personNewForm.reset();
+  }
+
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  submitAndBack(): void {
+    this.submit();
+    this.goBack();
   }
 }

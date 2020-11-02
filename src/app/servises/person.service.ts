@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable, of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Person} from './person';
 import {MessageService} from './message.service';
@@ -9,7 +9,7 @@ import {MessageService} from './message.service';
   providedIn: 'root'
 })
 export class PersonService {
-  private personUrl = 'http://localhost:8080/persons';  // URL to web api
+  private personUrl = 'http://localhost:8080/person';  // URL to web api
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
                             charset: 'UTF-8' })

@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PersonService} from '../../servises/person.service';
 import {Person} from '../../servises/person';
 import {Subscription} from 'rxjs';
+import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-person-list',
@@ -11,7 +12,8 @@ import {Subscription} from 'rxjs';
 export class PersonListComponent implements OnInit, OnDestroy {
   persons: Person[] = [];
   pSub: Subscription;
-
+  fEdit = faEdit;
+  fTrash = faTrashAlt;
   constructor(private personService: PersonService) { }
 
   ngOnInit(): void {

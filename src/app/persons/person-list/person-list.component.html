@@ -22,13 +22,16 @@
               <td>{{person.phone}}</td>
               <td>{{person.address}}</td>
               <td>
-                <button class="btn btn-danger"
-                        routerLink="/persons/edit/{{person.person_id}}"
-                ></button>
+                <button
+                        routerLink="/person/edit/{{person.person_id}}"
+                >
+                  <fa-icon [icon]="fEdit"></fa-icon>
+                </button>
                 <button class="delete" title="delete hero"
-                        (click)="delete(person)">x</button>
+                        (click)="delete(person)">
+                  <fa-icon [icon]="fTrash"></fa-icon>
+                </button>
               </td>
-
             </tr>
             </tbody>
           </table>
