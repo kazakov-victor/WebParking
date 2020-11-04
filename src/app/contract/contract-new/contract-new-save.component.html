@@ -70,18 +70,18 @@
                       <td width="25%"> Дата начала </td>
                       <td width="25%"> Дата завершения </td>
                       <td width="25%"> Количество</td>
-                      <tr each="income, itemStat : ${incomes}">
-                        <td><input hidden type="text"  name="|incomes[${itemStat.index}].income_type_id|"
+                      <tr each="income, itemStat : ${incomeDTOS}">
+                        <td><input hidden type="text"  name="|incomeDTOS[${itemStat.index}].income_type_id|"
                                    value="${income.getIncomeType().getIncome_type_id()}"/></td>
 
-                        <td><input type="text" name="|incomes[${itemStat.index}].getIncomeType().name|"
+                        <td><input type="text" name="|incomeDTOS[${itemStat.index}].getIncomeType().name|"
                                    value="${income.getIncomeType().getName()}" disabled/></td>
                         <td><input type="date"
-                                   name="|incomes[${itemStat.index}].dtfrom|"
+                                   name="|incomeDTOS[${itemStat.index}].dtfrom|"
                                    value="${income.getDtfrom()}"/></td>
                         <td><input type="date"
-                                   name="|incomes[${itemStat.index}].dtto|"/></td>
-                        <td><input name="|incomes[${itemStat.index}].quantity|"/></td>
+                                   name="|incomeDTOS[${itemStat.index}].dtto|"/></td>
+                        <td><input name="|incomeDTOS[${itemStat.index}].quantity|"/></td>
                       </tr>
                       <tr>
                          </tr>

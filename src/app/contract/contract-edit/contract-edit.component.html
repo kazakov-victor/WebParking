@@ -21,9 +21,9 @@
                       <p> {{contract.personDTO.surname}} {{contract.personDTO.name}} {{contract.personDTO.second_name}}</p>
 
                       <p>тел: {{contract.personDTO.phone}}</p>
-                      <input hidden type="text" formControlName="surname"
+                      <input type="text" formControlName="surname"
                              id="surname">
-                      <input hidden type="text" formControlName="name"
+                      <input type="text" formControlName="name"
                              id="name">
                     </div>
 
@@ -52,17 +52,53 @@
                     </div>
                   </tr>
                   <tr>
-                    <div formGroupName="incomes">
-                      <label>Клиент: </label>
-                      <p> {{contract.personDTO.surname}} {{contract.personDTO.name}} {{contract.personDTO.second_name}}</p>
+                    <label>Услуги: </label>
+                    <div formArrayName="incomes" *ngFor="let income of incomes;
+                     let i = index;" class="col-sm-6 form-group">
+                      <fieldset>
+                        <div [formGroupName]="i">
+                          <label>
+                            Услуга {{i + 1}}:
+                            {{income.incomeTypeDTO.unitDTO.name}}
+                          </label>
+                          <div class="form-group">
+                            <label>income_id: </label>
+                            <input type="text" formControlName="income_id" placeholder="income_id">
+                          </div>
+                          <div class="form-group">
+                            <label>dtfrom: </label>
+                            <input type="date" formControlName="dtfrom" placeholder="dtfrom">
+                          </div>
+                          <div class="form-group">
+                            <label>dtto: </label>
+                            <input type="date" formControlName="dtto" placeholder="dtto">
+                          </div>
+                          <div class="form-group">
+                            <label>quantity: </label>
+                            <input type="text" formControlName="quantity" placeholder="quantity">
+                          </div>
+                          <div formGroupName="incomeTypeDTO">
+                            <input type="text" formControlName="income_type_id" placeholder="income_type_id">
+                            <input type="text" formControlName="name" placeholder="name">
+                            <input type="text" formControlName="note" placeholder="note">
+                            <input type="text" formControlName="sid_external" placeholder="sid_external">
+                                <div formGroupName="unitDTO">
+                                  <input formControlName="longname" placeholder="longname">
+                                  <input formControlName="name" placeholder="name">
+                                  <input formControlName="basis" placeholder="basis">
+                                  <input formControlName="unit_id" placeholder="unit_id">
+                                </div>
 
-                      <p>тел: {{contract.personDTO.phone}}</p>
-                      <input hidden type="text" formControlName="quantity"
-                             id="quantity">
-                      <input hidden type="date" formControlName="dtfrom"
-                             id="dtfrom">
-                    </div>
+                          </div>
+                        </div>
+                      </fieldset>
+
+                      <!--  </div>-->
+
+                      </div>
+
                   </tr>
+
                   <tr>
                     <td>
                       <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">

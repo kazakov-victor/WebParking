@@ -1,9 +1,9 @@
-import {IncomeType} from './income-type';
+import {IncomeTypeDTO} from './income-type';
 
 export interface Income {
   income_id?: number;
   dtfrom: string;
   dtto: string;
   quantity: number;
-  incomeTypeDTO: IncomeType;
+  incomeTypeDTO: IncomeTypeDTO;
   }

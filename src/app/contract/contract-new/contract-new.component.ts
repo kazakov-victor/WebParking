@@ -94,7 +94,7 @@ export class ContractNewComponent implements OnInit {
       dtfrom: this.contractNewForm.value.dtfrom,
       dtto: this.contractNewForm.value.dtto,
       note: this.contractNewForm.value.note,
-      incomes: this.contractNewForm.value.incomes.values().dtto
+      incomeDTOS: this.contractNewForm.value.incomes.values().dtto
     };
     this.contractService.addContract(contract).subscribe();
     this.contractNewForm.reset();

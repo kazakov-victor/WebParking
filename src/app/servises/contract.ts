@@ -9,5 +9,5 @@ export interface Contract {
   dtfrom: string;
   dtto: string;
   note: string;
-  incomes: Income[];
+  incomeDTOS: Income[];
 }
