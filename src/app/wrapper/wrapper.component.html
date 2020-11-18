@@ -20,18 +20,16 @@
       <div class="navbar-right-btns">
         <ul class="nav navbar-nav no-borders">
           <li>
-            <a routerLink="/home/#" routerLinkActive="active" class="label-menu-corner" title="Выход из системы"
-               onclick="">
+            <a routerLink="#" routerLinkActive="active" class="label-menu-corner" title="Выход из системы"
+               (click)="logout()">
               <fa-icon [icon]="faSignOutAlt"></fa-icon>
             </a>
             <form id="logout-form" action="./home/auth/logout" method="POST"
                   style="display: none;">
-              <input type="hidden" name="_token" value="ZTjLNc2YrlXsO9jI2LXNnWeTqMlyGi0Sk9JkayQb"></form>
+              <input type="hidden" name="_token" value=""></form>
           </li>
         </ul>
       </div>
-
-
     </nav>
   </div>
 
@@ -50,7 +48,7 @@
     </button>
     <button data-title="Помощь" id="show_glossary" type="button" class="infoblock_button show_glossary btn btn-info"
             style="padding: 5px 10px"
-            data-url="https://garage.net/ru/embedded-faq-new?iframe=1&amp;s=filatov.garage.net&amp;mod=dashboard">
+            data-url="https://garage.net/">
       <fa-icon [icon]="faInfo"></fa-icon>
     </button>
 

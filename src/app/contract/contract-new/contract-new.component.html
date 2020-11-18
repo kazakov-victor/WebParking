@@ -19,7 +19,7 @@
                       <div class="form-group">
                         <label>Номер договора : </label>
                         <input type="text" formControlName="number"
-                               class="form-control call_code_mask"
+                               class="form-control"
                                id="number">
                       </div>
                     </tr>
@@ -36,9 +36,9 @@
                               <input #searchBox id="search-box" (input)="search(searchBox.value)"
                               placeholder="Отбор по фамилии"/>
                               <div>
-                                <select formControlName="person_id">
+                                <select formGroupName="person">
                                   <option *ngFor="let person of persons$ | async "
-                                          [value]="person.person_id" >
+                                          [value]="person.person_id" formControlName="person_id">
                                     {{person.surname}} {{person.name}} {{person.phone}}
                                   </option>
                                 </select>
@@ -51,7 +51,7 @@
                       <td>
                         <div class="col-sm-6 form-group">
                           <div class="input-group">
-                            <button class="btn" (click)="newPerson()" type = "button"
+                            <button class="btn" (click)="addPerson()" type = "button"
                                     id="person-new">Новый</button>
                           </div>
                         </div>
@@ -69,24 +69,22 @@
                             ></div>
                           <div class="col-sm-6 form-group">
 
-                            <input class="form-control typeahead-double" type="date"
-                                   placeholder="Адрес" formControlName="dtto"
-                                   value="">
+                            <input class="form-control" type="date"
+                                   placeholder="Адрес" formControlName="dtto">
                           </div>
                         </div>
 
                       </td>
                     </tr>
-                    <tr class="  sortable" >
+                    <tr class="sortable" >
                       <td class="hide-field-td">
                       <td>
                         <div class="form-group">
                           <label>Входной баланс: </label>
                           <input formControlName="balance" type="text" name="code"
-                                 class="form-control call_code_mask"
+                                 class="form-control"
                                  id="balance-new">
                         </div>
-
                       </td>
                     </tr>
                     <tr class="  sortable" >
@@ -98,8 +96,55 @@
                                  class="form-control call_code_mask"
                                  id="crm_order_code">
                         </div>
-
                       </td>
+                    </tr>
+                      <tr>
+                      <td>
+                        <div formGroupName="incomes" class="form-group">
+                          <div class="input-group">
+                            <button class="btn" (click)="addIncome()" type="button"
+                                    id="income-add">Добавить услугу
+                            </button>
+                          </div>
+                          <label>Услуги: </label>
+                          <div *ngFor="let income of contractNewForm.get('incomes').controls;
+                                let i = index;" class="col-sm-6 form-group">
+                            <fieldset>
+                              <div [formGroupName]="i">
+                                <label>
+                                  Услуга {{i + 1}}:
+                                </label>
+                                <div class="form-group">
+                                  <label>income_id: </label>
+                                  <input type="text" formControlName="income_id" placeholder="income_id">
+                                </div>
+                                <div class="form-group">
+                                  <label>dtfrom: </label>
+                                  <input type="date" formControlName="dtfrom" placeholder="dtfrom">
+                                </div>
+                                <div class="form-group">
+                                  <label>dtto: </label>
+                                  <input type="date" formControlName="dtto" placeholder="dtto">
+                                </div>
+                                <div class="form-group">
+                                  <label>quantity: </label>
+                                  <input type="text" formControlName="quantity" placeholder="quantity">
+                                </div>
+                                <select formControlName="incomeTypeDTO" (change)="onIncomeTypeChange()">
+                                <!--<option [ngValue]="undefined" selected="selected">Выберите услугу</option>-->
+                                <option *ngFor="let incomeType of incomeTypes$ | async; let i = index"
+                                        [ngValue]="incomeType.income_type_id"
+                                        >
+                                    {{incomeType.name}}
+                                </option>
+                              </select>
+                              </div>
+                            </fieldset>
+
+                          </div>
+                        </div>
+                      </td>
+
                     </tr>
                     <tr>
                       <td>

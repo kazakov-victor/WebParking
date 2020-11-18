@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {ContractService} from '../../servises/contract.service';
+import {ContractService} from '../../services/contract.service';
 import {BehaviorSubject, Observable, Subject, Subscription} from 'rxjs';
-import {Contract} from '../../servises/contract';
+import {Contract} from '../../services/contract';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
-import {Location} from '@angular/common';
+import {formatDate, Location} from '@angular/common';
+import {Income} from '../../services/income';
+import {Person} from '../../services/person';
+import {IncomeTypeDTO} from '../../services/income-type';
+import {IncomeTypeService} from '../../services/income-type.service';
 
 @Component({
   selector: 'app-contract-new',
@@ -41,50 +45,89 @@ import {Location} from '@angular/common';
 
 export class ContractNewComponent implements OnInit {
   visible = true;
+  income: Income;
   contractNewForm: FormGroup;
+  persons$: Observable<Person[]>;
   contracts$: Observable<Contract[]>;
+  incomeTypes$: Observable<IncomeTypeDTO[]>;
   private searchTerms = new BehaviorSubject<string>('all');
   sub: Subscription;
+
 // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
   }
+
   constructor(private contractService: ContractService,
+              private incomeTypeService: IncomeTypeService,
               private route: ActivatedRoute,
               private location: Location,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder) {
+  }
 
   ngOnInit(): void {
-    this.contracts$ = this.searchTerms.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(300),
+     this.incomeTypes$ = this.incomeTypeService.getIncomeTypes();
+     this.contracts$ = this.searchTerms.pipe(
+       // wait 300ms after each keystroke before considering the term
+       debounceTime(300),
+       // ignore new term if same as previous term
+       distinctUntilChanged(),
+       // switch to new search observable each time the term changes
+       switchMap((term: string) => this.contractService.searchContracts(term)),
+     );
 
-      // ignore new term if same as previous term
-      distinctUntilChanged(),
+     this.contractNewForm = this.fb.group({
+      contract_id: ['', Validators.required],
+      number: ['', Validators.required],
+      person: this.fb.group(
+        {
+          surname: [''],
+          name: ['']
+        }
+      ),
+      balance: [''],
+      dtfrom: [''],
+      dtto: [''],
+      note: [''],
+      incomes: this.fb.array([])
+    });
+  }
 
-      // switch to new search observable each time the term changes
-      switchMap((term: string) => this.contractService.searchContracts(term)),
-    );
-    this.contractNewForm = new FormGroup({
-      number: new FormControl('', [
-        Validators.nullValidator,
-        Validators.required,
-        Validators.minLength(5)
-      ]),
-     // contract_id: new FormControl(''),
-      balance: new FormControl('', Validators.nullValidator),
-      dtfrom: new FormControl(''),
-      dtto: new FormControl(''),
-      note: new FormControl(''),
+  addIncome(): any {
+    const control = this.fb.group({
+      dtfrom: [''],
+      dtto: [''],
+      income_id: [''],
+      quantity: [''],
+      incomeTypeDTO: [1]
     });
 
+        /* this.fb.group(
+        {
+          income_type_id: [''],
+          name: [''],
+          note: [''],
+          sid_external: [''],
+          unitDTO: this.fb.group(
+            {
+              unit_id: [''],
+              name: [''],
+              longname: [''],
+              basis: [''],
+            }
+          )
+        }
+      )*/
+
+    (this.contractNewForm.get('incomes') as FormArray).push(control);
   }
 
-  newContract(): void {
+
+newContract(): void {
   }
 
-  submit(): void {
-    if (this.contractNewForm.invalid){
+submit(): void {
+    if (this.contractNewForm.invalid) {
       return;
     }
     const contract: Contract = {
@@ -101,18 +144,21 @@ export class ContractNewComponent implements OnInit {
   }
 
 
-  goBack(): void {
+goBack(): void {
     this.location.back();
   }
 
-  submitAndBack(): void {
+submitAndBack(): void {
     this.submit();
     this.goBack();
   }
 
-  compareFn(c1: any, c2: any): boolean {
-    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+addPerson(): void {
+
   }
 
-  next(): void { }
+  onIncomeTypeChange(): void {
+
+  }
+
 }

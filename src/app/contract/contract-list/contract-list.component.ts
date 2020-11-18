@@ -1,9 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {Subscription} from 'rxjs';
-import {ContractService} from '../../servises/contract.service';
-import {Contract} from '../../servises/contract';
-import {faEdit, faPencilAlt, faTrash, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import {ContractService} from '../../services/contract.service';
+import {Contract} from '../../services/contract';
+import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-contract-list',

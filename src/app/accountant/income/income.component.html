@@ -1,0 +1,44 @@
+<div class="tab-content">
+  <div class="hpanel">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center small">
+          <table class="table content_tab tab-pane clearfix">
+            <thead>
+            <tr>
+              <td>ID</td>
+              <td>Тип услуги</td>
+              <td>Дата начала</td>
+              <td>Дата окончания</td>
+              <td>Количество</td>
+              <td>Действие</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let income of incomes">
+              <td>{{income.income_id}}</td>
+              <td>{{income.incomeTypeDTO.name}}</td>
+              <td>{{income.dtfrom}}</td>
+              <td>{{income.dtto}}</td>
+              <td>{{income.quantity}}</td>
+              <td>
+                <button
+                  routerLink="/income/edit/{{income.income_id}}">
+                  <fa-icon [icon]="fEdit"></fa-icon>
+                </button>
+                <button class="delete" title="delete hero"
+                        (click)="delete(income)">
+                  <fa-icon [icon]="fTrash"></fa-icon>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

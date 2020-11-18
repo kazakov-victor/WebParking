@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PersonService} from '../../servises/person.service';
-import {Person} from '../../servises/person';
+import {PersonService} from '../../services/person.service';
+import {Person} from '../../services/person';
 import {Subscription} from 'rxjs';
 import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 

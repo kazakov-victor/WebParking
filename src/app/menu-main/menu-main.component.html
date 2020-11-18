@@ -1,7 +1,7 @@
 <nav id="menu">
   <div id="navigation">
     <div class="logo-element">
-      <span title="User name">СФ</span><br>
+      <span title="User name">CA</span><br>
     </div>
 
     <div class="profile-picture">
@@ -13,22 +13,22 @@
       <div class="stats-label text-color">
         <span class="font-extra-bold font-uppercase">Имя пользователя</span>
         <div class="dropdown">
-          <a class="dropdown-toggle" href="./home/#" data-toggle="dropdown"
+          <a class="dropdown-toggle" href="./main" data-toggle="dropdown"
              style="color:inherit">
-            <small class="text-muted" style="color:inherit">Учредитель <b class="caret"></b></small>
+            <small class="text-muted" style="color:inherit">{{roles}}<b class="caret"></b></small>
           </a> <br>
           <ul class="dropdown-menu animated fadeInRight m-t-xs">
             <li>
-              <a href="./home/#" id="profile-edit-location">Изменить филиал</a>
+              <a href="./main" id="profile-edit-location">Изменить филиал</a>
             </li>
             <li>
-              <a href="./home/#" id="show-languages-select">Изменить язык</a>
+              <a href="./main" id="show-languages-select">Изменить язык</a>
             </li>
             <li>
               <hr class="m-t-xs m-b-xs">
             </li>
             <li>
-              <a href="./home/#">
+              <a href="./main">
                 Выйти </a>
             </li>
           </ul>
@@ -41,7 +41,7 @@
 
     <ul class="nav" id="side-menu">
       <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a [routerLink]="['/']">
+        <a [routerLink]="['/main']">
           <fa-icon [icon]="faChartBar"></fa-icon>
           <span class="nav-label">Главная</span>
         </a>
@@ -88,12 +88,12 @@
               Транзакции </a>
           </li>
           <li routerLinkActive="active">
-            <a [routerLink]="['/accountant/report']">
-              Отчеты </a>
+            <a [routerLink]="['/accountant/income']">
+              Доходы </a>
           </li>
           <li routerLinkActive="active">
             <a [routerLink]="['/accountant/payment']">
-              Заказы </a>
+              Оплаты </a>
           </li>
         </ul>
       </li>

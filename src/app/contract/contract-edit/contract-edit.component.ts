@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Contract} from '../../servises/contract';
+import {Contract} from '../../services/contract';
 import {ActivatedRoute} from '@angular/router';
 import {formatDate, Location} from '@angular/common';
-import {ContractService} from '../../servises/contract.service';
-import {Income} from '../../servises/income';
-import {IncomeTypeDTO} from '../../servises/income-type';
-import {Unit} from '../../servises/unit';
+import {ContractService} from '../../services/contract.service';
+import {Income} from '../../services/income';
+import {IncomeTypeDTO} from '../../services/income-type';
+import {Unit} from '../../services/unit';
 
 @Component({
   selector: 'app-contract-edit',
@@ -54,21 +54,6 @@ export class ContractEditComponent implements OnInit {
              : this.contract.dtto],
            note: [this.contract.note],
            incomes: this.fb.array(this.incomes.map(income => this.createIncome(income)))
-
-           /*  dtto: [this.contract.incomeDTOS],
-             income_id: [this.contract.incomeDTOS],
-             income_type: this.fb.group({
-               income_type_id: [this.contract.incomeDTOS],
-               name: [this.contract.incomeDTOS],
-               sid_external: [this.contract.incomeDTOS],
-               unit: this.fb.group({
-                 unit_id: [],
-                 name: [],
-                 long_name: [],
-                 basis: []
-               })
-             })
-           }])*/
          });
        });
    }

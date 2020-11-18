@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable, of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Contract} from './contract';
 import {MessageService} from './message.service';
-import {ActivatedRoute} from '@angular/router';
-import {Location} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'

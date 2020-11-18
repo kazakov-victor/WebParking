@@ -1,39 +1,38 @@
-<body id="body" [ngClass]="{'mini-navbar': isBigMenu,'': !isBigMenu}">
-
-<app-menu-main></app-menu-main>
-
-<app-wrapper></app-wrapper>
-
-<div id="popup_window" class="modal fade left modal-large" style="display: none;">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <button type="button" class="close popup-window-close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-body">
-      </div>
-    </div>
-  </div>
+<div *ngIf="authority === 'user'">
+  <app-user></app-user>
+</div>
+<div *ngIf="authority === 'admin'">
+  <app-body></app-body>
+</div>
+<div *ngIf="authority === 'pm'">
+  <app-pm></app-pm>
+</div>
+<div *ngIf="!authority" >
+  <app-login></app-login>
 </div>
 
-<!-- Right sidebar -->
-
-<div id="right-sidebar">
-  <div class="sidebar-box">
-    <div class="sidebar-box-inner">
-      <div class="sidebar-heading well">
-        <a class="closebox js_close_sidebar"><i class="fa fa-times"></i></a>
-        <div id="right-sidebar-heading"></div>
-      </div>
-      <div id="right-sidebar-content"></div>
-      <div id="right-sidebar-loading" class="right-sidebar-loading"></div>
+<!--<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">loizenai.com</a>
     </div>
-    <div class="right-sidebar-btns">
-      <div class="right-sidebar-btns-content" id="right-sidebar-btns"></div>
-    </div>
+    <ul class="nav navbar-nav" routerLinkActive="active">
+      <li class="nav-item"><a class="nav-link" routerLink="home">Home</a></li>
+      <li *ngIf="authority === 'user'" class="nav-item">
+        <a class="nav-link" routerLink="user">User Board</a>
+      </li>
+      <li *ngIf="authority === 'admin'" class="nav-item">
+        <a class="nav-link" routerLink="contract">Contracts</a>
+      </li>
+      <li *ngIf="authority === 'pm'" class="nav-item">
+        <a class="nav-link" routerLink="pm">PM Board</a>
+      </li>
+      <li *ngIf="!authority" class="nav-item">
+        <a class="nav-link" routerLink="auth/login">Login</a>
+      </li>
+    </ul>
   </div>
-</div>
-
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>-->
