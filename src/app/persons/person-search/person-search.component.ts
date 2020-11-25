@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
 import {PersonService} from '../../services/person.service';
-import {Person} from '../../services/person';
+import {Person} from '../../shared/person';
 
 @Component({
   selector: 'app-person-search',

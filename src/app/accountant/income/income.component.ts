@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Income} from '../../services/income';
+import {Income} from '../../shared/income';
 import {Subscription} from 'rxjs';
 import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {IncomeService} from '../../services/income.service';

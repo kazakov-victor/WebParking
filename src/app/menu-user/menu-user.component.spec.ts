@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CommonReportComponent } from './common-report.component';
+import { MenuUserComponent } from './menu-user.component';
 
-describe('HomeComponent', () => {
-  let component: CommonReportComponent;
-  let fixture: ComponentFixture<CommonReportComponent>;
+describe('MenuUserComponent', () => {
+  let component: MenuUserComponent;
+  let fixture: ComponentFixture<MenuUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CommonReportComponent ]
+      declarations: [ MenuUserComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CommonReportComponent);
+    fixture = TestBed.createComponent(MenuUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

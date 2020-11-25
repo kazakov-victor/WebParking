@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {faAngleLeft, faChartBar, faCogs, faHandshake, faMoneyCheckAlt, faUser, faUsers} from '@fortawesome/free-solid-svg-icons';
-import {TokenStorageService} from '../start/auth/token-storage.service';
+import {TokenStorageService} from '../services/auth/token-storage.service';
+import {Subject, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-menu-main',
@@ -17,13 +18,17 @@ export class MenuMainComponent implements OnInit {
   faGear = faCogs;
   roles: string[];
   private role: string;
-  constructor(private tokenStorage: TokenStorageService) { }
 
-  ngOnInit(): void {
-    this.roles = this.tokenStorage.getAuthorities();
-    for (this.role of this.roles){
-     // console.log(this.role);
-    }
+    constructor(private tokenStorage: TokenStorageService) {
   }
 
+  ngOnInit(): void {
+    }
+    checkRole(role: string): boolean {
+      let res = false;
+      if (this.tokenStorage.checkAuthority(role)) {
+        res = true;
+      }
+      return res;
+    }
 }

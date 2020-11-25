@@ -1,5 +1,5 @@
 import {Component, Host, Input, OnInit} from '@angular/core';
-import {Person} from '../../services/person';
+import {Person} from '../../shared/person';
 import {PersonService} from '../../services/person.service';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {ControlContainer, FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators} from '@angular/forms';

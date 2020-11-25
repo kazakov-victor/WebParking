@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Contract} from '../../services/contract';
+import {Contract} from '../../shared/contract';
 import {ActivatedRoute} from '@angular/router';
 import {formatDate, Location} from '@angular/common';
 import {ContractService} from '../../services/contract.service';
-import {Income} from '../../services/income';
-import {IncomeTypeDTO} from '../../services/income-type';
-import {Unit} from '../../services/unit';
+import {Income} from '../../shared/income';
+import {IncomeTypeDTO} from '../../shared/income-type';
+import {Unit} from '../../shared/unit';
 
 @Component({
   selector: 'app-contract-edit',

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ContractService} from '../../services/contract.service';
-import {Contract} from '../../services/contract';
+import {Contract} from '../../shared/contract';
 import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({

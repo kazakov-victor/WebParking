@@ -1,49 +1,51 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 
+import { NgModule } from '@angular/core';
+import { AccountantComponent } from './accountant/accountant.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CommonReportComponent } from './common-report/common-report.component';
-import { ContractComponent } from './contract/contract.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { AccountantComponent } from './accountant/accountant.component';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {HttpClientModule} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { MenuMainComponent } from './menu-main/menu-main.component';
-import { WrapperComponent } from './wrapper/wrapper.component';
-import { UserComponent } from './start/user/user.component';
-import { OtherComponent } from './other/other.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { ContractListComponent } from './contract/contract-list/contract-list.component';
-import { ContractEditComponent } from './contract/contract-edit/contract-edit.component';
-import { ContractNewComponent } from './contract/contract-new/contract-new.component';
 import { AccountrantPaymentComponent } from './accountant/accountrant-payment/accountrant-payment.component';
 import { AccountrantCasflowComponent } from './accountant/accountrant-casflow/accountrant-casflow.component';
 import { AccountrantReportsComponent } from './accountant/accountrant-reports/accountrant-reports.component';
 import { AccountrantTransactionComponent } from './accountant/accountrant-transaction/accountrant-transaction.component';
 import { AccountrantMenuComponent } from './accountant/accountrant-menu/accountrant-menu.component';
+import { BodyComponent } from './body/body.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { ContractListComponent } from './contract/contract-list/contract-list.component';
+import { ContractEditComponent } from './contract/contract-edit/contract-edit.component';
+import { ContractNewComponent } from './contract/contract-new/contract-new.component';
 import { ContractMenuComponent } from './contract/contract-menu/contract-menu.component';
+import { CommonReportComponent } from './common-report/common-report.component';
+import { ContractComponent } from './contract/contract.component';
+
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import {HttpClientModule} from '@angular/common/http';
+import { MenuMainComponent } from './menu-main/menu-main.component';
+import { WrapperComponent } from './wrapper/wrapper.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MyTelInput, PhoneControlComponent} from './phone/phone-control.component';
+
+import { NotFoundComponent } from './not-found/not-found.component';
+import { OtherComponent } from './other/other.component';
+
 import { PersonSearchComponent } from './persons/person-search/person-search.component';
 import { PersonNewComponent } from './persons/person-new/person-new.component';
 import { PersonEditComponent } from './persons/person-edit/person-edit.component';
 import { PersonSelectComponent } from './persons/person-select/person-select.component';
 import { PersonFilterPipe } from './pipes/person-filter.pipe';
 import { PersonsComponent } from './persons/persons.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
-import {MyTelInput, PhoneControlComponent} from './phone/phone-control.component';
 import { PersonMenuComponent } from './persons/person-menu/person-menu.component';
 import { PersonListComponent } from './persons/person-list/person-list.component';
 import { IncomeComponent } from './accountant/income/income.component';
 import {SharedModule} from './shared/shared.module';
-import {LoginComponent} from './start/login/login.component';
-import {RegisterComponent} from './start/register/register.component';
-import {AdminComponent} from './start/admin/admin.component';
-import {PmComponent} from './start/pm/pm.component';
-import { BodyComponent } from './body/body.component';
-import {HomeComponent} from './start/home/home.component';
-import { httpInterceptorProviders } from './start/auth/auth-interceptor';
+import {RegisterComponent} from './login-page/register/register.component';
+import { httpInterceptorProviders } from './services/auth/auth-interceptor';
+import { MenuUserComponent } from './menu-user/menu-user.component';
+import { MenuAccountComponent } from './menu-account/menu-account.component';
+import {LoginPageComponent} from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,6 @@ import { httpInterceptorProviders } from './start/auth/auth-interceptor';
     AccountrantReportsComponent,
     AccountrantTransactionComponent,
     AccountrantMenuComponent,
-    AdminComponent,
     BodyComponent,
     CommonReportComponent,
     CommonReportComponent,
@@ -63,9 +64,8 @@ import { httpInterceptorProviders } from './start/auth/auth-interceptor';
     ContractEditComponent,
     ContractNewComponent,
     ContractMenuComponent,
-    HomeComponent,
     IncomeComponent,
-    LoginComponent,
+    LoginPageComponent,
     MyTelInput,
     MenuMainComponent,
     NotFoundComponent,
@@ -79,10 +79,10 @@ import { httpInterceptorProviders } from './start/auth/auth-interceptor';
     PhoneControlComponent,
     PersonMenuComponent,
     PersonListComponent,
-    PmComponent,
     RegisterComponent,
-    UserComponent,
     WrapperComponent,
+    MenuUserComponent,
+    MenuAccountComponent,
   ],
   imports: [
     BrowserModule,

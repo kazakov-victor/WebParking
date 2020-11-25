@@ -1,5 +1,5 @@
-<body id="body" [ngClass]="{'mini-navbar': isBigMenu,'': !isBigMenu}">
-
+<body id="body" [ngClass]="{'mini-navbar': !isBigMenu,'': isBigMenu}">
+<p>{{isBigMenu}}</p>
 <app-menu-main></app-menu-main>
 
 <app-wrapper></app-wrapper>

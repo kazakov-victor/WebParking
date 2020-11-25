@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
 const AUTHORITIES_KEY = 'AuthAuthorities';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -48,5 +47,18 @@ export class TokenStorageService {
     }
 
     return this.roles;
+  }
+
+    public checkAuthority(auth: string): boolean {
+    let result = false;
+    this.roles = this.getAuthorities();
+    this.roles.every(role => {
+        if (role === auth) {
+          result = true;
+          return false;
+        }
+        return true;
+      });
+    return result;
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ObservableService} from '../shared/observable.service';
+import {ObservableService} from '../services/observable.service';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-body',
@@ -7,13 +8,12 @@ import {ObservableService} from '../shared/observable.service';
   styleUrls: ['./body.component.scss']
 })
 export class BodyComponent implements OnInit {
-  isBigMenu: boolean;
+  isBigMenu: Subject<boolean>;
   constructor(private observableService: ObservableService) { }
 
   ngOnInit(): void {
-    this.observableService.inventoryChanged$.subscribe( article => {
-      this.isBigMenu = article;
-    });
-  }
+    this.isBigMenu = this.observableService.isBigMenu$;
+    console.log('From body is Big = ', this.isBigMenu);
+     }
 
 }

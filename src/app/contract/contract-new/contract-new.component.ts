@@ -3,13 +3,13 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ContractService} from '../../services/contract.service';
 import {BehaviorSubject, Observable, Subject, Subscription} from 'rxjs';
-import {Contract} from '../../services/contract';
+import {Contract} from '../../shared/contract';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
 import {formatDate, Location} from '@angular/common';
-import {Income} from '../../services/income';
-import {Person} from '../../services/person';
-import {IncomeTypeDTO} from '../../services/income-type';
+import {Income} from '../../shared/income';
+import {Person} from '../../shared/person';
+import {IncomeTypeDTO} from '../../shared/income-type';
 import {IncomeTypeService} from '../../services/income-type.service';
 
 @Component({
