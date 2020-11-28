@@ -1,0 +1,42 @@
+<div class="tab-content">
+  <div class="hpanel">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="text-center small">
+          <button type="button" class="btn btn-primary-outline pull-right"
+                  [routerLink]="'/accountant/paymenttype/new'"
+          ><i class="fa fa-plus"></i>Добавить новый</button>
+
+          <table class="table content_tab tab-pane clearfix">
+            <thead>
+            <tr>
+              <td>ID</td>
+              <td>Название</td>
+              <td>Действие</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let paymentType of paymentTypes">
+              <td>{{paymentType.payment_type_id}}</td>
+              <td>{{paymentType.name}}</td>
+              <td>
+                <button
+                  routerLink="/payment/edit/{{paymentType.payment_type_id}}">
+                  <fa-icon [icon]="fEdit"></fa-icon>
+                </button>
+                <button class="delete" title="delete payment"
+                        (click)="delete(paymentType)">
+                  <fa-icon [icon]="fTrash"></fa-icon>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

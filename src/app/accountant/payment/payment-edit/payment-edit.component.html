@@ -1,0 +1,46 @@
+<div class="tab-content">
+  <div class="hpanel">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center small">
+          <table class="table content_tab tab-pane clearfix">
+            <thead>
+            <tr>
+              <td>payment_id</td>
+              <td>number</td>
+              <td>balance</td>
+              <td>dtfrom</td>
+              <td>dtto</td>
+              <td>note</td>
+              <td>Действие</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let payment of payments">
+              <td>{{payment.payment_id}}</td>
+              <td>{{payment.number}}</td>
+              <td>{{payment.balance}}</td>
+              <td>{{payment.dtfrom}}</td>
+              <td>{{payment.dtto}}</td>
+              <td>{{payment.note}}</td>
+              <td>
+                <button
+                  routerLink="/payment/edit/{{payment.payment_id}}">
+                  <fa-icon [icon]="fEdit"></fa-icon>
+                </button>
+                <button class="delete" title="delete hero"
+                        (click)="delete(payment)">
+                  <fa-icon [icon]="fTrash"></fa-icon>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

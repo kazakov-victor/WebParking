@@ -1,0 +1,47 @@
+<div class="tab-content">
+  <div class="hpanel">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center small">
+          <button type="button" class="btn btn-primary-outline pull-right"
+                  [routerLink]="'/accountant/payment/new'"
+                  ><i class="fa fa-plus"></i> Add</button>
+
+          <table class="table content_tab tab-pane clearfix">
+            <thead>
+            <tr>
+              <td>payment_id</td>
+              <td>contract_id</td>
+              <td>period_id</td>
+              <td>amount</td>
+              <td>note</td>
+              <td>Действие</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let payment of payments">
+              <td>{{payment.payment_id}}</td>
+              <td>{{payment .contract_id}}</td>
+              <td>{{payment.period_id}}</td>
+              <td>{{payment.amount}}</td>
+              <td>{{payment.note}}</td>
+              <td>
+                <button
+                  routerLink="/payment/edit/{{payment.payment_id}}">
+                  <fa-icon [icon]="fEdit"></fa-icon>
+                </button>
+                <button class="delete" title="delete payment"
+                        (click)="delete(payment)">
+                  <fa-icon [icon]="fTrash"></fa-icon>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -18,7 +18,6 @@ export class WrapperComponent implements OnInit {
   faInfo = faInfo;
   faPhone = faPhone;
   faLogo = faCar;
-  test: string;
   constructor(private observableService: ObservableService,
               private token: TokenStorageService,
               private router: Router) {  }
@@ -35,6 +34,5 @@ export class WrapperComponent implements OnInit {
 
   toggle(): void {
     this.observableService.next();
-    console.log('Wrapper togle');
   }
 }

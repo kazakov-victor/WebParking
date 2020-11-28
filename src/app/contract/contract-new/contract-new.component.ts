@@ -6,7 +6,7 @@ import {BehaviorSubject, Observable, Subject, Subscription} from 'rxjs';
 import {Contract} from '../../shared/contract';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
-import {formatDate, Location} from '@angular/common';
+import {Location} from '@angular/common';
 import {Income} from '../../shared/income';
 import {Person} from '../../shared/person';
 import {IncomeTypeDTO} from '../../shared/income-type';
@@ -18,7 +18,7 @@ import {IncomeTypeService} from '../../services/income-type.service';
   styleUrls: ['./contract-new.component.scss'],
   animations: [
     trigger('popup-window', [
-      state('start', style({ background: 'blue' })),
+      /*state('start', style({ background: 'blue' })),
       state('end', style({
         background: 'red',
         transform: 'scale(1.2)'
@@ -27,7 +27,7 @@ import {IncomeTypeService} from '../../services/income-type.service';
         background: 'orange',
         transform: 'scale(0.5)',
         borderRadius: '50%'
-      })),
+      })),*/
       transition(':enter', [
         style({ opacity: 0 }),
         animate('850ms ease-out')

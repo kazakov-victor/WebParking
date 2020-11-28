@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {Observable, of, throwError} from 'rxjs';
-
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import { JwtResponse } from './auth/jwt-response';
 import { AuthLoginInfo } from './auth/login-info';
 import { SignUpInfo } from './auth/signup-info';
-import {catchError, delay, tap} from 'rxjs/operators';
-import {User} from '../shared/user';
 import {TokenStorageService} from './auth/token-storage.service';
 
 const httpOptions = {

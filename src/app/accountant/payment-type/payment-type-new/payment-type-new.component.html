@@ -1,0 +1,55 @@
+<p>payment-type-new works!</p>
+<div *ngIf="visible" id="popup_window" class="modal fade left modal-large in">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button type="button" class="close popup-window-close"
+              (click)="visible=false" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="modal-header">
+        <h4 class="modal-title">Ввод нового вида оплат</h4>
+      </div>
+      <div class="modal-body">
+        <div class="tab-pane" id="repair">
+          <form [formGroup]="paymentTypeNewForm" (ngSubmit)="submit()" id="form-add"
+                class="form-add">
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <table class="table table-borderless table-paddingless" id="create-fields-table">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <div class="row row-5">
+                        <div class="col-sm-6 form-group">
+                          <label>Название : </label>
+                          <input class="form-control" type="text"
+                                 formControlName="name">
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
+                        <div class="btn-group dropup col-6 tooltips">
+                          <button class="btn" type="submit">Сохранить</button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <br>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

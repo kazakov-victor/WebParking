@@ -92,8 +92,16 @@
               Доходы </a>
           </li>
           <li routerLinkActive="active">
-            <a [routerLink]="['/accountant/payment']">
+            <a [routerLink]="['/accountant/payment/list']">
               Оплаты </a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/accountant/paymenttype/list']">
+              Виды оплат </a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/accountant/paymenttype/list']">
+              Новый вид оплаты </a>
           </li>
         </ul>
       </li>

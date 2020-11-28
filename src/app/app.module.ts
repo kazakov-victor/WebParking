@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AccountantComponent } from './accountant/accountant.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AccountrantPaymentComponent } from './accountant/accountrant-payment/accountrant-payment.component';
+import { PaymentComponent } from './accountant/payment/payment.component';
 import { AccountrantCasflowComponent } from './accountant/accountrant-casflow/accountrant-casflow.component';
 import { AccountrantReportsComponent } from './accountant/accountrant-reports/accountrant-reports.component';
 import { AccountrantTransactionComponent } from './accountant/accountrant-transaction/accountrant-transaction.component';
@@ -46,12 +46,18 @@ import { httpInterceptorProviders } from './services/auth/auth-interceptor';
 import { MenuUserComponent } from './menu-user/menu-user.component';
 import { MenuAccountComponent } from './menu-account/menu-account.component';
 import {LoginPageComponent} from './login-page/login-page.component';
+import { PaymentListComponent } from './accountant/payment/payment-list/payment-list.component';
+import { PaymentEditComponent } from './accountant/payment/payment-edit/payment-edit.component';
+import { PaymentNewComponent } from './accountant/payment/payment-new/payment-new.component';
+import { PaymentTypeComponent } from './accountant/payment-type/payment-type.component';
+import { PaymentTypeListComponent } from './accountant/payment-type/payment-type-list/payment-type-list.component';
+import { PaymentTypeNewComponent } from './accountant/payment-type/payment-type-new/payment-type-new.component';
+import { PaymentTypeEditComponent } from './accountant/payment-type/payment-type-edit/payment-type-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccountantComponent,
-    AccountrantPaymentComponent,
     AccountrantCasflowComponent,
     AccountrantReportsComponent,
     AccountrantTransactionComponent,
@@ -70,6 +76,10 @@ import {LoginPageComponent} from './login-page/login-page.component';
     MenuMainComponent,
     NotFoundComponent,
     OtherComponent,
+    PaymentComponent,
+    PaymentListComponent,
+    PaymentEditComponent,
+    PaymentNewComponent,
     PersonSearchComponent,
     PersonNewComponent,
     PersonEditComponent,
@@ -83,6 +93,10 @@ import {LoginPageComponent} from './login-page/login-page.component';
     WrapperComponent,
     MenuUserComponent,
     MenuAccountComponent,
+    PaymentTypeComponent,
+    PaymentTypeListComponent,
+    PaymentTypeNewComponent,
+    PaymentTypeEditComponent,
   ],
   imports: [
     BrowserModule,

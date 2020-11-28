@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import { faCogs, faUser, faUsers} from '@fortawesome/free-solid-svg-icons';
 import {ObservableService} from './services/observable.service';
 import {TokenStorageService} from './services/auth/token-storage.service';
-import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,17 +10,13 @@ import {Subject} from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'WebParking';
-  faUser = faUser;
-  faUsers = faUsers;
-  faGear = faCogs;
   roles: string[];
   authority: string = null;
   info: any;
   isBigMenu: boolean;
 
   constructor(private tokenStorage: TokenStorageService,
-              private observableService: ObservableService) {
-  }
+              private observableService: ObservableService) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -38,7 +32,6 @@ export class AppComponent implements OnInit {
         this.authority = 'user';
         return true;
       });
-      console.log('Authority (Role) - ', this.authority);
     }
     this.observableService.isBigMenu$.subscribe(value => {
       this.isBigMenu = value;

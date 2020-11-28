@@ -1,5 +1,4 @@
 <body id="body" [ngClass]="{'mini-navbar': !isBigMenu,'': isBigMenu}">
-
 <div [ngSwitch]="authority">
   <div *ngSwitchCase="'admin'">
     <app-menu-main></app-menu-main>
@@ -18,8 +17,6 @@
   </div>
 </div>
 
-
-
 <div id="popup_window" class="modal fade left modal-large" style="display: none;">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -36,7 +33,6 @@
 </div>
 
 <!-- Right sidebar -->
-
 <div id="right-sidebar">
   <div class="sidebar-box">
     <div class="sidebar-box-inner">

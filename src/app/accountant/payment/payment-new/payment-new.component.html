@@ -1,0 +1,111 @@
+<div *ngIf="visible" id="popup_window" class="modal fade left modal-large in">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button type="button" class="close popup-window-close"
+              (click)="visible=false" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="modal-header">
+        <h4 class="modal-title">Ввод нового платежа</h4>
+      </div>
+      <div class="modal-body">
+        <div class="tab-pane" id="repair">
+          <form [formGroup]="paymentNewForm" (ngSubmit)="submit()" id="order-form-add" class="order-form-add">
+            <div class="row">
+              <div class="col-md-6 col-xs-12 js-fields">
+                <table class="table table-borderless table-paddingless" id="create-order-fields-table">
+                  <tbody>
+                  <tr>
+
+                    <div class="form-group">
+                      <label>Вид оплаты </label>
+                      <div>
+                        <select formControlName="payment_type_id">
+                          <option *ngFor="let paymentType of paymentTypes$ | async"
+                                  [ngValue]="paymentType.payment_type_id">
+                            {{paymentType.payment_type_id}}  {{paymentType.name}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr>
+                    <div class="form-group">
+                      <label>Номер договора </label>
+                      <div>
+                        <select formControlName="contract_id">
+                          <option *ngFor="let contract of contracts"
+                                  [ngValue]="contract.contract_id">
+                            {{contract.number}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row row-5">
+                        <div class="col-sm-6 form-group">
+                          <label>Дата : </label>
+                          <input formControlName="ts" type="date"
+                                  >
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="sortable" >
+                    <td>
+                      <div class="form-group">
+                        <label>Сумма: </label>
+                        <input formControlName="amount" type="text" name="amount"
+                               placeholder="0.00"
+                               class="form-control"
+                               id="amount">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="sortable" >
+                    <td class="hide-field-td">
+                    <td>
+                      <div class="form-group">
+                        <label>Примечание: </label>
+                        <input formControlName="note" type="text" name="note"
+                               class="form-control"
+                               id="note">
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
+                        <div class="btn-group dropup col-6 js-request tooltips"
+                             title=""                               >
+                          <button class="btn" type="submit">Отправить</button>
+
+                          <button type="button" class="btn btn-info dropdown-toggle">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <br>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
