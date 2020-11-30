@@ -1,46 +1,98 @@
-<div class="tab-content">
-  <div class="hpanel">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="text-center small">
-          <table class="table content_tab tab-pane clearfix">
-            <thead>
-            <tr>
-              <td>payment_id</td>
-              <td>number</td>
-              <td>balance</td>
-              <td>dtfrom</td>
-              <td>dtto</td>
-              <td>note</td>
-              <td>Действие</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let payment of payments">
-              <td>{{payment.payment_id}}</td>
-              <td>{{payment.number}}</td>
-              <td>{{payment.balance}}</td>
-              <td>{{payment.dtfrom}}</td>
-              <td>{{payment.dtto}}</td>
-              <td>{{payment.note}}</td>
-              <td>
-                <button
-                  routerLink="/payment/edit/{{payment.payment_id}}">
-                  <fa-icon [icon]="fEdit"></fa-icon>
-                </button>
-                <button class="delete" title="delete hero"
-                        (click)="delete(payment)">
-                  <fa-icon [icon]="fTrash"></fa-icon>
-                </button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+<p>Payment edit works!!!!</p>
+<div *ngIf="visible" id="popup_window" class="modal fade left modal-large in">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button type="button" class="close popup-window-close"
+              (click)="visible=false" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="modal-header">
+        <h4 class="modal-title">Изменить платеж</h4>
+      </div>
+      <div class="modal-body">
+        <div class="tab-pane" id="repair">
+          <form [formGroup]="paymentEditForm" (ngSubmit)="submit()" id="order-form-add" class="order-form-add">
+            <div class="row">
+              <div class="col-md-6 col-xs-12 js-fields">
+                <table class="table table-borderless table-paddingless" id="create-order-fields-table">
+                  <tbody>
+                  <!--<tr>
+                    <td>
+                      <input formControlName="payment_id" type="text">
+                    </td>
+                  </tr>-->
+                      <tr>
+                       <div class="form-group">
+                         <label for="paymenttypes">Вид оплаты </label>
+                         <div>
+                          <select formControlName="paymenttypes" id="paymenttypes">
+                             <option *ngFor="let paymenttype of paymenttypes; let i = index"
+                                     [value]="paymenttypes[i].payment_type_id" >
+                                {{paymenttypes[i].name}}
+                             </option>
+                           </select>
+                         </div>
+                       </div>
+                     </tr>
+                  <tr>
+                    <div class="form-group">
+                      <label for="contracts">Номер договора </label>
+                      <div>
+                        <select formControlName="contracts" id="contracts">
+                          <option *ngFor="let contract of contracts; let i = index"
+                                  [value]="contracts[i].contract_id">
+                            {{contracts[i].number}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="row row-5">
+                        <div class="col-sm-6 form-group">
+                          <label>Дата : </label>
+                          <input formControlName="ts" type="date">
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="sortable" >
+                    <td>
+                      <div class="form-group">
+                        <label>Сумма: </label>
+                        <input formControlName="amount" type="text" name="amount"
+                               placeholder="0.00" class="form-control"
+                               id="amount">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="sortable" >
+                    <td class="hide-field-td">
+                    <td>
+                      <div class="form-group">
+                        <label>Примечание: </label>
+                        <input formControlName="note" type="text" name="note"
+                               class="form-control" id="note">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
+                        <div class="btn-group dropup col-6 tooltips">
+                          <button class="btn" type="submit">Сохранить</button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-

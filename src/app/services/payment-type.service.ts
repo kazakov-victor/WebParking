@@ -9,7 +9,7 @@ import {MessageService} from './message.service';
   providedIn: 'root'
 })
 export class PaymentTypeService {
-  private paymentTypeUrl = 'http://localhost:8080/paymenttype';  // URL to web api
+  private paymentTypeUrl = 'http://localhost:8080/paymenttype';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
       charset: 'UTF-8' })
@@ -18,7 +18,6 @@ export class PaymentTypeService {
   constructor(private http: HttpClient,
               private messageService: MessageService) { }
 
-  /** GET paymentTypes from the server */
   getPaymentTypes(): Observable<PaymentType[]> {
     return this.http.get<PaymentType[]>(`${this.paymentTypeUrl}/list`)
       .pipe(
@@ -50,29 +49,12 @@ export class PaymentTypeService {
     );
   }
 
-  /* GET paymentTypes whose name contains search term */
-  searchPaymentTypes(term: string): Observable<PaymentType[]> {
-    if (!term.trim()) {
-      // if not search term, return full paymentType array.
-      term = 'all';
-    }
-
-    return this.http.get<PaymentType[]>(`${this.paymentTypeUrl}/search?keyword=${term}`).pipe(
-      tap(x => x.length ?
-        this.log(`found paymentTypes matching "${term}"`) :
-        this.log(`no paymentTypes matching "${term}"`)),
-      catchError(this.handleError<PaymentType[]>('searchPaymentTypes', []))
-    );
-  }
-
-  //////// Save methods //////////
-
   /** POST: add a new paymentType to the server */
-  addPaymentType(paymentType: PaymentType): Observable<PaymentType> {
-    console.log('addPaymentType works', paymentType);
+  savePaymentType(paymentType: PaymentType): Observable<PaymentType> {
+    console.log('savePaymentType works', paymentType);
     return this.http.post<PaymentType>(`${this.paymentTypeUrl}/save`, paymentType, this.httpOptions).pipe(
       tap((newPaymentType: PaymentType) => this.log(`added paymentType w/ id=${newPaymentType.payment_type_id}`)),
-      catchError(this.handleError<PaymentType>('addPaymentType')));
+      catchError(this.handleError<PaymentType>('savePaymentType')));
   }
 
   /** DELETE: delete the paymentType from the server */
@@ -83,14 +65,6 @@ export class PaymentTypeService {
     return this.http.post<PaymentType>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted paymentType id=${id}`)),
       catchError(this.handleError<PaymentType>('deletePaymentType'))
-    );
-  }
-
-  /** PUT: update the paymentType on the server */
-  updatePaymentType(paymentType: PaymentType): Observable<any> {
-    return this.http.put(`${this.paymentTypeUrl}/edit`, paymentType, this.httpOptions).pipe(
-      tap(_ => this.log(`updated paymentType id=${paymentType.payment_type_id}`)),
-      catchError(this.handleError<any>('updatePaymentType'))
     );
   }
 

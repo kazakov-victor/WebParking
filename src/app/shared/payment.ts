@@ -1,11 +1,12 @@
 import {PaymentType} from './payment-type';
+import {Contract} from './contract';
 
 export interface Payment {
   payment_id?: number;
-  contract_id: number;
+  contract?: Contract;
   period_id?: number;
-  payment_type_id: number;
-  ts: string;
-  amount: number;
+  paymentType?: PaymentType;
+  ts?: string;
+  amount?: number;
   note: string;
 }

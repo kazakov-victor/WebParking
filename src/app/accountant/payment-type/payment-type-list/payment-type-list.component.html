@@ -21,7 +21,7 @@
               <td>{{paymentType.name}}</td>
               <td>
                 <button
-                  routerLink="/payment/edit/{{paymentType.payment_type_id}}">
+                  [routerLink]="['/accountant/paymenttype/edit/', paymentType.payment_type_id]">
                   <fa-icon [icon]="fEdit"></fa-icon>
                 </button>
                 <button class="delete" title="delete payment"

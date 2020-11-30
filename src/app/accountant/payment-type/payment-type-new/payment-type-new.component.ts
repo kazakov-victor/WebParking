@@ -33,31 +33,14 @@ export class PaymentTypeNewComponent implements OnInit {
   visible = true;
   paymentTypeNewForm: FormGroup;
   paymentTypes$: Observable<PaymentType[]>;
-  private searchTerms = new BehaviorSubject<string>('all');
   sub: Subscription;
-
-// Push a search term into the observable stream.
-  search(term: string): void {
-    this.searchTerms.next(term);
-  }
 
   constructor(private paymentTypeService: PaymentTypeService,
               private route: ActivatedRoute,
               private location: Location,
-              private fb: FormBuilder) {
-  }
+              private fb: FormBuilder) {}
 
   ngOnInit(): void {
-
-    this.paymentTypes$ = this.searchTerms.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(300),
-      // ignore new term if same as previous term
-      distinctUntilChanged(),
-      // switch to new search observable each time the term changes
-      switchMap((term: string) => this.paymentTypeService.searchPaymentTypes(term)),
-    );
-
     this.paymentTypeNewForm = this.fb.group({
       name: ['', Validators.required],
     });
@@ -70,7 +53,7 @@ export class PaymentTypeNewComponent implements OnInit {
     const paymentType: PaymentType = {
       name: this.paymentTypeNewForm.value.name,
     };
-    this.paymentTypeService.addPaymentType(paymentType).subscribe();
+    this.paymentTypeService.savePaymentType(paymentType).subscribe();
     this.paymentTypeNewForm.reset();
     this.location.back();
   }

@@ -5,7 +5,7 @@
         <div class="text-center small">
           <button type="button" class="btn btn-primary-outline pull-right"
                   [routerLink]="'/accountant/payment/new'"
-                  ><i class="fa fa-plus"></i> Add</button>
+                  ><i class="fa fa-plus"></i> Добавить платеж </button>
 
           <table class="table content_tab tab-pane clearfix">
             <thead>
@@ -21,13 +21,13 @@
             <tbody>
             <tr *ngFor="let payment of payments">
               <td>{{payment.payment_id}}</td>
-              <td>{{payment .contract_id}}</td>
+              <td>{{payment.contract.contract_id}}</td>
               <td>{{payment.period_id}}</td>
               <td>{{payment.amount}}</td>
               <td>{{payment.note}}</td>
               <td>
                 <button
-                  routerLink="/payment/edit/{{payment.payment_id}}">
+                  [routerLink]="['/accountant/payment/edit', payment.payment_id]">
                   <fa-icon [icon]="fEdit"></fa-icon>
                 </button>
                 <button class="delete" title="delete payment"

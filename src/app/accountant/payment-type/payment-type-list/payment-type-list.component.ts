@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit} from '@angular/core';
 import {PaymentType} from '../../../shared/payment-type';
 import {Subscription} from 'rxjs';
 import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
@@ -16,7 +16,8 @@ export class PaymentTypeListComponent implements OnInit, OnDestroy {
   fEdit = faEdit;
   fTrash = faTrashAlt;
   constructor(private paymentTypeService: PaymentTypeService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.getPaymentTypes();
@@ -39,12 +40,7 @@ export class PaymentTypeListComponent implements OnInit, OnDestroy {
   }
   delete(paymentType: PaymentType): void {
     this.paymentTypes = this.paymentTypes.filter(p => p !== paymentType);
-    this.paymentTypeService.deletePaymentType(paymentType).subscribe();
-  }
-
-  btnNewPaymentType(): void {
-    this.router.navigateByUrl('/accountant/paymenttype/new');
-    console.log('пытаемся добавить  тип оплаты');
+    this.paymentTypeService.deletePaymentType(paymentType).subscribe(() => this.getPaymentTypes());
   }
 }
 

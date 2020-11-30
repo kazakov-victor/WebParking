@@ -33,9 +33,7 @@ export class ContractEditComponent implements OnInit {
      this.contractService.getContract(id)
        .subscribe((contract) => {
          this.contract = contract;
-         console.log('IncomeDTOS', this.contract.incomeDTOS);
          this.incomes = this.contract.incomeDTOS;
-         console.log('incomes', this.incomes);
          this.contractEditForm = this.fb.group({
            contract_id: [this.contract.contract_id, Validators.required],
            number: [this.contract.number, Validators.required],

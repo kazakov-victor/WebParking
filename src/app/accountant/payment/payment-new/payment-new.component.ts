@@ -6,7 +6,7 @@ import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {Payment} from '../../../shared/payment';
 import {debounceTime, distinctUntilChanged, first, map, switchMap} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
-import {Location} from '@angular/common';
+import {formatDate, Location} from '@angular/common';
 import {Person} from '../../../shared/person';
 import {PaymentType} from '../../../shared/payment-type';
 import {PaymentTypeService} from '../../../services/payment-type.service';
@@ -37,9 +37,9 @@ export class PaymentNewComponent implements OnInit {
   visible = true;
   paymentNewForm: FormGroup;
   paymentTypes$: Observable<PaymentType[]>;
-  contracts: Contract[] = [];
+  contracts$: Observable<Contract[]>;
   sub: Subscription;
-
+  currentDate: string;
   constructor(private paymentService: PaymentService,
               private paymentTypeService: PaymentTypeService,
               private contractService: ContractService,
@@ -48,31 +48,26 @@ export class PaymentNewComponent implements OnInit {
               private fb: FormBuilder) {}
 
   ngOnInit(): void {
-     this.paymentTypes$ = this.paymentTypeService.getPaymentTypes();
-   // this.getPaymentTypes();
-     this.getContracts();
-     this.paymentNewForm = this.fb.group({
-      payment_type_id: [1, Validators.required],
-      contract_id: ['', Validators.required],
-      ts: ['', Validators.required],
+    this.currentDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
+    console.log(this.currentDate);
+    this.paymentTypes$ = this.paymentTypeService.getPaymentTypes();
+    this.contracts$ = this.contractService.getContracts();
+    this.paymentNewForm = this.fb.group({
+      paymentType: ['', Validators.required],
+      contract_id: [1, Validators.required],
+      ts: [this.currentDate, Validators.required],
       amount: [''],
       note: [''],
     });
   }
- /* getPaymentTypes(): void {
-    const sb = this.paymentTypeService.getPaymentTypes()
-      .subscribe(response => {
-      console.log('Response - ', response);
-      this.paymentTypes$ = response;
-    });
-  }*/
-  getContracts(): void {
+
+/*  getContracts(): void {
     this.contractService.getContracts()
       .subscribe(response => {
         console.log('Response - ', response);
-        this.contracts = response;
+        this.contracts$ = response;
       });
-  }
+  }*/
 
   addPayment(): any {
     const control = this.fb.group({
@@ -89,14 +84,15 @@ export class PaymentNewComponent implements OnInit {
       return;
     }
     const payment: Payment = {
-      payment_type_id: this.paymentNewForm.value.payment_type_id,
-      contract_id: this.paymentNewForm.value.contract_id,
+      paymentType: this.paymentNewForm.value.paymentType,
+    //  contract_id: this.paymentNewForm.value.contract_id,
       ts: this.paymentNewForm.value.ts,
       amount: this.paymentNewForm.value.amount,
       note: this.paymentNewForm.value.note
     };
     this.paymentService.addPayment(payment).subscribe();
     this.paymentNewForm.reset();
+    this.location.back();
   }
 
   goBack(): void {

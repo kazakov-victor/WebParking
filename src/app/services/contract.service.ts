@@ -18,11 +18,11 @@ export class ContractService {
   constructor(private http: HttpClient,
               private messageService: MessageService) { }
 
-  /** GET contracts from the server */
+  /** GET contracts$ from the server */
   getContracts(): Observable<Contract[]> {
     return this.http.get<Contract[]>(`${this.contractUrl}/list`)
       .pipe(
-        tap(_ => this.log('fetched contracts')),
+        tap(_ => this.log('fetched contracts$')),
         catchError(this.handleError<Contract[]>('getContracts', []))
       );
   }
@@ -50,7 +50,7 @@ export class ContractService {
     );
   }
 
-  /* GET contracts whose name contains search term */
+  /* GET contracts$ whose name contains search term */
   searchContracts(term: string): Observable<Contract[]> {
     if (!term.trim()) {
       // if not search term, return full contract array.

@@ -16,14 +16,13 @@
                 <table class="table table-borderless table-paddingless" id="create-order-fields-table">
                   <tbody>
                   <tr>
-
                     <div class="form-group">
                       <label>Вид оплаты </label>
                       <div>
                         <select formControlName="payment_type_id">
-                          <option *ngFor="let paymentType of paymentTypes$ | async"
-                                  [ngValue]="paymentType.payment_type_id">
-                            {{paymentType.payment_type_id}}  {{paymentType.name}}
+                          <option *ngFor="let paymentType of paymentTypes$ | async; let i = index"
+                                  [value]="paymentType[i]">
+                            {{paymentType[i].name}}
                           </option>
                         </select>
                       </div>
@@ -34,7 +33,7 @@
                       <label>Номер договора </label>
                       <div>
                         <select formControlName="contract_id">
-                          <option *ngFor="let contract of contracts"
+                          <option *ngFor="let contract of contracts$ | async"
                                   [ngValue]="contract.contract_id">
                             {{contract.number}}
                           </option>
@@ -47,8 +46,7 @@
                       <div class="row row-5">
                         <div class="col-sm-6 form-group">
                           <label>Дата : </label>
-                          <input formControlName="ts" type="date"
-                                  >
+                          <input formControlName="ts" type="date">
                         </div>
                       </div>
                     </td>
@@ -58,8 +56,7 @@
                       <div class="form-group">
                         <label>Сумма: </label>
                         <input formControlName="amount" type="text" name="amount"
-                               placeholder="0.00"
-                               class="form-control"
+                               placeholder="0.00" class="form-control"
                                id="amount">
                       </div>
                     </td>
@@ -70,24 +67,15 @@
                       <div class="form-group">
                         <label>Примечание: </label>
                         <input formControlName="note" type="text" name="note"
-                               class="form-control"
-                               id="note">
+                               class="form-control" id="note">
                       </div>
                     </td>
                   </tr>
-
                   <tr>
                     <td>
                       <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
-                        <div class="btn-group dropup col-6 js-request tooltips"
-                             title=""                               >
-                          <button class="btn" type="submit">Отправить</button>
-
-                          <button type="button" class="btn btn-info dropdown-toggle">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                          </button>
-
+                        <div class="btn-group dropup col-6 tooltips">
+                          <button class="btn" type="submit">Сохранить</button>
                         </div>
                       </div>
                     </td>
@@ -95,10 +83,8 @@
                   </tbody>
                 </table>
               </div>
-              <br>
             </div>
           </form>
-
         </div>
       </div>
     </div>
