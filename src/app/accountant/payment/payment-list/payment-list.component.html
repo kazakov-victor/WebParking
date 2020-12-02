@@ -3,26 +3,36 @@
     <div class="row">
       <div class="col-md-12">
         <div class="text-center small">
-          <button type="button" class="btn btn-primary-outline pull-right"
-                  [routerLink]="'/accountant/payment/new'"
-                  ><i class="fa fa-plus"></i> Добавить платеж </button>
+
 
           <table class="table content_tab tab-pane clearfix">
             <thead>
             <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button type="button" class="btn btn-success pull-right"
+                        [routerLink]="'/accountant/payment/new'"
+                ><i class="fa fa-plus"></i> Новый </button>
+              </td>
+            </tr>
+            <tr>
               <td>payment_id</td>
               <td>contract_id</td>
-              <td>period_id</td>
-              <td>amount</td>
-              <td>note</td>
+              <td>Дата</td>
+              <td>Сумма</td>
+              <td>Примечание</td>
               <td>Действие</td>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let payment of payments">
               <td>{{payment.payment_id}}</td>
-              <td>{{payment.contract.contract_id}}</td>
-              <td>{{payment.period_id}}</td>
+              <td>{{payment.contract_id}}</td>
+              <td>{{payment.ts}}</td>
               <td>{{payment.amount}}</td>
               <td>{{payment.note}}</td>
               <td>

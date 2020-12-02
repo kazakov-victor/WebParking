@@ -1,4 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterContentInit,
+  AfterViewChecked,
+  AfterViewInit,
+  Component, DoCheck,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
 import {Payment} from '../../../shared/payment';
 import {Subscription} from 'rxjs';
 import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
@@ -10,15 +20,40 @@ import {Router} from '@angular/router';
   templateUrl: './payment-list.component.html',
   styleUrls: ['./payment-list.component.scss']
 })
-export class PaymentListComponent implements OnInit, OnDestroy {
+export class PaymentListComponent implements OnInit, OnDestroy,
+  DoCheck,
+  OnChanges,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewChecked,
+  AfterViewInit {
   payments: Payment[] = [];
   pSub: Subscription;
   fEdit = faEdit;
   fTrash = faTrashAlt;
+
   constructor(private paymentService: PaymentService,
-              private router: Router) { }
+              private router: Router) {
+  }
+
+  ngAfterContentChecked(): void {
+        console.log('AfterContentChecked');
+    }
+
+  ngAfterContentInit(): void {
+    console.log('AfterContentInit');
+    }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('OnChanges');
+    }
+
+  ngDoCheck(): void {
+    console.log('DoCheck');
+    }
 
   ngOnInit(): void {
+    console.log('OnInit');
     this.getPayments();
   }
   getPayments(): void{
@@ -45,5 +80,13 @@ export class PaymentListComponent implements OnInit, OnDestroy {
   btnNewPayment(): void {
     this.router.navigateByUrl('/accountant/payment/new');
     console.log('пытаемся добавить платеж');
+  }
+
+  ngAfterViewChecked(): void {
+    console.log('AfterViewChecked');
+  }
+
+  ngAfterViewInit(): void {
+    console.log('AfterViewInit');
   }
 }

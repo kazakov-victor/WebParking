@@ -68,11 +68,11 @@ export class PaymentService {
   //////// Save methods //////////
 
   /** POST: add a new payment to the server */
-  addPayment(payment: Payment): Observable<Payment> {
-    console.log('addPayment works', payment);
+  savePayment(payment: Payment): Observable<Payment> {
+    console.log('savePayment works', payment);
     return this.http.post<Payment>(`${this.paymentUrl}/save`, payment, this.httpOptions).pipe(
       tap((newPayment: Payment) => this.log(`added payment w/ id=${newPayment.payment_id}`)),
-      catchError(this.handleError<Payment>('addPayment')));
+      catchError(this.handleError<Payment>('savePayment')));
   }
 
   /** DELETE: delete the payment from the server */

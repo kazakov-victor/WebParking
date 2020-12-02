@@ -17,12 +17,12 @@
                   <tbody>
                   <tr>
                     <div class="form-group">
-                      <label>Вид оплаты </label>
+                      <label for="paymenttypes">Вид оплаты </label>
                       <div>
-                        <select formControlName="payment_type_id">
-                          <option *ngFor="let paymentType of paymentTypes$ | async; let i = index"
-                                  [value]="paymentType[i]">
-                            {{paymentType[i].name}}
+                        <select formControlName="payment_type_id" id="paymenttypes">
+                          <option *ngFor="let paymenttype of paymenttypes; let i = index"
+                                  [value]="paymenttypes[i].payment_type_id" >
+                            {{paymenttypes[i].name}}
                           </option>
                         </select>
                       </div>
@@ -30,12 +30,12 @@
                   </tr>
                   <tr>
                     <div class="form-group">
-                      <label>Номер договора </label>
+                      <label for="contracts">Номер договора </label>
                       <div>
-                        <select formControlName="contract_id">
-                          <option *ngFor="let contract of contracts$ | async"
-                                  [ngValue]="contract.contract_id">
-                            {{contract.number}}
+                        <select formControlName="contract_id" id="contracts">
+                          <option *ngFor="let contract of contracts; let i = index"
+                                  [value]="contracts[i].contract_id">
+                            {{contracts[i].number}}
                           </option>
                         </select>
                       </div>

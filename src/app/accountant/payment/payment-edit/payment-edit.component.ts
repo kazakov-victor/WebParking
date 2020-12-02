@@ -33,9 +33,9 @@ export class PaymentEditComponent implements OnInit, OnDestroy {
               private location: Location,
               private fb: FormBuilder) {
     this.paymentEditForm = this.fb.group({
-      paymenttypes: [''],
-   //   paymentType: [''],
-      contracts: [''],
+      payment_id: [''],
+      payment_type_id: [''],
+      contract_id: [''],
       ts: [''],
       amount: [''],
       note: [''],
@@ -51,26 +51,22 @@ export class PaymentEditComponent implements OnInit, OnDestroy {
       .subscribe((payment) => {
         this.payment = payment;
         console.log('This payment --', this.payment);
+        this.paymentEditForm.controls.payment_id.patchValue(this.payment.payment_id);
         this.paymentEditForm.controls.note.patchValue(this.payment.note);
         this.paymentEditForm.controls.amount.patchValue(this.payment.amount);
         this.paymentEditForm.controls.ts.patchValue(this.payment.ts);
-      //  this.paymentEditForm.controls.note.patchValue(this.payment[id].note);
-      //  this.paymentEditForm.controls.paymentType.patchValue(this.payment[id].paymentType);
-});
+      });
     this.paymentTypeService.getPaymentTypes()
       .subscribe((types) => {
         console.log('Types = ', types);
         this.paymenttypes = types;
-        this.paymentEditForm.controls.paymenttypes.patchValue(this.payment.paymentType.payment_type_id);
-       // this.paymentEditForm.controls.paymenttypes.patchValue(this.paymenttypes[0].payment_type_id);
-      });
+        this.paymentEditForm.controls.payment_type_id.patchValue(this.payment.payment_type_id);
+        });
     this.contractService.getContracts()
       .subscribe((contracts) => {
         this.contracts = contracts;
-        console.log('This payment.contract 222 --', this.payment.contract);
-      //  this.paymentEditForm.controls.conracts.patchValue(this.payment.contract.contract_id);
-      //  this.paymentEditForm.controls.conracts.patchValue(this.contracts[0].contract_id);
-      });
+        this.paymentEditForm.controls.contract_id.patchValue(this.payment.contract_id);
+       });
   }
 
   ngOnDestroy(): void {
@@ -84,15 +80,17 @@ export class PaymentEditComponent implements OnInit, OnDestroy {
       return;
     }
     const payment: Payment = {
-    //  contract_id: this.paymentEditForm.value.contract_id,
-    //  paymentType: this.paymentEditForm.value.paymentType,
-    //  ts: this.paymentEditForm.value.ts,
-    //  amount: this.paymentEditForm.value.amount,
+      payment_id: this.paymentEditForm.value.payment_id,
+      contract_id: this.paymentEditForm.value.contract_id,
+      payment_type_id: this.paymentEditForm.value.payment_type_id,
+      ts: this.paymentEditForm.value.ts,
+      amount: this.paymentEditForm.value.amount,
       note: this.paymentEditForm.value.note
     };
-    this.paymentService.addPayment(payment)
+    console.log('This payment (edit) before save --', payment);
+    this.paymentService.savePayment(payment)
       .subscribe(() => this.location.back());
-    this.paymentEditForm.reset();
+   // this.paymentEditForm.reset();
   }
 
   goBack(): void {

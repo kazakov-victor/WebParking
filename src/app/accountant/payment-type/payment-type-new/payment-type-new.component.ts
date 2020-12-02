@@ -53,9 +53,8 @@ export class PaymentTypeNewComponent implements OnInit {
     const paymentType: PaymentType = {
       name: this.paymentTypeNewForm.value.name,
     };
-    this.paymentTypeService.savePaymentType(paymentType).subscribe();
+    this.paymentTypeService.savePaymentType(paymentType).subscribe(() => this.location.back() );
     this.paymentTypeNewForm.reset();
-    this.location.back();
   }
 }
 

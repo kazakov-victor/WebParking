@@ -3,12 +3,19 @@
     <div class="row">
       <div class="col-md-9">
         <div class="text-center small">
-          <button type="button" class="btn btn-primary-outline pull-right"
-                  [routerLink]="'/accountant/paymenttype/new'"
-          ><i class="fa fa-plus"></i>Добавить новый</button>
 
           <table class="table content_tab tab-pane clearfix">
             <thead>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>
+                <button type="button" class="btn btn-success pull-right"
+                        [routerLink]="'/accountant/paymenttype/new'">
+                  <i class="fa fa-plus"></i>Новый
+                </button>
+              </td>
+            </tr>
             <tr>
               <td>ID</td>
               <td>Название</td>

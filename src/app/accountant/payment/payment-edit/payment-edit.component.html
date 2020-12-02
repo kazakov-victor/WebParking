@@ -16,16 +16,16 @@
               <div class="col-md-6 col-xs-12 js-fields">
                 <table class="table table-borderless table-paddingless" id="create-order-fields-table">
                   <tbody>
-                  <!--<tr>
+                  <tr>
                     <td>
-                      <input formControlName="payment_id" type="text">
+                      <input hidden formControlName="payment_id" type="text">
                     </td>
-                  </tr>-->
+                  </tr>
                       <tr>
                        <div class="form-group">
                          <label for="paymenttypes">Вид оплаты </label>
                          <div>
-                          <select formControlName="paymenttypes" id="paymenttypes">
+                          <select formControlName="payment_type_id" id="paymenttypes">
                              <option *ngFor="let paymenttype of paymenttypes; let i = index"
                                      [value]="paymenttypes[i].payment_type_id" >
                                 {{paymenttypes[i].name}}
@@ -38,7 +38,7 @@
                     <div class="form-group">
                       <label for="contracts">Номер договора </label>
                       <div>
-                        <select formControlName="contracts" id="contracts">
+                        <select formControlName="contract_id" id="contracts">
                           <option *ngFor="let contract of contracts; let i = index"
                                   [value]="contracts[i].contract_id">
                             {{contracts[i].number}}
@@ -49,12 +49,10 @@
                   </tr>
                   <tr>
                     <td>
-                      <div class="row row-5">
-                        <div class="col-sm-6 form-group">
-                          <label>Дата : </label>
+                      <div class="form-group">
+                        <label>Дата : </label>
                           <input formControlName="ts" type="date">
                         </div>
-                      </div>
                     </td>
                   </tr>
                   <tr class="sortable" >

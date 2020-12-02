@@ -36,8 +36,8 @@ import {Contract} from '../../../shared/contract';
 export class PaymentNewComponent implements OnInit {
   visible = true;
   paymentNewForm: FormGroup;
-  paymentTypes$: Observable<PaymentType[]>;
-  contracts$: Observable<Contract[]>;
+  paymenttypes = [];
+  contracts = [];
   sub: Subscription;
   currentDate: string;
   constructor(private paymentService: PaymentService,
@@ -45,29 +45,36 @@ export class PaymentNewComponent implements OnInit {
               private contractService: ContractService,
               private route: ActivatedRoute,
               private location: Location,
-              private fb: FormBuilder) {}
-
-  ngOnInit(): void {
-    this.currentDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
-    console.log(this.currentDate);
-    this.paymentTypes$ = this.paymentTypeService.getPaymentTypes();
-    this.contracts$ = this.contractService.getContracts();
+              private fb: FormBuilder) {
     this.paymentNewForm = this.fb.group({
-      paymentType: ['', Validators.required],
-      contract_id: [1, Validators.required],
-      ts: [this.currentDate, Validators.required],
+      payment_type_id: [''],
+      contract_id: [''],
+      ts: [''],
       amount: [''],
       note: [''],
     });
   }
 
-/*  getContracts(): void {
-    this.contractService.getContracts()
-      .subscribe(response => {
-        console.log('Response - ', response);
-        this.contracts$ = response;
+  ngOnInit(): void {
+    this.newPayment();
+  }
+  newPayment(): any {
+    this.currentDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
+    console.log(this.currentDate);
+    this.paymentNewForm.controls.ts.patchValue(this.currentDate);
+    this.paymentTypeService.getPaymentTypes()
+      .subscribe((types) => {
+        console.log('Types = ', types);
+        this.paymenttypes = types;
+        this.paymentNewForm.controls.payment_type_id.patchValue(this.paymenttypes[0].payment_type_id);
       });
-  }*/
+    this.contractService.getContracts()
+      .subscribe((contracts) => {
+        this.contracts = contracts;
+        console.log('This contracts --', this.contracts);
+        this.paymentNewForm.controls.contract_id.patchValue(this.contracts[0].contract_id);
+      });
+  }
 
   addPayment(): any {
     const control = this.fb.group({
@@ -80,19 +87,20 @@ export class PaymentNewComponent implements OnInit {
   }
 
   submit(): void {
+    console.log('NewForm - ', this.paymentNewForm);
     if (this.paymentNewForm.invalid) {
       return;
     }
     const payment: Payment = {
-      paymentType: this.paymentNewForm.value.paymentType,
-    //  contract_id: this.paymentNewForm.value.contract_id,
+      contract_id: this.paymentNewForm.value.contract_id,
+      payment_type_id: this.paymentNewForm.value.payment_type_id,
       ts: this.paymentNewForm.value.ts,
       amount: this.paymentNewForm.value.amount,
       note: this.paymentNewForm.value.note
     };
-    this.paymentService.addPayment(payment).subscribe();
+    console.log('This payment (new) before save --', payment);
+    this.paymentService.savePayment(payment).subscribe(() => { this.location.back(); });
     this.paymentNewForm.reset();
-    this.location.back();
   }
 
   goBack(): void {

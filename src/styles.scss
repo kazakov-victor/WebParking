@@ -1,132 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en);
 
-#loadingbar {
-  position: fixed;
-  z-index: 2147483647;
-  top: 0;
-  left: -6px;
-  width: 1%;
-  height: 2px;
-  background: #b91f1f;
-  border-radius: 1px;
-  transition: all .5s ease-in-out
-}
-
-#loadingbar.left {
-  left: 100%;
-  right: 0;
-  width: 100%
-}
-
-#loadingbar.up {
-  left: 0;
-  top: 100%;
-  width: 5px;
-  bottom: 0;
-  height: 100%
-}
-
-#loadingbar.down {
-  left: 0;
-  width: 5px;
-  height: 0
-}
-
-#loadingbar.waiting dd, #loadingbar.waiting dt {
-  -webkit-animation: pulse 2s ease-out 0s infinite;
-  animation: pulse 2s ease-out 0s infinite
-}
-
-#loadingbar dt {
-  opacity: .6;
-  width: 180px;
-  right: -80px;
-  clip: rect(-6px, 90px, 14px, -6px)
-}
-
-#loadingbar dd {
-  opacity: .6;
-  width: 20px;
-  right: 0;
-  clip: rect(-6px, 22px, 14px, 10px)
-}
-
-#loadingbar dd, #loadingbar dt {
-  position: absolute;
-  top: 0;
-  height: 2px;
-  -ms-box-shadow: #b91f1f 1px 0 6px 1px;
-  box-shadow: 1px 0 6px 1px #b91f1f;
-  border-radius: 100%
-}
-
-#loadingbar.left dt {
-  opacity: .6;
-  width: 180px;
-  left: -4px;
-  clip: rect(-6px, 185px, 14px, 25px)
-}
-
-#loadingbar.left dd {
-  opacity: .6;
-  width: 20px;
-  left: 0;
-  margin: 0;
-  clip: rect(-6px, 22px, 14px, 0)
-}
-
-#loadingbar.left dd, #loadingbar.left dt {
-  top: 0;
-  height: 2px
-}
-
-#loadingbar.down dt {
-  opacity: .6;
-  height: 180px;
-  top: auto;
-  bottom: -47px;
-  clip: rect(-6px, 20px, 130px, -6px)
-}
-
-#loadingbar.down dd {
-  opacity: .6;
-  height: 20px;
-  top: auto;
-  bottom: 0;
-  clip: rect(-6px, 22px, 20px, 10px);
-  margin: 0
-}
-
-#loadingbar.down dd, #loadingbar.down dt {
-  left: -5px;
-  right: auto;
-  width: 10px
-}
-
-#loadingbar.up dt {
-  opacity: .6;
-  height: 180px;
-  bottom: auto;
-  top: -10px;
-  clip: rect(13px, 20px, 190px, -6px)
-}
-
-#loadingbar.up dd {
-  opacity: .6;
-  height: 20px;
-  bottom: auto;
-  top: 0;
-  clip: rect(-6px, 22px, 25px, 10px);
-  margin: 0
-}
-
-#loadingbar.up dd, #loadingbar.up dt {
-  left: -5px;
-  right: auto;
-  width: 10px
-}
-
 @keyframes pulse {
   30% {
     opacity: .6
@@ -149,56 +23,6 @@
   to {
     opacity: .6
   }
-}
-
-.multiselect-container {
-  position: absolute;
-  list-style-type: none;
-  margin: 0;
-  padding: 0
-}
-
-.multiselect-container .input-group {
-  margin: 5px
-}
-
-.multiselect-container > li {
-  padding: 0
-}
-
-.multiselect-container > li > a.multiselect-all label {
-  font-weight: 700
-}
-
-.multiselect-container > li.multiselect-group label {
-  margin: 0;
-  padding: 3px 20px;
-  height: 100%;
-  font-weight: 700
-}
-
-.multiselect-container > li.multiselect-group-clickable label {
-  cursor: pointer
-}
-
-.multiselect-container > li > a {
-  padding: 0
-}
-
-.multiselect-container > li > a > label {
-  margin: 0;
-  height: 100%;
-  cursor: pointer;
-  font-weight: 400;
-  padding: 3px 20px 3px 40px
-}
-
-.multiselect-container > li > a > label.checkbox, .multiselect-container > li > a > label.radio {
-  margin: 0
-}
-
-.multiselect-container > li > a > label > input[type=checkbox] {
-  margin-bottom: 5px
 }
 
 .btn-group > .btn-group:nth-child(2) > .multiselect.btn {
@@ -235,7 +59,6 @@
   box-sizing: border-box
 }
 
-
 .nestable-lists {
   display: block;
   clear: both;
@@ -243,223 +66,10 @@
   width: 100%;
   border: 0;
   border-top: 2px solid #ddd;
-  border-bottom: 2px solid #ddd
-}
+  border-bottom: 2px solid #ddd;
+  }
 
-#nestable-menu {
-  padding: 0;
-  margin: 20px 0
-}
-
-#nestable2-output, #nestable-output {
-  width: 100%;
-  height: 7em;
-  font-size: .75em;
-  line-height: 1.333333em;
-  font-family: Consolas, monospace;
-  padding: 5px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box
-}
-
-#nestable2 .dd-handle {
-  color: #fff;
-  border: 1px solid #999;
-  background: #bbb;
-  background: linear-gradient(180deg, #bbb 0, #999)
-}
-
-#nestable2 .dd-handle:hover {
-  background: #bbb
-}
-
-#nestable2 .dd-item > button:before {
-  color: #fff
-}
-
-/*!
- * ClockPicker v0.0.7 for jQuery (http://weareoutman.github.io/clockpicker/)
- * Copyright 2014 Wang Shenwei.
- * Licensed under MIT (https://github.com/weareoutman/clockpicker/blob/gh-pages/LICENSE)
- *
- * Bootstrap v3.1.1 (http://getbootstrap.com)
- * Copyright 2011-2014 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-.clockpicker .input-group-addon {
-  cursor: pointer
-}
-
-.clockpicker-moving {
-  cursor: move
-}
-
-.clockpicker-align-left.popover > .arrow {
-  left: 25px
-}
-
-.clockpicker-align-top.popover > .arrow {
-  top: 17px
-}
-
-.clockpicker-align-right.popover > .arrow {
-  left: auto;
-  right: 25px
-}
-
-.clockpicker-align-bottom.popover > .arrow {
-  top: auto;
-  bottom: 6px
-}
-
-.clockpicker-popover .popover-content {
-  overflow: hidden
-}
-
-.clockpicker-popover .popover-title {
-  background-color: #fff;
-  color: #999;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 30px;
-  text-align: center
-}
-
-.clockpicker-popover .popover-title span {
-  cursor: pointer
-}
-
-.clockpicker-popover .popover-content {
-  background-color: #f8f8f8;
-  padding: 12px
-}
-
-.popover-content:last-child {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px
-}
-
-.clockpicker-plate {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  overflow: visible;
-  position: relative;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
-}
-
-.clockpicker-canvas, .clockpicker-dial {
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  left: -1px;
-  top: -1px
-}
-
-.clockpicker-minutes {
-  visibility: hidden
-}
-
-.clockpicker-tick {
-  border-radius: 50%;
-  color: #666;
-  line-height: 26px;
-  text-align: center;
-  width: 26px;
-  height: 26px;
-  position: absolute;
-  cursor: pointer
-}
-
-.clockpicker-tick.active, .clockpicker-tick:hover {
-  background-color: #c0e5f7;
-  background-color: rgba(0, 149, 221, .25)
-}
-
-.clockpicker-button {
-  background-image: none;
-  background-color: #fff;
-  border-width: 1px 0 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  margin: 0;
-  padding: 10px 0
-}
-
-.clockpicker-button:hover {
-  background-image: none;
-  background-color: #ebebeb
-}
-
-.clockpicker-button:focus {
-  outline: none !important
-}
-
-.clockpicker-dial {
-  transition: transform .35s, opacity .35s
-}
-
-.clockpicker-dial-out {
-  opacity: 0
-}
-
-.clockpicker-hours.clockpicker-dial-out {
-  transform: scale(1.2)
-}
-
-.clockpicker-minutes.clockpicker-dial-out {
-  transform: scale(.8)
-}
-
-.clockpicker-canvas {
-  transition: opacity 175ms
-}
-
-.clockpicker-canvas-out {
-  opacity: .25
-}
-
-.clockpicker-canvas-bearing, .clockpicker-canvas-fg {
-  stroke: none;
-  fill: #0095dd
-}
-
-.clockpicker-canvas-bg {
-  stroke: none;
-  fill: #c0e5f7
-}
-
-.clockpicker-canvas-bg-trans {
-  fill: rgba(0, 149, 221, .25)
-}
-
-.clockpicker-canvas line {
-  stroke: #0095dd;
-  stroke-width: 1;
-  stroke-linecap: round
-}
-
-.clockpicker-button.am-button {
-  margin: 1px
-}
-
-.clockpicker-button.am-button, .clockpicker-button.pm-button {
-  padding: 5px;
-  border: 1px solid rgba(0, 0, 0, .2);
-  border-radius: 4px
-}
-
-.clockpicker-button.pm-button {
-  margin: 1px 1px 1px 136px
-}
-
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/* ! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -2349,27 +1959,6 @@ textarea.form-control {
   padding: 11px 16px;
   font-size: 18px;
   line-height: 1.3333333
-}
-
-.has-feedback {
-  position: relative
-}
-
-.has-feedback .form-control {
-  padding-right: 42.5px
-}
-
-.form-control-feedback {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
-  display: block;
-  width: 34px;
-  height: 34px;
-  line-height: 34px;
-  text-align: center;
-  pointer-events: none
 }
 
 .form-group-lg .form-control + .form-control-feedback, .input-group-lg + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback, .input-group-lg > .input-group-addon + .form-control-feedback, .input-group-lg > .input-group-btn > .btn + .form-control-feedback, .input-lg + .form-control-feedback {
@@ -7116,15 +6705,6 @@ button.close {
   min-height: 146px
 }
 
-#spares .service-table-wrapper {
-  margin: 15px
-}
-
-.repair-order-form-edit #goods-table {
-  border-bottom: 1px dashed #eceae3;
-  padding: 8px 0
-}
-
 .carret.glyphicon.glyphicon-menu-up {
   float: right;
   color: #d0c5b7;
@@ -7279,29 +6859,6 @@ button.close {
   min-height: 197px
 }
 
-#jobs .service-table-wrapper-jobs {
-  margin: 15px
-}
-
-#jobs .job_total {
-  margin: 5px 15px 15px
-}
-
-#jobs .job_total #total-sum-checkbox {
-  cursor: pointer
-}
-
-#jobs .remove-order-item, #jobs .remove_col {
-  height: 34px
-}
-
-#jobs .remove-order-item {
-  color: red;
-  font-size: 12px;
-  display: table-cell;
-  vertical-align: middle;
-  font-weight: 100
-}
 
 .carret.glyphicon {
   float: right;
@@ -7333,170 +6890,12 @@ button.close {
   margin-right: 5px
 }
 
-@media (max-width: 767px) {
-  .service-table-wrapper {
-    overflow-x: auto
-  }
-  .service-table-wrapper .service-table {
-    min-width: 700px
-  }
-  .order-edit-repair-type > label {
-    margin-top: 6px !important;
-    display: inline-block !important
-  }
-  .order-edit-repair-type > div {
-    float: right;
-    width: 50%;
-    padding-left: 15px
-  }
-  .order-form-edit .form-group {
-    margin-bottom: 7px
-  }
-  #jobs .warranty, #spares .warranty {
-    margin: 15px auto 0
-  }
-  #spares .warranty {
-    margin-bottom: 15px
-  }
-  #jobs .job_total {
-    text-align: center;
-    margin-top: 15px
-  }
-  .service-table-wrapper-jobs .row.row-15 {
-    margin-left: -5px;
-    margin-right: -5px
-  }
-  .service-table-wrapper-jobs .row > div {
-    padding: 0 5px
-  }
-  .jobs_master_title > .popover-info {
-    display: none
-  }
-}
-
 @media (min-width: 992px) {
   .order-edit-fields-left {
     padding-right: 0
   }
 }
 
-.repair-order-form-edit .order-comments-feed .panel-body {
-  height: 513px
-}
-
-.order-add-spare-form {
-  width: 100%
-}
-
-.order-add-spare-form :last-child {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0
-}
-
-.order-add-spare-form .input-group-btn {
-  border-right: 1px solid #52b1f1
-}
-
-.order-add-spare-group__menu {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  margin-left: 0 !important
-}
-
-.quicksale-order-form-edit .order-cart {
-  margin-top: 15px
-}
-
-.quicksale-order-form-edit .order-cart > .panel {
-  margin-bottom: 15px
-}
-
-.quicksale-order-form-edit .total-row {
-  margin-bottom: 0;
-  margin-top: 20px;
-  width: 64%
-}
-
-.quicksale-order-form-edit .total-row td {
-  padding-top: 0
-}
-
-.quick-table-cost label {
-  line-height: 31px;
-  margin-bottom: 0
-}
-
-td.quick-table-cost {
-  padding-top: 3px !important
-}
-
-.quick-table-items, .quick-table-items td {
-  border: 0 !important
-}
-
-.quicksale-order-form-edit .goods-item {
-  padding-bottom: 5px;
-  margin-bottom: 5px;
-  border-bottom: 1px solid #ddd
-}
-
-.quicksale-order-form-edit .goods-item:last-child {
-  padding-bottom: 0;
-  margin-bottom: 0;
-  border: none
-}
-
-.quicksale-order-form-edit .warranty-control {
-  width: 100%
-}
-
-@media (min-width: 992px) {
-  .quicksale-order-form-edit .order-comment {
-    padding-left: 0
-  }
-}
-
-@media (max-width: 767px) {
-  .quicksale-order-form-edit .order-comment, .quicksale-order-form-edit .order-main-fields {
-    margin-top: 15px
-  }
-  .quicksale-order-form-edit .table_items {
-    overflow-x: auto
-  }
-  .quicksale-order-form-edit .table_items > div {
-    min-width: 750px
-  }
-  .quicksale-order-form-edit .quick-table-items, .quicksale-order-form-edit .quick-table-items td, .quicksale-order-form-edit .quick-table-items tr {
-    width: 100% !important;
-    display: block
-  }
-  .quick-table-cost label {
-    display: block;
-    width: 100%
-  }
-}
-
-.so-purchase-invoice__submit-btn {
-  width: 126px
-}
-
-.so-products-table {
-  table-layout: fixed
-}
-
-.so-products-table__cost-td, .so-products-table__price-td, .so-products-table__qty-td {
-  width: 110px
-}
-
-.so-products-table__action-td {
-  text-align: center;
-  width: 130px
-}
-
-.so-products-table__action-td .btn {
-  width: 100%;
-  text-align: center
-}
 
 .widgets-settings .number {
   position: absolute;
@@ -8469,15 +7868,6 @@ input.row-input {
   font-weight: 600
 }
 
-.zadarma_button_call_consultant {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  z-index: 1002;
-  width: 57px;
-  overflow: hidden
-}
-
 .toggle_btn {
   border-bottom: 1px dashed;
   display: inline-block;
@@ -8589,11 +7979,6 @@ table.switches-active tr.hide-field-tr:hover td {
     width: 100%;
     text-align: center
   }
-}
-
-.bootstrap-switch-container {
-  height: 30px;
-  overflow: hidden
 }
 
 .input-group-client-phone {
@@ -11029,45 +10414,6 @@ input[name=goods-goods-value] + ul.dropdown-menu.typeahead, input[name=goods-ser
   vertical-align: middle;
   text-align: center;
   font-family: Lato Black, sans-serif
-}
-
-.bootstrap-select.ajax-select.btn-group .dropdown-menu {
-  min-width: 230px !important
-}
-
-.bootstrap-select.ajax-select.btn-group .filter-option {
-  text-align: center !important;
-  overflow: hidden;
-  color: #6a6c6f;
-  text-overflow: ellipsis
-}
-
-.bootstrap-select.btn-group .btn {
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  padding: 7px 20px 7px 12px
-}
-
-.bootstrap-select.ajax-select.btn-group .dropdown-menu li a {
-  padding: 0 10px
-}
-
-.bootstrap-select.ajax-select.btn-group .dropdown-menu li a span.text {
-  padding-top: 3px;
-  padding-bottom: 3px;
-  max-width: 230px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  margin-right: 25px
-}
-
-.bootstrap-select.select-picker-100p.btn-group .dropdown-menu li a span.text {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 90%
-}
-
-.bootstrap-select.select-picker-100p .dropdown-menu {
-  max-width: 100%
 }
 
 button.filter-button {
@@ -16513,3 +15859,4 @@ ul.mailbox-list li:hover a {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
