@@ -1,9 +1,6 @@
-import {Unit} from './unit';
-
-export interface IncomeTypeDTO {
+export interface IncomeType {
   income_type_id?: number;
-  unitDTO: Unit;
+  unit_id: number;
   name: string;
-  sid_external: string;
   note: string;
 }

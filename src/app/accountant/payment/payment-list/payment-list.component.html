@@ -5,7 +5,7 @@
         <div class="text-center small">
 
 
-          <table class="table content_tab tab-pane clearfix">
+          <table class="table content_tab tab-pane clearfix edit-ref">
             <thead>
             <tr>
               <td></td>
@@ -29,7 +29,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let payment of payments">
+            <tr *ngFor="let payment of payments$ | async" (click)="edit(payment.payment_id)">
               <td>{{payment.payment_id}}</td>
               <td>{{payment.contract_id}}</td>
               <td>{{payment.ts}}</td>

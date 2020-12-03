@@ -1,0 +1,75 @@
+<p>income-type-new works!</p>
+<div *ngIf="visible" id="popup_window" class="modal fade left modal-large in">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button type="button" class="close popup-window-close"
+              (click)="visible=false" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="modal-header">
+        <h4 class="modal-title">Ввод нового платежа</h4>
+      </div>
+      <div class="modal-body">
+        <div class="tab-pane" id="repair">
+          <form [formGroup]="incomeTypeNewForm" (ngSubmit)="submit()" id="order-form-add" class="order-form-add">
+            <div class="row">
+              <div class="col-md-6 col-xs-12 js-fields">
+                <table class="table table-borderless table-paddingless" id="create-order-fields-table">
+                  <tbody>
+                  <tr>
+                    <div class="form-group">
+                      <label for="units">Единица измерения </label>
+                      <div>
+                        <select formControlName="unit_id" id="units">
+                          <option *ngFor="let unit of units; let i = index"
+                                  [value]="units[i].unit_id" >
+                            {{units[i].name}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label>Название: </label>
+                        <input formControlName="name" type="text" name="name"
+                               class="form-control"
+                               id="name">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="sortable" >
+                    <td class="hide-field-td">
+                    <td>
+                      <div class="form-group">
+                        <label>Примечание: </label>
+                        <input formControlName="note" type="text" name="note"
+                               class="form-control" id="note">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
+                        <div class="btn-group dropup col-6 tooltips">
+                          <button class="btn" type="submit">Сохранить</button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

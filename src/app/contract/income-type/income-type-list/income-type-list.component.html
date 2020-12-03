@@ -1,0 +1,42 @@
+<div class="tab-content">
+  <div class="hpanel">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center small">
+          <table class="table content_tab tab-pane clearfix  edit-ref">
+            <thead>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button type="button" class="btn btn-success pull-right"
+                        [routerLink]="'/income_type/new'"
+                ><i class="fa fa-plus"></i> Новый </button>
+              </td>
+            </tr>
+            <tr>
+              <td>ID</td>
+              <td>Название</td>
+              <td>Unit ID</td>
+              <td>Примечание</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let income_type of incomeTypes$ | async"
+                (click)="edit(income_type.income_type_id)">
+              <td>{{income_type.income_type_id}}</td>
+              <td>{{income_type.name}}</td>
+              <td>{{income_type.unit_id}}</td>
+              <td>{{income_type.note}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

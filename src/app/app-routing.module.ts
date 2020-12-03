@@ -10,7 +10,7 @@ import {AccountrantTransactionComponent} from './accountant/accountrant-transact
 import {PersonNewComponent} from './persons/person-new/person-new.component';
 import {PersonEditComponent} from './persons/person-edit/person-edit.component';
 import {PersonListComponent} from './persons/person-list/person-list.component';
-import {IncomeComponent} from './accountant/income/income.component';
+import {IncomeComponent} from './contract/income/income.component';
 import {RegisterComponent} from './login-page/register/register.component';
 import {AppComponent} from './app.component';
 import {NotFoundComponent} from './not-found/not-found.component';
@@ -28,6 +28,17 @@ import {PaymentTypeComponent} from './accountant/payment-type/payment-type.compo
 import {PaymentTypeEditComponent} from './accountant/payment-type/payment-type-edit/payment-type-edit.component';
 import {PaymentTypeNewComponent} from './accountant/payment-type/payment-type-new/payment-type-new.component';
 import {PaymentTypeListComponent} from './accountant/payment-type/payment-type-list/payment-type-list.component';
+import {UnitListComponent} from './contract/unit/unit-list/unit-list.component';
+import {UnitEditComponent} from './contract/unit/unit-edit/unit-edit.component';
+import {UnitNewComponent} from './contract/unit/unit-new/unit-new.component';
+import {UnitComponent} from './contract/unit/unit.component';
+import {IncomeTypeComponent} from './contract/income-type/income-type.component';
+import {IncomeEditComponent} from './contract/income/income-edit/income-edit.component';
+import {IncomeNewComponent} from './contract/income/income-new/income-new.component';
+import {IncomeListComponent} from './contract/income/income-list/income-list.component';
+import {IncomeTypeEditComponent} from './contract/income-type/income-type-edit/income-type-edit.component';
+import {IncomeTypeNewComponent} from './contract/income-type/income-type-new/income-type-new.component';
+import {IncomeTypeListComponent} from './contract/income-type/income-type-list/income-type-list.component';
 
 const contractRouts: Routes = [
   {path: 'list', component: ContractListComponent},
@@ -43,6 +54,21 @@ const paymentTypeRouts: Routes = [
   {path: 'list', component: PaymentTypeListComponent},
   {path: 'edit/:id', component: PaymentTypeEditComponent},
   {path: 'new', component: PaymentTypeNewComponent},
+];
+const unitRouts: Routes = [
+  {path: 'list', component: UnitListComponent},
+  {path: 'edit/:id', component: UnitEditComponent},
+  {path: 'new', component: UnitNewComponent},
+];
+const incomeRouts: Routes = [
+  {path: 'list', component: IncomeListComponent},
+  {path: 'edit/:id', component: IncomeEditComponent},
+  {path: 'new', component: IncomeNewComponent},
+];
+const incomeTypeRouts: Routes = [
+  {path: 'list', component: IncomeTypeListComponent},
+  {path: 'edit/:id', component: IncomeTypeEditComponent},
+  {path: 'new', component: IncomeTypeNewComponent},
 ];
 const accountantRouts: Routes = [
   {path: 'cashflow', component: AccountrantCasflowComponent},
@@ -68,6 +94,9 @@ const routes: Routes = [
 
   {path: 'contract', component: ContractComponent, canActivate: [AuthGuard], children: contractRouts},
   {path: 'accountant', component: AccountantComponent, canActivate: [AuthGuard], children: accountantRouts},
+  {path: 'unit', component: UnitComponent, canActivate: [AuthGuard], children: unitRouts},
+  {path: 'income', component: IncomeComponent, canActivate: [AuthGuard], children: incomeRouts},
+  {path: 'incometype', component: IncomeTypeComponent, canActivate: [AuthGuard], children: incomeTypeRouts},
   {path: 'person', component: PersonsComponent, canActivate: [AuthGuard],  children: personRouts},
   {path: 'other', component: OtherComponent},
   {path: '**', component: NotFoundComponent}

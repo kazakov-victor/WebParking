@@ -1,0 +1,86 @@
+<div *ngIf="visible" id="popup_window" class="modal fade left modal-large in">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button type="button" class="close popup-window-close"
+              (click)="goBack()" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="modal-header">
+        <h4 class="modal-title">Изменить вид услуги</h4>
+      </div>
+      <div class="modal-body">
+        <div class="tab-pane" id="repair">
+          <form [formGroup]="incomeTypeEditForm" (ngSubmit)="submit()" id="order-form-add" class="order-form-add">
+            <div class="row">
+              <div class="col-md-6 col-xs-12 js-fields">
+                <table class="table table-borderless table-paddingless" id="create-order-fields-table">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <input hidden formControlName="income_type_id" type="text">
+                    </td>
+                  </tr>
+                  <tr>
+                    <div class="form-group">
+                      <label for="units">Единица измерения</label>
+                      <div>
+                        <select formControlName="unit_id" id="units">
+                          <option *ngFor="let unit of units; let i = index"
+                                  [value]="units[i].unit_id" >
+                            {{units[i].name}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label>Название: </label>
+                        <input formControlName="name" type="text" name="name"
+                               class="form-control"
+                               id="name">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="sortable" >
+                    <td class="hide-field-td">
+                    <td>
+                      <div class="form-group">
+                        <label>Примечание: </label>
+                        <input formControlName="note" type="text" name="note"
+                               class="form-control" id="note">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group col-sm-12" id="send-form-buttons">
+                        <button class="btn btn-margin" title="back"
+                                (click)="goBack()">
+                          <fa-icon [icon]="fBack"></fa-icon>
+                          Отмена
+                        </button>
+                        <button class="btn btn-success btn-margin" title="save unit">
+                          <fa-icon [icon]="fSave"></fa-icon>
+                          Сохранить
+                        </button>
+                        <button class="btn btn-danger btn-margin" title="delete unit"
+                                (click)="delete(incomeType)">
+                          <fa-icon [icon]="fTrash"></fa-icon>
+                          Удалить
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -2168,13 +2168,13 @@ textarea.form-control {
   background-image: none;
   border: 1px solid transparent;
   padding: 6px 12px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.428571429;
   border-radius: 4px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none
+  user-select: none;
 }
 
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
@@ -7615,6 +7615,9 @@ i.disabled, i[disabled] {
 
 .btn-callback {
   color: #000
+}
+.btn-margin {
+  margin-right: 15px;
 }
 
 .btn-callback, .btn-messages {
@@ -15784,32 +15787,6 @@ ul.mailbox-list li:hover a {
   padding: 10px 15px
 }
 
-.manager_fail_percent {
-  display: block;
-  float: right;
-  font-size: 14px;
-  margin-right: 0;
-  margin-top: 13px;
-  text-align: left;
-  font-weight: 700;
-  width: 60px
-}
-
-.manager_fail_percent_content {
-  position: relative
-}
-
-.manager_fail_percent .percent-refresh {
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  line-height: 14px;
-  margin-top: -7px;
-  display: none;
-  color: #dfe4ed;
-  cursor: pointer
-}
-
 @-webkit-keyframes spin {
   to {
     -webkit-transform: rotate(1turn)
@@ -15820,15 +15797,6 @@ ul.mailbox-list li:hover a {
   to {
     transform: rotate(1turn)
   }
-}
-
-.manager_fail_percent .percent-refresh.rotate {
-  -webkit-animation: spin 1s linear infinite;
-  animation: spin 1s linear infinite
-}
-
-.manager_fail_percent:hover .percent-refresh {
-  display: inline-block
 }
 
 .logo-element .manager_fail_percent_content {
@@ -15845,7 +15813,7 @@ ul.mailbox-list li:hover a {
 
 .btn {
   border-radius: 3px;
-  font-size: 13px
+  font-size: 12px
 }
 
 .btn, .form-control, .input-group .btn {
@@ -15860,3 +15828,7 @@ ul.mailbox-list li:hover a {
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.edit-ref tbody tr:hover {
+  background: #edffe6; /* Цвет фона при наведении */
+  color: #000000; /* Цвет текста при наведении */
+}

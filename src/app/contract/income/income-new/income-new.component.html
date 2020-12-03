@@ -1,0 +1,108 @@
+<p>income-new works!</p>
+<p>income-type-new works!</p>
+<div *ngIf="visible" id="popup_window" class="modal fade left modal-large in">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button type="button" class="close popup-window-close"
+              (click)="goBack()" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="modal-header">
+        <h4 class="modal-title">Ввод новой услуги</h4>
+      </div>
+      <div class="modal-body">
+        <div class="tab-pane" id="repair">
+          <form [formGroup]="incomeNewForm" (ngSubmit)="submit()" id="order-form-add" class="order-form-add">
+            <div class="row">
+              <div class="col-md-6 col-xs-12 js-fields">
+                <table class="table table-borderless table-paddingless" id="create-order-fields-table">
+                  <tbody>
+                  <tr>
+                    <div class="form-group">
+                      <label for="contracts">Номер договора </label>
+                      <div>
+                        <select formControlName="contract_id" id="contracts">
+                          <option *ngFor="let contract of contracts; let i = index"
+                                  [value]="contracts[i].contract_id" >
+                            {{contracts[i].number}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr>
+                    <div class="form-group">
+                      <label for="incometypes">Единица измерения </label>
+                      <div>
+                        <select formControlName="income_type_id" id="incometypes">
+                          <option *ngFor="let incometype of incometypes; let i = index"
+                                  [value]="incometypes[i].incometype_id" >
+                            {{incometypes[i].name}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label>Начало: </label>
+                        <input formControlName="dtfrom" type="date" name="dtfrom"
+                               class="form-control"
+                               id="dtfrom">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="sortable" >
+                    <td class="hide-field-td">
+                    <td>
+                      <div class="form-group">
+                        <label>Окончание: </label>
+                        <input formControlName="dtto" type="date" name="dtto"
+                               class="form-control" id="dtto">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="sortable" >
+                    <td class="hide-field-td">
+                    <td>
+                      <div class="form-group">
+                        <label>Количество: </label>
+                        <input formControlName="quantity" type="text" name="quantity"
+                               class="form-control" id="quantity">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
+                        <div class="btn-group dropup col-6 tooltips">
+                          <button class="btn btn-margin" title="back"
+                                  (click)="goBack()">
+                            <fa-icon [icon]="fBack"></fa-icon>
+                            Отмена
+                          </button>
+                          <button class="btn btn-success btn-margin" title="save unit">
+                            <fa-icon [icon]="fSave"></fa-icon>
+                            Сохранить
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+<div *ngIf="visible" id="popup_window" class="modal fade left modal-large in">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button type="button" class="close popup-window-close"
+              (click)="visible=false" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="modal-header">
+        <h4 class="modal-title">Ввод нового вида оплат</h4>
+      </div>
+      <div class="modal-body">
+        <div class="tab-pane" id="repair">
+          <form [formGroup]="unitNewForm" (ngSubmit)="submit()" id="form-add"
+                class="form-add">
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <table class="table table-borderless table-paddingless" id="create-fields-table">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label>Название : </label>
+                        <input class="form-control" type="text"
+                               formControlName="name">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label>Полное название : </label>
+                        <input class="form-control" type="text"
+                               formControlName="longname">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label>Basis : </label>
+                        <input class="form-control" type="text"
+                               formControlName="basis">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
+                        <div class="btn-group dropup col-6 tooltips">
+                          <button class="btn btn-margin" title="back"
+                                  (click)="goBack()">
+                            <fa-icon [icon]="fBack"></fa-icon>
+                            Отмена
+                          </button>
+                          <button class="btn btn-success btn-margin" title="save unit">
+                            <fa-icon [icon]="fSave"></fa-icon>
+                            Сохранить
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <br>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

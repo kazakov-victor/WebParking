@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit} from '@angular/core';
 import {PaymentType} from '../../../shared/payment-type';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {PaymentTypeService} from '../../../services/payment-type.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UnitService} from '../../../services/unit.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-payment-type-list',
@@ -11,11 +13,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./payment-type-list.component.scss']
 })
 export class PaymentTypeListComponent implements OnInit, OnDestroy {
+  paymentTypes$: Observable<PaymentType[]>;
   paymentTypes: PaymentType[] = [];
   pSub: Subscription;
   fEdit = faEdit;
   fTrash = faTrashAlt;
   constructor(private paymentTypeService: PaymentTypeService,
+              private route: ActivatedRoute,
               private router: Router) {
   }
 
@@ -23,10 +27,11 @@ export class PaymentTypeListComponent implements OnInit, OnDestroy {
     this.getPaymentTypes();
   }
   getPaymentTypes(): void{
-    this.paymentTypeService.getPaymentTypes().subscribe(response => {
-      console.log('Response - ', response);
-      this.paymentTypes = response;
-    });
+    this.paymentTypes$ = this.route.paramMap.pipe(
+      switchMap(params => {
+        return this.paymentTypeService.getPaymentTypes();
+      })
+    );
   }
 
   ngOnDestroy(): void {
@@ -36,11 +41,14 @@ export class PaymentTypeListComponent implements OnInit, OnDestroy {
   }
 
   edit(paymentTypeId: number): void {
-    this.paymentTypeService.getPaymentType(paymentTypeId).subscribe();
+    this.paymentTypeService.getPaymentType(paymentTypeId).subscribe(() => {
+      this.router.navigate(['/paymenttype/edit/', paymentTypeId]);
+    });
   }
   delete(paymentType: PaymentType): void {
     this.paymentTypes = this.paymentTypes.filter(p => p !== paymentType);
-    this.paymentTypeService.deletePaymentType(paymentType).subscribe(() => this.getPaymentTypes());
+    this.paymentTypeService.deletePaymentType(paymentType)
+      .subscribe(() => this.getPaymentTypes());
   }
 }
 

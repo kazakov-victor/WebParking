@@ -68,8 +68,7 @@ export class IncomeService {
 
   //////// Save methods //////////
 
-  /** POST: add a new income to the server */
-  addIncome(income: Income): Observable<Income> {
+  saveIncome(income: Income): Observable<Income> {
     console.log('addIncome works', income);
     return this.http.post<Income>(`${this.incomeUrl}/save`, income, this.httpOptions).pipe(
       tap((newIncome: Income) => this.log(`added income w/ id=${newIncome.income_id}`)),

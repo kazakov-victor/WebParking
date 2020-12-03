@@ -59,7 +59,7 @@
                         <div [formGroupName]="i">
                           <label>
                             Услуга {{i + 1}}:
-                            {{income.incomeTypeDTO.unitDTO.name}}
+                            {{income.contract_id}}
                           </label>
                           <div class="form-group">
                             <label>income_id: </label>
@@ -77,7 +77,7 @@
                             <label>quantity: </label>
                             <input type="text" formControlName="quantity" placeholder="quantity">
                           </div>
-                          <div formGroupName="incomeTypeDTO">
+                          <div formGroupName="IncomeType">
                             <input type="text" formControlName="income_type_id" placeholder="income_type_id">
                             <input type="text" formControlName="name" placeholder="name">
                             <input type="text" formControlName="note" placeholder="note">

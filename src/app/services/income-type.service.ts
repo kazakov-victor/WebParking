@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
-import {IncomeTypeDTO} from '../shared/income-type';
+import {IncomeType} from '../shared/income-type';
 import {MessageService} from './message.service';
 
 
@@ -20,79 +20,71 @@ export class IncomeTypeService {
               private messageService: MessageService) { }
 
   /** GET incomeTypes from the server */
-  getIncomeTypes(): Observable<IncomeTypeDTO[]> {
-    return this.http.get<IncomeTypeDTO[]>(`${this.incomeTypeUrl}/list`)
+  getIncomeTypes(): Observable<IncomeType[]> {
+    return this.http.get<IncomeType[]>(`${this.incomeTypeUrl}/list`)
       .pipe(
         tap(_ => this.log('fetched incomeTypes')),
-        catchError(this.handleError<IncomeTypeDTO[]>('getIncomeTypes', []))
+        catchError(this.handleError<IncomeType[]>('getIncomeTypes', []))
       );
   }
 
   /** GET incomeType by id. Return `undefined` when id not found */
-  getIncomeTypeNo404<Data>(id: number): Observable<IncomeTypeDTO> {
+  getIncomeTypeNo404<Data>(id: number): Observable<IncomeType> {
     const url = `${this.incomeTypeUrl}/?id=${id}`;
-    return this.http.get<IncomeTypeDTO[]>(url)
+    return this.http.get<IncomeType[]>(url)
       .pipe(
         map(incomeTypes => incomeTypes[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? `fetched` : `did not find`;
           this.log(`${outcome} incomeType id=${id}`);
         }),
-        catchError(this.handleError<IncomeTypeDTO>(`getIncomeType id=${id}`))
+        catchError(this.handleError<IncomeType>(`getIncomeType id=${id}`))
       );
   }
 
   /** GET incomeType by id. Will 404 if id not found */
-  getIncomeType(id: number): Observable<IncomeTypeDTO> {
+  getIncomeType(id: number): Observable<IncomeType> {
     const url = `${this.incomeTypeUrl}/edit/${id}`;
-    return this.http.get<IncomeTypeDTO>(url).pipe(
+    return this.http.get<IncomeType>(url).pipe(
       tap(_ => this.log(`fetched incomeType id=${id}`)),
-      catchError(this.handleError<IncomeTypeDTO>(`getIncomeType id=${id}`))
+      catchError(this.handleError<IncomeType>(`getIncomeType id=${id}`))
     );
   }
 
   /* GET incomeTypes whose name contains search term */
-  searchIncomeTypes(term: string): Observable<IncomeTypeDTO[]> {
+  searchIncomeTypes(term: string): Observable<IncomeType[]> {
     if (!term.trim()) {
       // if not search term, return full incomeType array.
       term = 'all';
     }
 
-    return this.http.get<IncomeTypeDTO[]>(`${this.incomeTypeUrl}/search?keyword=${term}`).pipe(
+    return this.http.get<IncomeType[]>(`${this.incomeTypeUrl}/search?keyword=${term}`).pipe(
       tap(x => x.length ?
         this.log(`found incomeTypes matching "${term}"`) :
         this.log(`no incomeTypes matching "${term}"`)),
-      catchError(this.handleError<IncomeTypeDTO[]>('searchIncomeTypes', []))
+      catchError(this.handleError<IncomeType[]>('searchIncomeTypes', []))
     );
   }
 
   //////// Save methods //////////
 
   /** POST: add a new incomeType to the server */
-  addIncomeType(incomeTypeDTO: IncomeTypeDTO): Observable<IncomeTypeDTO> {
-    console.log('addIncomeType works', incomeTypeDTO);
-    return this.http.post<IncomeTypeDTO>(`${this.incomeTypeUrl}/save`, incomeTypeDTO, this.httpOptions).pipe(
-      tap((newIncomeType: IncomeTypeDTO) => this.log(`added incomeType w/ id=${newIncomeType.income_type_id}`)),
-      catchError(this.handleError<IncomeTypeDTO>('addIncomeType')));
+  saveIncomeType(incomeType: IncomeType): Observable<IncomeType> {
+    console.log('addIncomeType works', incomeType);
+    return this.http.post<IncomeType>(`${this.incomeTypeUrl}/save`, incomeType, this.httpOptions).pipe(
+      tap((newIncomeType: IncomeType) => this.log(`added incomeType w/ id=${newIncomeType.income_type_id}`)),
+      catchError(this.handleError<IncomeType>('addIncomeType')));
   }
 
   /** DELETE: delete the incomeType from the server */
-  deleteIncomeType(incomeTypeDTO
-                     : IncomeTypeDTO | number): Observable<IncomeTypeDTO> {
-    const id = typeof incomeTypeDTO === 'number' ? incomeTypeDTO : incomeTypeDTO.income_type_id;
+  deleteIncomeType(incomeType
+                     : IncomeType | number): Observable<IncomeType> {
+    const id = typeof incomeType === 'number' ? incomeType : incomeType.income_type_id;
     const url = `${this.incomeTypeUrl}/delete/${id}`;
 
-    return this.http.post<IncomeTypeDTO>(url, this.httpOptions).pipe(
+    return this.http.post<IncomeType>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted incomeType id=${id}`)),
-      catchError(this.handleError<IncomeTypeDTO>('deleteIncomeType'))
-    );
-  }
-
-  /** PUT: update the incomeType on the server */
-  updateIncomeType(incomeType: IncomeTypeDTO): Observable<any> {
-    return this.http.put(`${this.incomeTypeUrl}/edit`, incomeType, this.httpOptions).pipe(
-      tap(_ => this.log(`updated incomeType id=${incomeType.income_type_id}`)),
-      catchError(this.handleError<any>('updateIncomeType'))
+      catchError(this.handleError<IncomeType>('deleteIncomeType'))
     );
   }
 

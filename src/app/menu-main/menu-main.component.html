@@ -47,6 +47,24 @@
         </a>
       </li>
       <li routerLinkActive="active">
+        <a [routerLink]="['/unit/list']">
+          <fa-icon [icon]="faChartBar"></fa-icon>
+          <span class="nav-label">Ед.Изм.</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/incometype/list']">
+          <fa-icon [icon]="faChartBar"></fa-icon>
+          <span class="nav-label">Виды услуг</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/income/list']">
+          <fa-icon [icon]="faChartBar"></fa-icon>
+          <span class="nav-label">Услуги</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
         <a [routerLink]="['/contract/list']">
           <fa-icon [icon]="faHandShake"></fa-icon>
           <span class="nav-label">Договора</span>

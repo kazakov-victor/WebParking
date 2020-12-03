@@ -1,0 +1,48 @@
+<div class="tab-content">
+  <div class="hpanel">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center small">
+          <table class="table content_tab tab-pane clearfix  edit-ref">
+            <thead>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button type="button" class="btn btn-success pull-right"
+                        [routerLink]="'/income/new'"
+                ><i class="fa fa-plus"></i> Новый </button>
+              </td>
+            </tr>
+            <tr>
+              <td>ID</td>
+              <td>ID Договора</td>
+              <td>ID Вид услуги</td>
+              <td>Начало</td>
+              <td>Окончание</td>
+              <td>Количество</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let income of incomes$ | async" (click)="edit(income.income_id)">
+              <td>{{income.income_id}}</td>
+              <td>{{income.contract_id}}</td>
+              <td>{{income.income_type_id}}</td>
+              <td>{{income.dtfrom}}</td>
+              <td>{{income.dtto}}</td>
+              <td>{{income.quantity}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

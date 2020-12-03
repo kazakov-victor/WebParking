@@ -9,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {Income} from '../../shared/income';
 import {Person} from '../../shared/person';
-import {IncomeTypeDTO} from '../../shared/income-type';
+import {IncomeType} from '../../shared/income-type';
 import {IncomeTypeService} from '../../services/income-type.service';
 
 @Component({
@@ -49,7 +49,7 @@ export class ContractNewComponent implements OnInit {
   contractNewForm: FormGroup;
   persons$: Observable<Person[]>;
   contracts$: Observable<Contract[]>;
-  incomeTypes$: Observable<IncomeTypeDTO[]>;
+  incomeTypes$: Observable<IncomeType[]>;
   private searchTerms = new BehaviorSubject<string>('all');
   sub: Subscription;
 
@@ -99,7 +99,7 @@ export class ContractNewComponent implements OnInit {
       dtto: [''],
       income_id: [''],
       quantity: [''],
-      incomeTypeDTO: [1]
+      IncomeType: [1]
     });
 
         /* this.fb.group(

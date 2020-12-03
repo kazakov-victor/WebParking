@@ -5,7 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {formatDate, Location} from '@angular/common';
 import {ContractService} from '../../services/contract.service';
 import {Income} from '../../shared/income';
-import {IncomeTypeDTO} from '../../shared/income-type';
+import {IncomeType} from '../../shared/income-type';
 import {Unit} from '../../shared/unit';
 
 @Component({
@@ -18,7 +18,7 @@ export class ContractEditComponent implements OnInit {
   contractEditForm: FormGroup;
   contract: Contract;
   incomes: Income [];
-  incomeType: IncomeTypeDTO;
+  incomeType: IncomeType;
   unit: Unit;
   constructor(private route: ActivatedRoute,
               private location: Location,
@@ -65,18 +65,18 @@ export class ContractEditComponent implements OnInit {
         : income.dtto],
       income_id: [income.income_id],
       quantity: [income.quantity],
-      incomeTypeDTO: this.fb.group(
+      IncomeType: this.fb.group(
         {
-          income_type_id: [income.incomeTypeDTO.income_type_id],
-          name: [income.incomeTypeDTO.name],
-          note: [income.incomeTypeDTO.note],
-          sid_external: [income.incomeTypeDTO.sid_external],
+          income_type_id: [income.IncomeType.income_type_id],
+          name: [income.IncomeType.name],
+          note: [income.IncomeType.note],
+          sid_external: [income.IncomeType.sid_external],
           unitDTO: this.fb.group(
             {
-              unit_id: [income.incomeTypeDTO.unitDTO.unit_id],
-              name: [income.incomeTypeDTO.unitDTO.name],
-              longname: [income.incomeTypeDTO.unitDTO.longname],
-              basis: [income.incomeTypeDTO.unitDTO.basis],
+              unit_id: [income.IncomeType.unitDTO.unit_id],
+              name: [income.IncomeType.unitDTO.name],
+              longname: [income.IncomeType.unitDTO.longname],
+              basis: [income.IncomeType.unitDTO.basis],
             }
           )
         }

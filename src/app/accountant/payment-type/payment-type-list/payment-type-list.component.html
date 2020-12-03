@@ -23,7 +23,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let paymentType of paymentTypes">
+            <tr *ngFor="let paymentType of paymentTypes$ | async" (click)="edit(paymentType.payment_type_id)">
               <td>{{paymentType.payment_type_id}}</td>
               <td>{{paymentType.name}}</td>
               <td>

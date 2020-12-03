@@ -60,7 +60,6 @@ export class PaymentNewComponent implements OnInit {
   }
   newPayment(): any {
     this.currentDate = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
-    console.log(this.currentDate);
     this.paymentNewForm.controls.ts.patchValue(this.currentDate);
     this.paymentTypeService.getPaymentTypes()
       .subscribe((types) => {
