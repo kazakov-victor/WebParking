@@ -3,11 +3,21 @@
   <div class="row">
     <div class="col-md-12">
       <div class="text-center small">
-        <button type="button" class="btn btn-primary-outline pull-right"
-                [routerLink]="'/contract/new'"
-        ><i class="fa fa-plus"></i> Добавить новый </button>
-        <table class="table content_tab tab-pane clearfix">
+
+        <table class="table content_tab tab-pane clearfix edit-ref">
           <thead>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <button type="button" class="btn btn-success pull-right"
+                      [routerLink]="'/contract/new'"
+              ><i class="fa fa-plus"></i> Добавить новый </button>
+            </td>
+          </tr>
           <tr>
             <td>contract_id</td>
             <td>Номер</td>
@@ -15,27 +25,17 @@
             <td>Дата заключения</td>
             <td>Дата окончания</td>
             <td>Примечания</td>
-            <td>Действия</td>
+
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let contract of contracts">
+          <tr *ngFor="let contract of contracts$ | async" (click)="edit(contract.contract_id)">
             <td>{{contract.contract_id}}</td>
             <td>{{contract.number}}</td>
             <td>{{contract.balance}}</td>
             <td>{{contract.dtfrom | date:"dd.MM.yyyy"}}</td>
             <td>{{contract.dtto | date:"dd.MM.yyyy"}}</td>
             <td>{{contract.note}}</td>
-            <td>
-              <button
-                      routerLink="/contract/edit/{{contract.contract_id}}">
-                <fa-icon [icon]="fEdit"></fa-icon>
-              </button>
-              <button class="delete" title="delete"
-                      (click)="delete(contract)">
-                <fa-icon [icon]="fTrash"></fa-icon>
-              </button>
-            </td>
           </tr>
           </tbody>
         </table>

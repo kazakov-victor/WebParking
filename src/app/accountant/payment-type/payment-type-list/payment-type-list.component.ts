@@ -42,13 +42,8 @@ export class PaymentTypeListComponent implements OnInit, OnDestroy {
 
   edit(paymentTypeId: number): void {
     this.paymentTypeService.getPaymentType(paymentTypeId).subscribe(() => {
-      this.router.navigate(['/paymenttype/edit/', paymentTypeId]);
+      this.router.navigate(['/accountant/paymenttype/edit/', paymentTypeId]);
     });
-  }
-  delete(paymentType: PaymentType): void {
-    this.paymentTypes = this.paymentTypes.filter(p => p !== paymentType);
-    this.paymentTypeService.deletePaymentType(paymentType)
-      .subscribe(() => this.getPaymentTypes());
   }
 }
 

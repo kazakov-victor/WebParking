@@ -34,7 +34,7 @@
                     <div class="form-group">
                       <label for="incometypes">Единица измерения </label>
                       <div>
-                        <select formControlName="income_type_id" id="incometypes">
+                        <select formControlName="incometype_id" id="incometypes">
                           <option *ngFor="let incometype of incometypes; let i = index"
                                   [value]="incometypes[i].incometype_id" >
                             {{incometypes[i].name}}

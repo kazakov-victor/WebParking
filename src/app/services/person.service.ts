@@ -69,7 +69,7 @@ export class PersonService {
   //////// Save methods //////////
 
   /** POST: add a new person to the server */
-  addPerson(person: Person): Observable<Person> {
+  savePerson(person: Person): Observable<Person> {
     console.log('addPerson works', person);
     return this.http.post<Person>(`${this.personUrl}/save`, person, this.httpOptions).pipe(
       tap((newPerson: Person) => this.log(`added person w/ id=${newPerson.person_id}`)),

@@ -68,7 +68,7 @@ export class ContractService {
   //////// Save methods //////////
 
   /** POST: add a new contract to the server */
-  addContract(contract: Contract): Observable<Contract> {
+  saveContract(contract: Contract): Observable<Contract> {
     console.log('addContract works', contract);
     return this.http.post<Contract>(`${this.contractUrl}/save`, contract, this.httpOptions).pipe(
       tap((newContract: Contract) => this.log(`added contract w/ id=${newContract.contract_id}`)),

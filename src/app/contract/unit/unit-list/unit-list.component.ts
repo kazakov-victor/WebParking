@@ -1,10 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Unit} from '../../../shared/unit';
-import {Observable, Subscription} from 'rxjs';
+import {Observable} from 'rxjs';
 import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {UnitService} from '../../../services/unit.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
+import {MessageService} from '../../../services/message.service';
 
 @Component({
   selector: 'app-unit-list',
@@ -13,10 +14,11 @@ import {switchMap} from 'rxjs/operators';
 })
 export class UnitListComponent implements OnInit {
   units$: Observable<Unit[]>;
-  units: Unit[] = [];
+  messages: string[] = [];
   fEdit = faEdit;
   fTrash = faTrashAlt;
   constructor(private unitService: UnitService,
+              private messageService: MessageService,
               private route: ActivatedRoute,
               private router: Router) { }
 
@@ -29,6 +31,7 @@ export class UnitListComponent implements OnInit {
         return this.unitService.getUnits();
       })
     );
+    this.messages = this.messageService.messages;
   }
 
   edit(unitId: number): void {

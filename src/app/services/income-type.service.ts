@@ -72,14 +72,14 @@ export class IncomeTypeService {
   saveIncomeType(incomeType: IncomeType): Observable<IncomeType> {
     console.log('addIncomeType works', incomeType);
     return this.http.post<IncomeType>(`${this.incomeTypeUrl}/save`, incomeType, this.httpOptions).pipe(
-      tap((newIncomeType: IncomeType) => this.log(`added incomeType w/ id=${newIncomeType.income_type_id}`)),
+      tap((newIncomeType: IncomeType) => this.log(`added incomeType w/ id=${newIncomeType.incometype_id}`)),
       catchError(this.handleError<IncomeType>('addIncomeType')));
   }
 
   /** DELETE: delete the incomeType from the server */
   deleteIncomeType(incomeType
                      : IncomeType | number): Observable<IncomeType> {
-    const id = typeof incomeType === 'number' ? incomeType : incomeType.income_type_id;
+    const id = typeof incomeType === 'number' ? incomeType : incomeType.incometype_id;
     const url = `${this.incomeTypeUrl}/delete/${id}`;
 
     return this.http.post<IncomeType>(url, this.httpOptions).pipe(

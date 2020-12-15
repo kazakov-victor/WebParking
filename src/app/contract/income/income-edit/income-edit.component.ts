@@ -38,7 +38,7 @@ export class IncomeEditComponent implements OnInit {
               private fb: FormBuilder) {
     this.incomeEditForm = this.fb.group({
       income_id: [''],
-      income_type_id: [''],
+      incometype_id: [''],
       dtfrom: [''],
       dtto: [''],
       quantity: [''],
@@ -59,13 +59,13 @@ export class IncomeEditComponent implements OnInit {
         this.incomeEditForm.controls.dtfrom.patchValue(this.income.dtfrom);
         this.incomeEditForm.controls.dtto.patchValue(this.income.dtto);
         this.incomeEditForm.controls.quantity.patchValue(this.income.quantity);
-        this.incomeEditForm.controls.income_type_id.patchValue(this.income.income_type_id);
+        this.incomeEditForm.controls.incometype_id.patchValue(this.income.incometype_id);
         this.incomeEditForm.controls.contract_id.patchValue(this.income.contract_id);
       });
     this.incomeTypeService.getIncomeTypes()
       .subscribe((incomeTypes) => {
         this.incometypes = incomeTypes;
-        this.incomeEditForm.controls.income_type_id.patchValue(this.income.income_type_id);
+        this.incomeEditForm.controls.incometype_id.patchValue(this.income.incometype_id);
       });
     this.contractService.getContracts()
       .subscribe((contracts) => {
@@ -83,7 +83,7 @@ export class IncomeEditComponent implements OnInit {
       dtfrom: this.incomeEditForm.value.dtfrom,
       dtto: this.incomeEditForm.value.dtto,
       quantity: this.incomeEditForm.value.quantity,
-      income_type_id: this.incomeEditForm.value.income_type_id,
+      incometype_id: this.incomeEditForm.value.incometype_id,
       contract_id: this.incomeEditForm.value.contract_id
     };
     this.incomeService.saveIncome(income)

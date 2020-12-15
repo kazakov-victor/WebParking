@@ -1,15 +1,16 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Payment} from '../../../shared/payment';
 import {Observable, Subscription} from 'rxjs';
-import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import {faEdit, faSave, faTimes, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {PaymentService} from '../../../services/payment.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PaymentType} from '../../../shared/payment-type';
 import {Contract} from '../../../shared/contract';
 import {PaymentTypeService} from '../../../services/payment-type.service';
 import {ContractService} from '../../../services/contract.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
+import {Unit} from '../../../shared/unit';
 
 @Component({
   selector: 'app-payment-edit',
@@ -17,19 +18,24 @@ import {Location} from '@angular/common';
   styleUrls: ['./payment-edit.component.scss']
 })
 export class PaymentEditComponent implements OnInit, OnDestroy {
+  routeBack = '/accountant/payment/list';
   visible = true;
   paymentEditForm: FormGroup;
   paymenttypes = [];
   contracts = [];
   payment: Payment;
+  payments: Payment [];
   sub: Subscription;
   fEdit = faEdit;
   fTrash = faTrashAlt;
+  fSave = faSave;
+  fBack = faTimes;
 
   constructor(private paymentService: PaymentService,
               private paymentTypeService: PaymentTypeService,
               private contractService: ContractService,
               private route: ActivatedRoute,
+              private router: Router,
               private location: Location,
               private fb: FormBuilder) {
     this.paymentEditForm = this.fb.group({
@@ -50,7 +56,6 @@ export class PaymentEditComponent implements OnInit, OnDestroy {
     this.paymentService.getPayment(id)
       .subscribe((payment) => {
         this.payment = payment;
-        console.log('This payment --', this.payment);
         this.paymentEditForm.controls.payment_id.patchValue(this.payment.payment_id);
         this.paymentEditForm.controls.note.patchValue(this.payment.note);
         this.paymentEditForm.controls.amount.patchValue(this.payment.amount);
@@ -87,13 +92,16 @@ export class PaymentEditComponent implements OnInit, OnDestroy {
       amount: this.paymentEditForm.value.amount,
       note: this.paymentEditForm.value.note
     };
-    console.log('This payment (edit) before save --', payment);
     this.paymentService.savePayment(payment)
       .subscribe(() => this.location.back());
    // this.paymentEditForm.reset();
   }
-
+  delete(payment: Payment): void {
+    this.payments = this.payments.filter(p => p !== payment);
+    this.paymentService.deletePayment(payment).subscribe(() => this.goBack());
+  }
   goBack(): void {
-    this.location.back();
+    // this.location.back();
+    this.router.navigate([this.routeBack]);
   }
 }

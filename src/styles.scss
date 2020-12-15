@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en);
 
 @keyframes pulse {
@@ -8884,6 +8883,10 @@ ul.multiselect-container:not(.fixed-dropdown-menu) {
 ul.multiselect-container.fixed-dropdown-menu {
   max-width: 300px
 }
+input .form-control-name {
+  height: 34px;
+}
+
 
 .form-control-stub {
   display: block;

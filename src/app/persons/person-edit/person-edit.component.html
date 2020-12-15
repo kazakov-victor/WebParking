@@ -38,12 +38,21 @@
         </tr>
         <tr>
           <td>
-            <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
-              <div class="btn-group dropup col-6 js-request tooltips"
-                   title=""                               >
-                <button (click)="goBack()">go back</button>
-                <button (click)="save()">save</button>
-              </div>
+            <div class="form-group col-sm-12" id="send-form-buttons">
+              <button class="btn btn-margin" title="back"
+                      (click)="goBack()">
+                <fa-icon [icon]="fBack"></fa-icon>
+                Отмена
+              </button>
+              <button class="btn btn-success btn-margin" title="save unit">
+                <fa-icon [icon]="fSave"></fa-icon>
+                Сохранить
+              </button>
+              <button class="btn btn-danger btn-margin" title="delete unit"
+                      (click)="delete(person)">
+                <fa-icon [icon]="fTrash"></fa-icon>
+                Удалить
+              </button>
             </div>
           </td>
         </tr>

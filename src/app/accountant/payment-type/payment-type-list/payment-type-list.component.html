@@ -1,13 +1,12 @@
 <div class="tab-content">
   <div class="hpanel">
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-12">
         <div class="text-center small">
 
-          <table class="table content_tab tab-pane clearfix">
+          <table class="table content_tab tab-pane clearfix edit-ref">
             <thead>
             <tr>
-              <td></td>
               <td></td>
               <td>
                 <button type="button" class="btn btn-success pull-right"
@@ -19,23 +18,12 @@
             <tr>
               <td>ID</td>
               <td>Название</td>
-              <td>Действие</td>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let paymentType of paymentTypes$ | async" (click)="edit(paymentType.payment_type_id)">
               <td>{{paymentType.payment_type_id}}</td>
               <td>{{paymentType.name}}</td>
-              <td>
-                <button
-                  [routerLink]="['/accountant/paymenttype/edit/', paymentType.payment_type_id]">
-                  <fa-icon [icon]="fEdit"></fa-icon>
-                </button>
-                <button class="delete" title="delete payment"
-                        (click)="delete(paymentType)">
-                  <fa-icon [icon]="fTrash"></fa-icon>
-                </button>
-              </td>
             </tr>
             </tbody>
           </table>

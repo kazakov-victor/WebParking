@@ -1,54 +1,76 @@
-<form [formGroup]="personNewForm" (ngSubmit)="submit()" id="person-form-add" class="person-form-add">
-  <div class="row">
-    <div class="col-md-6 col-xs-12 js-fields">
-      <table class="table table-borderless table-paddingless" id="create-person-fields-table">
-        <tbody>
-        <tr>
-          <div class="form-group">
-            <label>Фамилия : </label>
-            <input type="text" formControlName="surname"
-                   class="form-control"
-                   id="surname">
-          </div>
-          <div class="form-group">
-            <label>Имя : </label>
-            <input type="text" formControlName="name"
-                   class="form-control"
-                   id="name">
-          </div>
-          <div class="form-group">
-            <label>Отчество : </label>
-            <input type="text" formControlName="second_name"
-                   class="form-control"
-                   id="second_name">
-          </div>
-          <div class="form-group">
-            <label>Телефон : </label>
-            <input type="text" formControlName="phone"
-                   class="form-control"
-                   id="phone">
-          </div>
-          <div class="form-group">
-            <label>Адрес : </label>
-            <input type="text" formControlName="address"
-                   class="form-control"
-                   id="address">
-          </div>
-        </tr>
-        <tr>
-          <td>
-            <button class="btn btn-group-lg" (click)="submit()">Сохранить</button>
-            <button class="btn btn-primary" (click)="submitAndBack()" style="margin-left: 10px">Сохранить и закрыть</button>
-
-            <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
-              <div class="">
-                </div>
+<div *ngIf="visible" id="popup_window" class="modal fade left modal-large in">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button type="button" class="close popup-window-close"
+              (click)="goBack()" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="modal-header">
+        <h4 class="modal-title">Ввод нового контрагента</h4>
+      </div>
+      <div class="modal-body">
+        <div class="tab-pane" id="repair">
+          <form [formGroup]="personNewForm" (ngSubmit)="submit()" id="person-form-add" class="person-form-add">
+            <div class="row">
+              <div class="col-md-6 col-xs-12 js-fields">
+                <table class="table table-borderless table-paddingless" id="create-person-fields-table">
+                  <tbody>
+                  <tr>
+                    <div class="form-group">
+                      <label>Фамилия : </label>
+                      <input type="text" formControlName="surname"
+                             class="form-control"
+                             id="surname">
+                    </div>
+                    <div class="form-group">
+                      <label>Имя : </label>
+                      <input type="text" formControlName="name"
+                             class="form-control"
+                             id="name">
+                    </div>
+                    <div class="form-group">
+                      <label>Отчество : </label>
+                      <input type="text" formControlName="second_name"
+                             class="form-control"
+                             id="second_name">
+                    </div>
+                    <div class="form-group">
+                      <label>Телефон : </label>
+                      <input type="text" formControlName="phone"
+                             class="form-control"
+                             id="phone">
+                    </div>
+                    <div class="form-group">
+                      <label>Адрес : </label>
+                      <input type="text" formControlName="address"
+                             class="form-control"
+                             id="address">
+                    </div>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
+                        <div class="btn-group dropup col-6 tooltips">
+                          <button class="btn btn-margin" title="back"
+                                  (click)="goBack()">
+                            <fa-icon [icon]="fBack"></fa-icon>
+                            Отмена
+                          </button>
+                          <button class="btn btn-success btn-margin" title="save unit">
+                            <fa-icon [icon]="fSave"></fa-icon>
+                            Сохранить
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
-</form>
-
+</div>

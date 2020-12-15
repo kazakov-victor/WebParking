@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PersonService} from '../../services/person.service';
 import {Person} from '../../shared/person';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
+import {faSave, faTimes} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -12,18 +13,25 @@ import {Location} from '@angular/common';
   styleUrls: ['./person-new.component.scss']
 })
 export class PersonNewComponent implements OnInit {
+  visible = true;
   personNewForm: FormGroup;
   person: Person;
-  another: boolean;
-  constructor(private route: ActivatedRoute, private location: Location, private personService: PersonService) { }
+  routeBack = '/person/list';
+  fSave = faSave;
+  fBack = faTimes;
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private location: Location,
+              private fb: FormBuilder,
+              private personService: PersonService) { }
 
   ngOnInit(): void {
-    this.personNewForm = new FormGroup({
-      surname: new FormControl('', Validators.required),
-      name: new FormControl('', Validators.required),
-      second_name: new FormControl('', Validators.required),
-      phone: new FormControl('', Validators.minLength(7)),
-      address: new FormControl('', Validators.required)
+    this.personNewForm = this.fb.group({
+      surname: ['', Validators.required],
+      name: ['', Validators.required],
+      second_name: ['', Validators.required],
+      phone: ['', Validators.minLength(7)],
+      address: ['', Validators.required]
     });
 
   }
@@ -38,13 +46,13 @@ export class PersonNewComponent implements OnInit {
       phone: this.personNewForm.value.phone,
       address: this.personNewForm.value.address
     };
-    this.personService.addPerson(person).subscribe();
+    this.personService.savePerson(person).subscribe(() => this.goBack());
     this.personNewForm.reset();
   }
 
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate([this.routeBack]);
   }
 
   submitAndBack(): void {

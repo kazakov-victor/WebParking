@@ -11,7 +11,7 @@
               <td></td>
               <td>
                 <button type="button" class="btn btn-success pull-right"
-                        [routerLink]="'/income_type/new'"
+                        [routerLink]="'/incometype/new'"
                 ><i class="fa fa-plus"></i> Новый </button>
               </td>
             </tr>
@@ -23,12 +23,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let income_type of incomeTypes$ | async"
-                (click)="edit(income_type.income_type_id)">
-              <td>{{income_type.income_type_id}}</td>
-              <td>{{income_type.name}}</td>
-              <td>{{income_type.unit_id}}</td>
-              <td>{{income_type.note}}</td>
+            <tr *ngFor="let incometype of incomeTypes$ | async"
+                (click)="edit(incometype.incometype_id)">
+              <td>{{incometype.incometype_id}}</td>
+              <td>{{incometype.name}}</td>
+              <td>{{incometype.unit_id}}</td>
+              <td>{{incometype.note}}</td>
             </tr>
             </tbody>
           </table>

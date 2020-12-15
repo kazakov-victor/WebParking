@@ -2,179 +2,154 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <button type="button" class="close popup-window-close"
-              (click)="visible=false" aria-label="Close">
+              (click)="goBack()" aria-label="Close">
         <span aria-hidden="true">×</span>
       </button>
       <div class="modal-header">
         <h4 class="modal-title">Ввод нового договора</h4>
       </div>
-      <div class="modal-body">
-        <div class="tab-pane" id="repair">
-            <form [formGroup]="contractNewForm" (ngSubmit)="submit()" id="order-form-add" class="order-form-add">
-              <div class="row">
-                <div class="col-md-6 col-xs-12 js-fields">
-                  <table class="table table-borderless table-paddingless" id="create-order-fields-table">
-                    <tbody>
-                    <tr>
-                      <div class="form-group">
-                        <label>Номер договора : </label>
-                        <input type="text" formControlName="number"
-                               class="form-control"
-                               id="number">
-                      </div>
-                    </tr>
-                    <tr>
-                      <td class="hide-field-td">
-                      </td>
-                      <td>
-                        <legend>Клиент</legend>
-                        <label>Выберите клиента <label>
-                        </label> <b class="text-danger">*</b>: </label>
-                        <div class="row row-5 " id="main-client-info">
-                          <div class="col-sm-6 form-group">
-                            <div class="input-group">
-                              <input #searchBox id="search-box" (input)="search(searchBox.value)"
-                              placeholder="Отбор по фамилии"/>
-                              <div>
-                                <select formGroupName="person">
-                                  <option *ngFor="let person of persons$ | async "
-                                          [value]="person.person_id" formControlName="person_id">
-                                    {{person.surname}} {{person.name}} {{person.phone}}
-                                  </option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="clearfix"></div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="col-sm-6 form-group">
-                          <div class="input-group">
-                            <button class="btn" (click)="addPerson()" type = "button"
-                                    id="person-new">Новый</button>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="hide-field-td">
-                      </td>
-                      <td>
-                        <div class="row row-5">
-                          <div class="col-sm-6 form-group">
 
-                            <input class="form-control" type="date"
-                                   placeholder="" formControlName="dtfrom"
-                            ></div>
-                          <div class="col-sm-6 form-group">
-
-                            <input class="form-control" type="date"
-                                   placeholder="Адрес" formControlName="dtto">
-                          </div>
-                        </div>
-
-                      </td>
-                    </tr>
-                    <tr class="sortable" >
-                      <td class="hide-field-td">
-                      <td>
-                        <div class="form-group">
-                          <label>Входной баланс: </label>
-                          <input formControlName="balance" type="text" name="balance"
-                                 class="form-control"
-                                 id="balance-new">
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="  sortable" >
-                      <td class="hide-field-td">
-                      <td>
-                        <div class="form-group">
-                          <label>Примечание: </label>
-                          <input formControlName="note" type="text" name="note"
-                                 class="form-control"
-                                 id="note">
-                        </div>
-                      </td>
-                    </tr>
-                      <tr>
-                      <td>
-                        <div formGroupName="incomes" class="form-group">
-                          <div class="input-group">
-                            <button class="btn" (click)="addIncome()" type="button"
-                                    id="income-add">Добавить услугу
-                            </button>
-                          </div>
-                          <label>Услуги: </label>
-                          <div *ngFor="let income of contractNewForm.get('incomes').controls;
-                                let i = index;" class="col-sm-6 form-group">
-                            <fieldset>
-                              <div [formGroupName]="i">
-                                <label>
-                                  Услуга {{i + 1}}:
-                                </label>
-                                <div class="form-group">
-                                  <label>income_id: </label>
-                                  <input type="text" formControlName="income_id" placeholder="income_id">
-                                </div>
-                                <div class="form-group">
-                                  <label>dtfrom: </label>
-                                  <input type="date" formControlName="dtfrom" placeholder="dtfrom">
-                                </div>
-                                <div class="form-group">
-                                  <label>dtto: </label>
-                                  <input type="date" formControlName="dtto" placeholder="dtto">
-                                </div>
-                                <div class="form-group">
-                                  <label>quantity: </label>
-                                  <input type="text" formControlName="quantity" placeholder="quantity">
-                                </div>
-                                <select formControlName="IncomeType" (change)="onIncomeTypeChange()">
-                                <!--<option [ngValue]="undefined" selected="selected">Выберите услугу</option>-->
-                                <option *ngFor="let incomeType of incomeTypes$ | async; let i = index"
-                                        [ngValue]="incomeType.income_type_id"
-                                        >
-                                    {{incomeType.name}}
-                                </option>
-                              </select>
-                              </div>
-                            </fieldset>
-
-                          </div>
-                        </div>
-                      </td>
-
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
-                          <div class="btn-group dropup col-6 js-request tooltips"
-                               title=""                               >
-                            <button class="btn" type="submit">Отправить</button>
-
-                            <button type="button" class="btn btn-info dropdown-toggle">
-                              <span class="caret"></span>
-                              <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <br>
-              </div>
-            </form>
-
+<div class="modal-body">
+<div class="tab-pane" id="repair">
+<form [formGroup]="contractNewForm" (ngSubmit)="submit()" id="order-form-add" class="order-form-add">
+  <div class="row">
+    <div class="col-md-6 col-xs-12 js-fields">
+      <table class="table table-borderless table-paddingless" id="create-order-fields-table">
+        <tbody>
+        <tr>
+          <div class="form-group">
+            <label>Номер договора : </label>
+            <input type="text" formControlName="number"
+                   class="form-control form-control-name"
+                   id="number">
           </div>
-        </div>
-      </div>
-    </div>
-    </div>
+        </tr>
+        <tr>
+          <td>
+            <label>Клиент : </label>
+            <div class="row row-5 form-group" id="main-client-info">
+              <select formControlName="person_id" class="form-control">
+                <option *ngFor="let person of persons; let i = index"
+                        [value]="persons[i].person_id">
+                  {{persons[i].surname}} {{persons[i].name}} {{persons[i].second_name}} - {{persons[i].phone}}
+                </option>
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="row row-5">
+              <div class="col-sm-6 form-group">
+                <label>Начало : </label>
+                <input class="form-control" type="date"
+                       formControlName="dtfrom">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label>Окончание : </label>
+                <input class="form-control" type="date"
+                       formControlName="dtto">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr >
+          <td>
+            <div class="form-group">
+              <label>Входной баланс: </label>
+              <input formControlName="balance" type="text" name="balance"
+                     class="form-control" id="balance-new">
+            </div>
+          </td>
+        </tr>
+        <tr >
+          <td>
+            <div class="form-group">
+              <label>Примечание: </label>
+              <input formControlName="note" type="text" name="note"
+                     class="form-control" id="note">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Услуги: </label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div formArrayName="incomes" class="form-group">
+              <div class="input-group">
+                <button class="btn" (click)="addIncome()" type="button"
+                        id="income-add">Добавить услугу
+                </button>
+              </div>
+              <hr>
+              <div *ngFor="let income of incomes().controls; index as incomeIndex;">
+                <div [formGroupName]="incomeIndex">
+                 <fieldset>
+                  Услуга № {{incomeIndex}}
 
-
+                  <div class="row row-5 form-group">
+                    <div class="col-sm-6 form-group">
+                      <label>Вид услуги : </label>
+                    <select formControlName="incometype_id" class="form-control">
+                      <option *ngFor="let incometype of incometypes; let i = index"
+                              [value]="incometypes[i].incometype_id">
+                        {{incometypes[i].name}}
+                      </option>
+                    </select>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                      <label>Количество : </label>
+                      <input class="form-control" type="text"
+                             formControlName="quantity">
+                    </div>
+                  </div>
+                  <div class="row row-5">
+                    <div class="col-sm-6 form-group">
+                      <label>Начало : </label>
+                      <input class="form-control" type="date"
+                             formControlName="dtfrom">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                      <label>Окончание : </label>
+                      <input class="form-control" type="date"
+                             formControlName="dtto">
+                    </div>
+                  </div>
+                  <button (click)="removeIncome(incomeIndex)">Remove</button>
+                 </fieldset>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-sm-12" id="send-form-buttons" style="padding-left:0">
+              <div class="btn-group dropup col-6 tooltips">
+                <button class="btn btn-margin" title="back"
+                        (click)="goBack()">
+                  <fa-icon [icon]="fBack"></fa-icon>
+                  Отмена
+                </button>
+                <button class="btn btn-success btn-margin" title="save unit">
+                  <fa-icon [icon]="fSave"></fa-icon>
+                  Сохранить
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+  </div>
+</form>
+<p>Form Value: {{ contractNewForm.value | json }}</p>
+<p>Form Status: {{ contractNewForm.status }}</p>
+</div>
+</div>
+    </div>
+  </div>
+</div>
 
 

@@ -68,12 +68,11 @@
         <a [routerLink]="['/contract/list']">
           <fa-icon [icon]="faHandShake"></fa-icon>
           <span class="nav-label">Договора</span>
-          <span class="arrow">
+         <!-- <span class="arrow">
             <span><fa-icon [icon]="faAngleLeft"></fa-icon></span>
-          </span>
+          </span>-->
         </a>
-      <!--  <ul class="nav nav-second-level collapse" aria-expanded="false">-->
-        <ul class="nav nav-second-level collapse" >
+    <!--    <ul class="nav nav-second-level collapse" >
           <li routerLinkActive="active">
             <a [routerLink]="['/contract/list']">
               Список </a>
@@ -82,10 +81,20 @@
             <a [routerLink]="['/contract/new']">
               Новый </a>
           </li>
-        </ul>
+        </ul>-->
 
       </li>
+
       <li routerLinkActive="active">
+        <a [routerLink]="['/accountant/payment/list']">
+          Оплаты </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/accountant/paymenttype/list']">
+          Виды оплат </a>
+      </li>
+
+    <!--  <li routerLinkActive="active">
         <a [routerLink]="['/accountant/cashflow']" routerLinkActive="active">
           <fa-icon [icon]="faMoneyCheckAlt"></fa-icon>
           <span class="nav-label">Бухгалтерия</span>
@@ -120,16 +129,16 @@
           </li>
         </ul>
       </li>
-
+-->
       <li routerLinkActive="active">
         <a [routerLink]="['/person/list']">
           <fa-icon [icon]="faUser"></fa-icon>
           <span class="nav-label">Клиенты</span>
-          <span class="arrow">
+          <!--<span class="arrow">
             <span><fa-icon [icon]="faAngleLeft"></fa-icon></span>
-          </span>
+          </span>-->
         </a>
-        <ul class="nav nav-second-level collapse" aria-expanded="false">
+       <!-- <ul class="nav nav-second-level collapse" aria-expanded="false">
           <li routerLinkActive="active">
             <a [routerLink]="['/person/list']">
               Клиенты </a>
@@ -143,7 +152,7 @@
               Edit </a>
           </li>
 
-        </ul>
+        </ul>-->
       </li>
 
       <li  class="" routerLinkActive="active">

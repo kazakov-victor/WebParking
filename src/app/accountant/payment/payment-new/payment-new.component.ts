@@ -5,7 +5,7 @@ import {PaymentService} from '../../../services/payment.service';
 import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {Payment} from '../../../shared/payment';
 import {debounceTime, distinctUntilChanged, first, map, switchMap} from 'rxjs/operators';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {formatDate, Location} from '@angular/common';
 import {Person} from '../../../shared/person';
 import {PaymentType} from '../../../shared/payment-type';
@@ -34,6 +34,7 @@ import {Contract} from '../../../shared/contract';
 })
 
 export class PaymentNewComponent implements OnInit {
+  routeBack = '/payment/list';
   visible = true;
   paymentNewForm: FormGroup;
   paymenttypes = [];
@@ -44,6 +45,7 @@ export class PaymentNewComponent implements OnInit {
               private paymentTypeService: PaymentTypeService,
               private contractService: ContractService,
               private route: ActivatedRoute,
+              private router: Router,
               private location: Location,
               private fb: FormBuilder) {
     this.paymentNewForm = this.fb.group({
@@ -103,7 +105,7 @@ export class PaymentNewComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate([this.routeBack]);
   }
 
   submitAndBack(): void {

@@ -8,6 +8,6 @@ export interface Contract {
   dtfrom: string;
   dtto: string;
   note: string;
-  personDTO: Person;
-  incomeDTOS: Income[];
+  person_id: number;
+  incomes: Income[];
 }

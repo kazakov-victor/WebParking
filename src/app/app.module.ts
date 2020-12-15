@@ -37,7 +37,6 @@ import { PersonEditComponent } from './persons/person-edit/person-edit.component
 import { PersonSelectComponent } from './persons/person-select/person-select.component';
 import { PersonFilterPipe } from './pipes/person-filter.pipe';
 import { PersonsComponent } from './persons/persons.component';
-import { PersonMenuComponent } from './persons/person-menu/person-menu.component';
 import { PersonListComponent } from './persons/person-list/person-list.component';
 import { IncomeComponent } from './contract/income/income.component';
 import {SharedModule} from './shared/shared.module';
@@ -64,6 +63,7 @@ import { IncomeTypeNewComponent } from './contract/income-type/income-type-new/i
 import { IncomeTypeListComponent } from './contract/income-type/income-type-list/income-type-list.component';
 import { IncomeTypeEditComponent } from './contract/income-type/income-type-edit/income-type-edit.component';
 import { IncomeTypeComponent } from './contract/income-type/income-type.component';
+import { NestedFormArrayComponent } from './contract/nested-form-array/nested-form-array.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +105,6 @@ import { IncomeTypeComponent } from './contract/income-type/income-type.componen
     PersonFilterPipe,
     PersonsComponent,
     PhoneControlComponent,
-    PersonMenuComponent,
     PersonListComponent,
     RegisterComponent,
     WrapperComponent,
@@ -119,6 +118,7 @@ import { IncomeTypeComponent } from './contract/income-type/income-type.componen
     UnitEditComponent,
     UnitNewComponent,
     UnitComponent,
+    NestedFormArrayComponent,
   ],
   imports: [
     BrowserModule,

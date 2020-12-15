@@ -3,9 +3,11 @@ import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PaymentType} from '../../../shared/payment-type';
 import {PaymentTypeService} from '../../../services/payment-type.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import {faEdit, faSave, faTimes, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import {Payment} from '../../../shared/payment';
 
 @Component({
   selector: 'app-payment-type-edit',
@@ -13,14 +15,26 @@ import {BehaviorSubject, Observable, Subscription} from 'rxjs';
   styleUrls: ['./payment-type-edit.component.scss']
 })
 export class PaymentTypeEditComponent implements OnInit {
+  routeBack = '/accountant/paymenttype/list';
   visible = true;
   paymentTypeEditForm: FormGroup;
   paymentType: PaymentType;
+  paymentTypes: PaymentType[] = [];
   sub: Subscription;
+  fEdit = faEdit;
+  fTrash = faTrashAlt;
+  fSave = faSave;
+  fBack = faTimes;
   constructor(private paymentTypeService: PaymentTypeService,
               private route: ActivatedRoute,
+              private router: Router,
               private location: Location,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder) {
+    this.paymentTypeEditForm = this.fb.group({
+      payment_type_id: [''],
+      name: ['']
+     });
+  }
 
   ngOnInit(): void {
  this.getPaymentType();
@@ -48,6 +62,13 @@ export class PaymentTypeEditComponent implements OnInit {
     console.log('PT - ', paymentType);
     this.paymentTypeService.savePaymentType(paymentType).subscribe(() => this.location.back());
     this.paymentTypeEditForm.reset();
+  }
+  delete(paymentType: PaymentType): void {
+    this.paymentTypes = this.paymentTypes.filter(pt => pt !== paymentType);
+    this.paymentTypeService.deletePaymentType(paymentType).subscribe(() => this.goBack());
+  }
+  goBack(): void {
+    this.router.navigate([this.routeBack]);
   }
 }
 

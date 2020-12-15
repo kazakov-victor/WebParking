@@ -33,7 +33,7 @@ export class IncomeTypeEditComponent implements OnInit, OnDestroy {
               private location: Location,
               private fb: FormBuilder) {
     this.incomeTypeEditForm = this.fb.group({
-      income_type_id: [''],
+      incometype_id: [''],
       unit_id: [''],
       name: [''],
       note: [''],
@@ -49,7 +49,7 @@ export class IncomeTypeEditComponent implements OnInit, OnDestroy {
     this.incomeTypeService.getIncomeType(id)
       .subscribe((incomeType) => {
         this.incomeType = incomeType;
-        this.incomeTypeEditForm.controls.income_type_id.patchValue(this.incomeType.income_type_id);
+        this.incomeTypeEditForm.controls.incometype_id.patchValue(this.incomeType.incometype_id);
         this.incomeTypeEditForm.controls.unit_id.patchValue(this.incomeType.unit_id);
         this.incomeTypeEditForm.controls.name.patchValue(this.incomeType.name);
         this.incomeTypeEditForm.controls.note.patchValue(this.incomeType.note);
@@ -57,7 +57,7 @@ export class IncomeTypeEditComponent implements OnInit, OnDestroy {
     this.incomeTypeService.getIncomeTypes()
       .subscribe((types) => {
         this.incometypes = types;
-        this.incomeTypeEditForm.controls.income_type_id.patchValue(this.incomeType.income_type_id);
+        this.incomeTypeEditForm.controls.incometype_id.patchValue(this.incomeType.incometype_id);
       });
     this.unitService.getUnits()
       .subscribe((units) => {
@@ -77,7 +77,7 @@ export class IncomeTypeEditComponent implements OnInit, OnDestroy {
       return;
     }
     const incomeType: IncomeType = {
-      income_type_id: this.incomeTypeEditForm.value.income_type_id,
+      incometype_id: this.incomeTypeEditForm.value.incometype_id,
       unit_id: this.incomeTypeEditForm.value.unit_id,
       name: this.incomeTypeEditForm.value.name,
       note: this.incomeTypeEditForm.value.note

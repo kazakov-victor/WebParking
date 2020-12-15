@@ -53,11 +53,7 @@ export class PaymentListComponent implements OnInit, OnDestroy {
 
   edit(paymentId: number): void {
     this.paymentService.getPayment(paymentId).subscribe(() => {
-      this.router.navigate(['/payment/edit/', paymentId]);
+      this.router.navigate(['/accountant/payment/edit/', paymentId]);
     });
-  }
-  delete(payment: Payment): void {
-    this.payments = this.payments.filter(p => p !== payment);
-    this.paymentService.deletePayment(payment).subscribe();
   }
 }

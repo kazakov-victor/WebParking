@@ -30,7 +30,7 @@
             <tr *ngFor="let income of incomes$ | async" (click)="edit(income.income_id)">
               <td>{{income.income_id}}</td>
               <td>{{income.contract_id}}</td>
-              <td>{{income.income_type_id}}</td>
+              <td>{{income.incometype_id}}</td>
               <td>{{income.dtfrom}}</td>
               <td>{{income.dtto}}</td>
               <td>{{income.quantity}}</td>

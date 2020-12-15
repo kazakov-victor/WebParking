@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {PaymentType} from '../../../shared/payment-type';
 import {PaymentTypeService} from '../../../services/payment-type.service';
@@ -30,6 +30,7 @@ import {PaymentTypeService} from '../../../services/payment-type.service';
 })
 
 export class PaymentTypeNewComponent implements OnInit {
+  routeBack = '/accountant/paymenttype/list';
   visible = true;
   paymentTypeNewForm: FormGroup;
   paymentTypes$: Observable<PaymentType[]>;
@@ -37,6 +38,7 @@ export class PaymentTypeNewComponent implements OnInit {
 
   constructor(private paymentTypeService: PaymentTypeService,
               private route: ActivatedRoute,
+              private router: Router,
               private location: Location,
               private fb: FormBuilder) {}
 
@@ -55,6 +57,9 @@ export class PaymentTypeNewComponent implements OnInit {
     };
     this.paymentTypeService.savePaymentType(paymentType).subscribe(() => this.location.back() );
     this.paymentTypeNewForm.reset();
+  }
+  goBack(): void {
+    this.router.navigate([this.routeBack]);
   }
 }
 

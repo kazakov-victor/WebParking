@@ -3,35 +3,35 @@
     <div class="row">
       <div class="col-md-12">
         <div class="text-center small">
-          <table class="table content_tab tab-pane clearfix">
+          <table class="table content_tab tab-pane clearfix edit-ref">
             <thead>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button type="button" class="btn btn-success pull-right"
+                        [routerLink]="'/person/new'">
+                  <i class="fa fa-plus"></i>Новый
+                </button>
+              </td>
+            </tr>
             <tr>
               <td>Фамилия</td>
               <td>Имя</td>
               <td>Отчество</td>
               <td>Телефон</td>
               <td>Адрес</td>
-              <td>Действия</td>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let person of persons">
+            <tr *ngFor="let person of persons$ | async" (click)="edit(person.person_id)">
               <td>{{person.surname}}</td>
               <td>{{person.name}}</td>
               <td>{{person.second_name}}</td>
               <td>{{person.phone}}</td>
               <td>{{person.address}}</td>
-              <td>
-                <button
-                        routerLink="/person/edit/{{person.person_id}}"
-                >
-                  <fa-icon [icon]="fEdit"></fa-icon>
-                </button>
-                <button class="delete" title="delete hero"
-                        (click)="delete(person)">
-                  <fa-icon [icon]="fTrash"></fa-icon>
-                </button>
-              </td>
             </tr>
             </tbody>
           </table>

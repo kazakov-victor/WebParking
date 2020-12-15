@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {IncomeService} from '../../../services/income.service';
-import {UnitService} from '../../../services/unit.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {formatDate, Location} from '@angular/common';
 import {Income} from '../../../shared/income';
 import {IncomeTypeService} from '../../../services/income-type.service';
@@ -16,6 +15,7 @@ import {faSave, faTimes} from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./income-new.component.scss']
 })
 export class IncomeNewComponent implements OnInit {
+  routeBack = '/income/list';
   visible = true;
   incomeNewForm: FormGroup;
   incomes = [];
@@ -29,6 +29,7 @@ export class IncomeNewComponent implements OnInit {
               private incomeTypeService: IncomeTypeService,
               private contractService: ContractService,
               private route: ActivatedRoute,
+              private router: Router,
               private location: Location,
               private fb: FormBuilder) {
     this.incomeNewForm = this.fb.group({
@@ -36,7 +37,7 @@ export class IncomeNewComponent implements OnInit {
       dtfrom: [''],
       dtto: [''],
       quantity: [''],
-      income_type_id: [''],
+      incometype_id: [''],
       contract_id: ['']
     });
   }
@@ -51,12 +52,12 @@ export class IncomeNewComponent implements OnInit {
     this.incomeTypeService.getIncomeTypes()
       .subscribe((incomeTypes) => {
         this.incometypes = incomeTypes;
-        this.incomeNewForm.controls.income_type_id.patchValue(this.incometypes[0].income_type_id);
+        this.incomeNewForm.controls.incometype_id.patchValue(this.incometypes[0].incometype_id);
       });
     this.incomeTypeService.getIncomeTypes()
       .subscribe((incomeTypes) => {
         this.incometypes = incomeTypes;
-     //   this.incomeNewForm.controls.income_type_id.patchValue(this.incometypes[0].income_type_id);
+     //   this.incomeNewForm.controls.incometype_id.patchValue(this.incometypes[0].incometype_id);
       });
     this.contractService.getContracts()
       .subscribe((contracts) => {
@@ -82,7 +83,7 @@ export class IncomeNewComponent implements OnInit {
       dtfrom: this.incomeNewForm.value.dtfrom,
       dtto: this.incomeNewForm.value.dtto,
       quantity: this.incomeNewForm.value.quantity,
-      income_type_id: this.incomeNewForm.value.income_type_id,
+      incometype_id: this.incomeNewForm.value.incometype_id,
       contract_id: this.incomeNewForm.value.contract_id
     };
     this.incomeService.saveIncome(income).subscribe(() => { this.location.back(); });
@@ -90,7 +91,7 @@ export class IncomeNewComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate([this.routeBack]);
   }
 
   submitAndBack(): void {

@@ -39,6 +39,7 @@ import {IncomeListComponent} from './contract/income/income-list/income-list.com
 import {IncomeTypeEditComponent} from './contract/income-type/income-type-edit/income-type-edit.component';
 import {IncomeTypeNewComponent} from './contract/income-type/income-type-new/income-type-new.component';
 import {IncomeTypeListComponent} from './contract/income-type/income-type-list/income-type-list.component';
+import {NestedFormArrayComponent} from './contract/nested-form-array/nested-form-array.component';
 
 const contractRouts: Routes = [
   {path: 'list', component: ContractListComponent},
@@ -86,7 +87,7 @@ const personRouts: Routes = [
 ];
 const routes: Routes = [
   {path: 'home', component: AppComponent, canActivate: [AuthGuard]},
-  {path: 'main', component: CommonReportComponent, canActivate: [AuthGuard]},
+  {path: 'main', component: NestedFormArrayComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
  // {path: '', redirectTo: 'user', pathMatch: 'full'},
   {path: 'auth/login', component: LoginPageComponent},

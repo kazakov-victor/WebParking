@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Person} from '../../shared/person';
 import {PersonService} from '../../services/person.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Location } from '@angular/common';
+import {faSave, faTimes, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-person-edit',
@@ -11,11 +12,27 @@ import { Location } from '@angular/common';
   styleUrls: ['./person-edit.component.scss']
 })
 export class PersonEditComponent implements OnInit {
+  routeBack = '/person/list';
   personEditForm: FormGroup;
   person: Person;
+  persons: Person [] = [];
+  fTrash = faTrashAlt;
+  fSave = faSave;
+  fBack = faTimes;
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private location: Location,
-              private personService: PersonService) { }
+              private fb: FormBuilder,
+              private personService: PersonService) {
+    this.personEditForm = this.fb.group({
+      person_id: [''],
+      surname: [''],
+      name: [''],
+      second_name: [''],
+      phone: [''],
+      address: ['']
+    });
+  }
 
   ngOnInit(): void {
     this.getPerson();
@@ -25,12 +42,13 @@ export class PersonEditComponent implements OnInit {
     this.personService.getPerson(id)
       .subscribe((person) => {
         this.person = person;
-        this.personEditForm = new FormGroup({
-        surname: new FormControl(this.person.surname, Validators.required),
-        name: new FormControl(this.person.name, Validators.required),
-        second_name: new FormControl(this.person.second_name, Validators.required),
-        phone: new FormControl(this.person.phone, Validators.minLength(7)),
-        address: new FormControl(this.person.address, Validators.required)
+        this.personEditForm = this.fb.group({
+        person_id: [this.person.person_id, Validators.required],
+        surname: [this.person.surname, Validators.required],
+        name: [this.person.name, Validators.required],
+        second_name: [this.person.second_name, Validators.required],
+        phone: [this.person.phone, Validators.minLength(7)],
+        address: [this.person.address, Validators.required]
       });
       });
   }
@@ -39,13 +57,23 @@ export class PersonEditComponent implements OnInit {
     if (this.personEditForm.invalid){
       return;
     }
+    const person: Person = {
+      person_id: this.personEditForm.value.person_id,
+      surname: this.personEditForm.value.surname,
+      name: this.personEditForm.value.name,
+      second_name: this.personEditForm.value.second_name,
+      phone: this.personEditForm.value.phone,
+      address: this.personEditForm.value.address,
+    };
+    this.personService.savePerson(person).subscribe(() => this.goBack());
+    this.personEditForm.reset();
+  }
+  delete(person: Person): void {
+    this.persons = this.persons.filter(u => u !== person);
+    this.personService.deletePerson(person).subscribe(() => this.goBack());
   }
   goBack(): void {
-    this.location.back();
-  }
-
-  save(): void {
-    this.personService.updatePerson(this.person)
-      .subscribe(() => this.goBack());
+    this.router.navigate([this.routeBack]);
   }
 }
+

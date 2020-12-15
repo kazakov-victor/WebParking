@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {IncomeTypeService} from '../../../services/income-type.service';
 import {UnitService} from '../../../services/unit.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {formatDate, Location} from '@angular/common';
 import {IncomeType} from '../../../shared/income-type';
 
@@ -13,6 +13,7 @@ import {IncomeType} from '../../../shared/income-type';
   styleUrls: ['./income-type-new.component.scss']
 })
 export class IncomeTypeNewComponent implements OnInit {
+  routeBack = '/incometype/list';
   visible = true;
   incomeTypeNewForm: FormGroup;
   incometypes = [];
@@ -22,10 +23,10 @@ export class IncomeTypeNewComponent implements OnInit {
   constructor(private incomeTypeService: IncomeTypeService,
               private unitService: UnitService,
               private route: ActivatedRoute,
+              private router: Router,
               private location: Location,
               private fb: FormBuilder) {
     this.incomeTypeNewForm = this.fb.group({
-      income_type_id: [''],
       unit_id: [''],
       name: [''],
       note: [''],
@@ -46,7 +47,7 @@ export class IncomeTypeNewComponent implements OnInit {
 
   addIncomeType(): any {
     const control = this.fb.group({
-      income_type_id: [''],
+      incometype_id: [''],
       unit_id: [''],
       name: [''],
       note: ['']
@@ -69,7 +70,7 @@ export class IncomeTypeNewComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate([this.routeBack]);
   }
 
   submitAndBack(): void {

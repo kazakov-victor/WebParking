@@ -32,9 +32,9 @@
                     <div class="form-group">
                       <label for="incometypes">Вид услуги :</label>
                       <div>
-                        <select formControlName="income_type_id" id="incometypes">
+                        <select formControlName="incometype_id" id="incometypes">
                           <option *ngFor="let incometype of incometypes; let i = index"
-                                  [value]="incometypes[i].income_type_id" >
+                                  [value]="incometypes[i].incometype_id" >
                             {{incometypes[i].name}}
                           </option>
                         </select>
