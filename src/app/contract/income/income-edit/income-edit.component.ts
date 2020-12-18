@@ -1,13 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Income} from '../../../shared/income';
-import {Subscription} from 'rxjs';
 import {faEdit, faSave, faTimes, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {IncomeService} from '../../../services/income.service';
-import {UnitService} from '../../../services/unit.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
-import {IncomeType} from '../../../shared/income-type';
 import {IncomeTypeService} from '../../../services/income-type.service';
 import {ContractService} from '../../../services/contract.service';
 

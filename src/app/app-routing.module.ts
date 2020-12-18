@@ -11,16 +11,15 @@ import {PersonNewComponent} from './persons/person-new/person-new.component';
 import {PersonEditComponent} from './persons/person-edit/person-edit.component';
 import {PersonListComponent} from './persons/person-list/person-list.component';
 import {IncomeComponent} from './contract/income/income.component';
-import {RegisterComponent} from './login-page/register/register.component';
+import {RegisterComponent} from './common/login-page/register/register.component';
 import {AppComponent} from './app.component';
-import {NotFoundComponent} from './not-found/not-found.component';
-import {OtherComponent} from './other/other.component';
+import {NotFoundComponent} from './common/not-found/not-found.component';
+import {OtherComponent} from './common/other/other.component';
 import {PersonsComponent} from './persons/persons.component';
 import {AccountantComponent} from './accountant/accountant.component';
 import {ContractComponent} from './contract/contract.component';
-import {CommonReportComponent} from './common-report/common-report.component';
 import {AuthGuard} from './services/auth.guard';
-import {LoginPageComponent} from './login-page/login-page.component';
+import {LoginPageComponent} from './common/login-page/login-page.component';
 import {PaymentListComponent} from './accountant/payment/payment-list/payment-list.component';
 import {PaymentEditComponent} from './accountant/payment/payment-edit/payment-edit.component';
 import {PaymentNewComponent} from './accountant/payment/payment-new/payment-new.component';
@@ -40,35 +39,43 @@ import {IncomeTypeEditComponent} from './contract/income-type/income-type-edit/i
 import {IncomeTypeNewComponent} from './contract/income-type/income-type-new/income-type-new.component';
 import {IncomeTypeListComponent} from './contract/income-type/income-type-list/income-type-list.component';
 import {NestedFormArrayComponent} from './contract/nested-form-array/nested-form-array.component';
+import {PeriodComponent} from './period/period.component';
+import {BalanceComponent} from './balance/balance.component';
+import {PriceListComponent} from './price/price-list/price-list.component';
+import {PriceNewComponent} from './price/price-new/price-new.component';
+import {PriceEditComponent} from './price/price-edit/price-edit.component';
+import {SaldoComponent} from './saldo/saldo.component';
+import {PriceComponent} from './price/price.component';
+import {TableSortingExampleComponent} from './mat/table-sorting-example.component';
 
 const contractRouts: Routes = [
   {path: 'list', component: ContractListComponent},
-  {path: 'edit/:id', component: ContractEditComponent},
+  {path: 'toggle/:id', component: ContractEditComponent},
   {path: 'new', component: ContractNewComponent},
 ];
 const paymentRouts: Routes = [
   {path: 'list', component: PaymentListComponent},
-  {path: 'edit/:id', component: PaymentEditComponent},
+  {path: 'toggle/:id', component: PaymentEditComponent},
   {path: 'new', component: PaymentNewComponent},
 ];
 const paymentTypeRouts: Routes = [
   {path: 'list', component: PaymentTypeListComponent},
-  {path: 'edit/:id', component: PaymentTypeEditComponent},
+  {path: 'toggle/:id', component: PaymentTypeEditComponent},
   {path: 'new', component: PaymentTypeNewComponent},
 ];
 const unitRouts: Routes = [
   {path: 'list', component: UnitListComponent},
-  {path: 'edit/:id', component: UnitEditComponent},
+  {path: 'toggle/:id', component: UnitEditComponent},
   {path: 'new', component: UnitNewComponent},
 ];
 const incomeRouts: Routes = [
   {path: 'list', component: IncomeListComponent},
-  {path: 'edit/:id', component: IncomeEditComponent},
+  {path: 'toggle/:id', component: IncomeEditComponent},
   {path: 'new', component: IncomeNewComponent},
 ];
 const incomeTypeRouts: Routes = [
   {path: 'list', component: IncomeTypeListComponent},
-  {path: 'edit/:id', component: IncomeTypeEditComponent},
+  {path: 'toggle/:id', component: IncomeTypeEditComponent},
   {path: 'new', component: IncomeTypeNewComponent},
 ];
 const accountantRouts: Routes = [
@@ -82,8 +89,14 @@ const accountantRouts: Routes = [
 const personRouts: Routes = [
   {path: 'list', component: PersonListComponent},
   {path: 'new', component: PersonNewComponent},
-  {path: 'edit/:id', component: PersonEditComponent},
+  {path: 'toggle/:id', component: PersonEditComponent},
   {path: 'save', component: PersonListComponent},
+];
+const priceRouts: Routes = [
+  {path: 'list', component: PriceListComponent},
+  {path: 'new', component: PriceNewComponent},
+  {path: 'toggle/:id', component: PriceEditComponent},
+  {path: 'save', component: PriceListComponent},
 ];
 const routes: Routes = [
   {path: 'home', component: AppComponent, canActivate: [AuthGuard]},
@@ -99,7 +112,12 @@ const routes: Routes = [
   {path: 'income', component: IncomeComponent, canActivate: [AuthGuard], children: incomeRouts},
   {path: 'incometype', component: IncomeTypeComponent, canActivate: [AuthGuard], children: incomeTypeRouts},
   {path: 'person', component: PersonsComponent, canActivate: [AuthGuard],  children: personRouts},
+  {path: 'period/list', component: PeriodComponent, canActivate: [AuthGuard]},
+  {path: 'balance/list', component: BalanceComponent, canActivate: [AuthGuard]},
+  {path: 'saldo/list', component: SaldoComponent, canActivate: [AuthGuard]},
+  {path: 'price', component: PriceComponent, canActivate: [AuthGuard], children: priceRouts},
   {path: 'other', component: OtherComponent},
+  {path: 'table', component: TableSortingExampleComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

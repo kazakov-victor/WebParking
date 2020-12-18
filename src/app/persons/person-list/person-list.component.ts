@@ -32,7 +32,7 @@ export class PersonListComponent implements OnInit {
 
   edit(personId: number): void {
     this.personService.getPerson(personId).subscribe(() => {
-      this.router.navigate(['/person/edit/', personId]);
+      this.router.navigate(['/person/toggle/', personId]);
     });
   }
 }

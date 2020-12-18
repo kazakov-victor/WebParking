@@ -8,6 +8,9 @@ import {Income} from '../../shared/income';
 import {IncomeType} from '../../shared/income-type';
 import {Unit} from '../../shared/unit';
 import {faEdit, faSave, faTimes, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import {Person} from '../../shared/person';
+import {PersonService} from '../../services/person.service';
+import {IncomeTypeService} from '../../services/income-type.service';
 
 @Component({
   selector: 'app-contract-edit',
@@ -18,11 +21,12 @@ import {faEdit, faSave, faTimes, faTrashAlt} from '@fortawesome/free-solid-svg-i
 export class ContractEditComponent implements OnInit {
   contractEditForm: FormGroup;
   contract: Contract;
+  currentDate: string;
   incomeType: IncomeType;
+  persons: Person[];
   unit: Unit;
-  routeBack = '/income/list';
+  routeBack = '/contract/list';
   visible = true;
-  incomes = [];
   contracts = [];
   incometypes = [];
   income: Income;
@@ -34,25 +38,31 @@ export class ContractEditComponent implements OnInit {
               private router: Router,
               private location: Location,
               private contractService: ContractService,
+              private incomeTypeService: IncomeTypeService,
+              private personService: PersonService,
               private fb: FormBuilder  ) {
     this.contractEditForm = this.fb.group({
       contract_id: [''],
       number: [''],
-      person: this.fb.group(
-        {
-          surname: [''],
-          name: ['']
-        }
-      ),
+      person_id:  [''],
       balance: [''],
       dtfrom: [''],
       dtto: [''],
       note: [''],
-      incomes: this.fb.array(this.incomes.map(income => this.createIncome(income)))
+      incomes: this.fb.array([])
     });
   }
 
   ngOnInit(): void {
+    this.personService.getPersons()
+      .subscribe((persons) => {
+        this.persons = persons;
+      //  this.contractEditForm.controls.person_id.patchValue(this.persons[0].person_id);
+      });
+    this.incomeTypeService.getIncomeTypes()
+      .subscribe((incometype) => {
+        this.incometypes = incometype;
+      });
     this.getContract();
   }
    getContract(): void {
@@ -60,16 +70,12 @@ export class ContractEditComponent implements OnInit {
      this.contractService.getContract(id)
        .subscribe((contract) => {
          this.contract = contract;
-         this.incomes = this.contract.incomes;
+         console.log('this.contract', this.contract);
+      //   this.incomes = this.contract.incomes;
          this.contractEditForm = this.fb.group({
            contract_id: [this.contract.contract_id, Validators.required],
            number: [this.contract.number, Validators.required],
-       /*    person: this.fb.group(
-             {
-               surname: [this.contract.person.surname],
-               name: [this.contract.person.name]
-             }
-           ),*/
+           person_id: [this.contract.person_id],
            balance: [this.contract.balance, Validators.required],
            dtfrom: [this.contract.dtfrom
              ? formatDate(this.contract.dtfrom, 'yyyy-MM-dd', 'en')
@@ -78,12 +84,29 @@ export class ContractEditComponent implements OnInit {
              ? formatDate(this.contract.dtto, 'yyyy-MM-dd', 'en')
              : this.contract.dtto],
            note: [this.contract.note],
-           /*incomes: this.fb.array(this.incomes.map(income => this.createIncome(income)))
-        */ });
+           incomes: this.fb.array(this.contract.incomes.map(income => this.showIncome(income)))
+         });
        });
    }
 
-  createIncome(income): FormGroup {
+  incomes(): FormArray {
+    return this.contractEditForm.get('incomes') as FormArray;
+  }
+
+  newIncome(): FormGroup {
+    return this.fb.group({
+      dtfrom: this.currentDate,
+      dtto: '',
+      quantity: '',
+      incometype_id: this.incometypes[0].incometype_id
+    });
+  }
+
+  addIncome(): any {
+    this.incomes().push(this.newIncome());
+  }
+
+  showIncome(income): FormGroup {
     console.log('income', income);
     return this.fb.group({
       dtfrom: [income.dtfrom ? formatDate(income.dtfrom, 'yyyy-MM-dd', 'en')
@@ -92,22 +115,7 @@ export class ContractEditComponent implements OnInit {
         : income.dtto],
       income_id: [income.income_id],
       quantity: [income.quantity],
-      IncomeType: this.fb.group(
-        {
-          incometype_id: [income.IncomeType.incometype_id],
-          name: [income.IncomeType.name],
-          note: [income.IncomeType.note],
-          sid_external: [income.IncomeType.sid_external],
-          unitDTO: this.fb.group(
-            {
-              unit_id: [income.IncomeType.unit.unit_id],
-              name: [income.IncomeType.unit.name],
-              longname: [income.IncomeType.unit.longname],
-              basis: [income.IncomeType.unit.basis],
-            }
-          )
-        }
-      )
+      incometype_id: [income.incometype_id],
     });
   }
 
@@ -115,34 +123,14 @@ export class ContractEditComponent implements OnInit {
     if (this.contractEditForm.invalid) {
       return;
     }
-    const contract: Contract = {
-      contract_id: this.contractEditForm.value.contract_id,
-      number: this.contractEditForm.value.number,
-      person_id: this.contractEditForm.value.person_id,
-    /*  person: this.contractEditForm.group(
-        {
-          surname: this.contractEditForm.value.person.surname,
-          name: this.contractEditForm.value.person.name
-        }),*/
-      balance: this.contractEditForm.value.balance,
-      dtfrom: this.contractEditForm.value.dtfrom,
-      dtto: this.contractEditForm.value.dtto,
-      note: this.contractEditForm.value.note,
-      incomes: this.contractEditForm.value.incomes
-    };
-    this.contractService.saveContract(contract)
+
+    this.contractService.saveContract(this.contractEditForm.value)
       .subscribe(() => this.goBack());
     this.contractEditForm.reset();
   }
 
   goBack(): void {
     this.router.navigate([this.routeBack]);
-  }
-
-  save(): void {
-    console.log('Data form', this.contractEditForm.value);
-    /*this.contractService.updateContract(this.contract)
-      .subscribe(() => this.goBack());*/
   }
 }
 

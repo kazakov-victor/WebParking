@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {User} from '../shared/user';
+import {User} from '../../shared/user';
 
 import {Router} from '@angular/router';
-import {AuthService} from '../services/auth.service';
-import {TokenStorageService} from '../services/auth/token-storage.service';
+import {AuthService} from '../../services/auth.service';
+import {TokenStorageService} from '../../services/auth/token-storage.service';
 
 @Component({
   selector: 'app-login-page',

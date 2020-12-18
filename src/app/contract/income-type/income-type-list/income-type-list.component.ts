@@ -49,7 +49,7 @@ export class IncomeTypeListComponent implements OnInit, OnDestroy {
 
   edit(incomeTypeId: number): void {
     this.incomeTypeService.getIncomeType(incomeTypeId).subscribe(() => {
-      this.router.navigate(['/incometype/edit/', incomeTypeId]);
+      this.router.navigate(['/incometype/toggle/', incomeTypeId]);
     });
   }
 }

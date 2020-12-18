@@ -2838,7 +2838,7 @@ td, th {
   content: "\E064"
 }
 
-.glyphicon-edit:before {
+.glyphicon-toggle:before {
   content: "\E065"
 }
 
@@ -9296,7 +9296,7 @@ button.close {
   content: "\F043"
 }
 
-.fa-edit:before, .fa-pencil-square-o:before {
+.fa-toggle:before, .fa-pencil-square-o:before {
   content: "\F044"
 }
 
@@ -12223,7 +12223,7 @@ button.close {
   color: #1ab394
 }
 
-.order-comments .order-form-edit .dropdown-menu.multi-level {
+.order-comments .order-form-toggle .dropdown-menu.multi-level {
   right: 0;
   left: auto
 }
@@ -12294,11 +12294,11 @@ button.close {
   float: left
 }
 
-.order-edit-fiedls {
+.order-toggle-fiedls {
   margin: 0
 }
 
-.order-edit-location-group {
+.order-toggle-location-group {
   float: right
 }
 
@@ -12341,26 +12341,26 @@ button.close {
   margin: 15px 25px
 }
 
-.order-form-edit-nav {
+.order-form-toggle-nav {
   margin: 35px 35px 0;
   clear: both
 }
 
-.order-form-edit {
+.order-form-toggle {
   border: 0;
   margin: 20px 35px 35px
 }
 
-.order-edit-container {
+.order-toggle-container {
   padding: 0;
   text-align: left
 }
 
 @media (max-width: 767px) {
-  .order-edit-container {
+  .order-toggle-container {
     padding-top: 40px
   }
-  .order-form-edit, .order-warning {
+  .order-form-toggle, .order-warning {
     margin: 0 0 20px
   }
   .order-nav {
@@ -12387,10 +12387,10 @@ button.close {
 }
 
 @media (max-width: 767px) {
-  .order-edit-main-panel > .row {
+  .order-toggle-main-panel > .row {
     padding: 0 0 10px
   }
-  .order-edit-fiedls > div {
+  .order-toggle-fiedls > div {
     padding: 0
   }
   .order-title > h3 {
@@ -12444,25 +12444,25 @@ button.close {
     max-width: 300px;
     width: auto
   }
-  .order-edit-main-panel .order-edit-accepted, .order-edit-main-panel .order-edit-client, .order-edit-main-panel .order-edit-client-phone, .order-edit-main-panel .order-edit-location {
+  .order-toggle-main-panel .order-toggle-accepted, .order-toggle-main-panel .order-toggle-client, .order-toggle-main-panel .order-toggle-client-phone, .order-toggle-main-panel .order-toggle-location {
     width: 100%;
     display: block;
     margin-bottom: 7px !important;
     margin-top: 0 !important
   }
-  .order-edit-accepted > span, .order-edit-client-phone > span:not(.tag), .order-edit-client > span, .order-edit-location > span {
+  .order-toggle-accepted > span, .order-toggle-client-phone > span:not(.tag), .order-toggle-client > span, .order-toggle-location > span {
     float: left;
     width: 50%;
     margin-right: 15px
   }
 }
 
-.order-edit-client-phone .tag {
+.order-toggle-client-phone .tag {
   line-height: inherit;
   margin-left: 5px
 }
 
-.order-edit-label {
+.order-toggle-label {
   color: #777165;
   font-weight: 700
 }
@@ -12487,61 +12487,61 @@ button.close {
 }
 
 @media (min-width: 992px) {
-  .e-shop-order-form-edit .order-main-fields {
+  .e-shop-order-form-toggle .order-main-fields {
     width: 44%
   }
-  .e-shop-order-form-edit .order-comments-feed, .e-shop-order-form-edit .order-payment-fields {
+  .e-shop-order-form-toggle .order-comments-feed, .e-shop-order-form-toggle .order-payment-fields {
     width: 28%;
     padding-left: 0
   }
 }
 
 @media (min-width: 768px) {
-  .e-shop-order-form-edit .main-row .panel-body {
+  .e-shop-order-form-toggle .main-row .panel-body {
     height: 415px !important
   }
 }
 
 @media (max-width: 767px) {
-  .e-shop-order-form-edit .order-comments-feed, .e-shop-order-form-edit .order-main-fields, .e-shop-order-form-edit .order-payment-fields {
+  .e-shop-order-form-toggle .order-comments-feed, .e-shop-order-form-toggle .order-main-fields, .e-shop-order-form-toggle .order-payment-fields {
     margin-top: 15px
   }
-  .e-shop-order-form-edit .product_to_cart, .e-shop-order-form-edit .table_items {
+  .e-shop-order-form-toggle .product_to_cart, .e-shop-order-form-toggle .table_items {
     overflow-x: auto
   }
-  .e-shop-order-form-edit .product_to_cart > div, .e-shop-order-form-edit .table_items > div {
+  .e-shop-order-form-toggle .product_to_cart > div, .e-shop-order-form-toggle .table_items > div {
     min-width: 750px
   }
-  .e-shop-order-form-edit .order-comments-feed #comments .panel-body {
+  .e-shop-order-form-toggle .order-comments-feed #comments .panel-body {
     height: 380px
   }
 }
 
-.e-shop-order-form-edit .panel-body label {
+.e-shop-order-form-toggle .panel-body label {
   margin-bottom: 5px !important
 }
 
-.e-shop-order-form-edit .daterangepicker select.monthselect, .e-shop-order-form-edit .daterangepicker select.yearselect {
+.e-shop-order-form-toggle .daterangepicker select.monthselect, .e-shop-order-form-toggle .daterangepicker select.yearselect {
   width: auto !important
 }
 
-.e-shop-order-form-edit .tooltip {
+.e-shop-order-form-toggle .tooltip {
   min-width: 200px
 }
 
-.e-shop-order-form-edit .sale-radio-element {
+.e-shop-order-form-toggle .sale-radio-element {
   margin: 8px 10px 0 0 !important
 }
 
-.e-shop-order-form-edit .sale-radio-element:last-child() {
+.e-shop-order-form-toggle .sale-radio-element:last-child() {
   margin-right: 0 !important
 }
 
-.e-shop-order-form-edit .table_items .input-group-addon, .e-shop-order-form-edit .table_items input, .e-shop-order-form-edit .table_items select {
+.e-shop-order-form-toggle .table_items .input-group-addon, .e-shop-order-form-toggle .table_items input, .e-shop-order-form-toggle .table_items select {
   border-radius: 0 !important
 }
 
-.e-shop-order-form-edit .warranty-control {
+.e-shop-order-form-toggle .warranty-control {
   width: 100%
 }
 
@@ -12677,7 +12677,7 @@ button.close {
   margin: 15px
 }
 
-.repair-order-form-edit #goods-table {
+.repair-order-form-toggle #goods-table {
   border-bottom: 1px dashed #eceae3;
   padding: 8px 0
 }
@@ -12897,16 +12897,16 @@ button.close {
   .service-table-wrapper .service-table {
     min-width: 700px
   }
-  .order-edit-repair-type > label {
+  .order-toggle-repair-type > label {
     margin-top: 6px !important;
     display: inline-block !important
   }
-  .order-edit-repair-type > div {
+  .order-toggle-repair-type > div {
     float: right;
     width: 50%;
     padding-left: 15px
   }
-  .order-form-edit .form-group {
+  .order-form-toggle .form-group {
     margin-bottom: 7px
   }
   #jobs .warranty, #spares .warranty {
@@ -12932,12 +12932,12 @@ button.close {
 }
 
 @media (min-width: 992px) {
-  .order-edit-fields-left {
+  .order-toggle-fields-left {
     padding-right: 0
   }
 }
 
-.repair-order-form-edit .order-comments-feed .panel-body {
+.repair-order-form-toggle .order-comments-feed .panel-body {
   height: 513px
 }
 
@@ -12960,21 +12960,21 @@ button.close {
   margin-left: 0 !important
 }
 
-.quicksale-order-form-edit .order-cart {
+.quicksale-order-form-toggle .order-cart {
   margin-top: 15px
 }
 
-.quicksale-order-form-edit .order-cart > .panel {
+.quicksale-order-form-toggle .order-cart > .panel {
   margin-bottom: 15px
 }
 
-.quicksale-order-form-edit .total-row {
+.quicksale-order-form-toggle .total-row {
   margin-bottom: 0;
   margin-top: 20px;
   width: 64%
 }
 
-.quicksale-order-form-edit .total-row td {
+.quicksale-order-form-toggle .total-row td {
   padding-top: 0
 }
 
@@ -12991,39 +12991,39 @@ td.quick-table-cost {
   border: 0 !important
 }
 
-.quicksale-order-form-edit .goods-item {
+.quicksale-order-form-toggle .goods-item {
   padding-bottom: 5px;
   margin-bottom: 5px;
   border-bottom: 1px solid #ddd
 }
 
-.quicksale-order-form-edit .goods-item:last-child {
+.quicksale-order-form-toggle .goods-item:last-child {
   padding-bottom: 0;
   margin-bottom: 0;
   border: none
 }
 
-.quicksale-order-form-edit .warranty-control {
+.quicksale-order-form-toggle .warranty-control {
   width: 100%
 }
 
 @media (min-width: 992px) {
-  .quicksale-order-form-edit .order-comment {
+  .quicksale-order-form-toggle .order-comment {
     padding-left: 0
   }
 }
 
 @media (max-width: 767px) {
-  .quicksale-order-form-edit .order-comment, .quicksale-order-form-edit .order-main-fields {
+  .quicksale-order-form-toggle .order-comment, .quicksale-order-form-toggle .order-main-fields {
     margin-top: 15px
   }
-  .quicksale-order-form-edit .table_items {
+  .quicksale-order-form-toggle .table_items {
     overflow-x: auto
   }
-  .quicksale-order-form-edit .table_items > div {
+  .quicksale-order-form-toggle .table_items > div {
     min-width: 750px
   }
-  .quicksale-order-form-edit .quick-table-items, .quicksale-order-form-edit .quick-table-items td, .quicksale-order-form-edit .quick-table-items tr {
+  .quicksale-order-form-toggle .quick-table-items, .quicksale-order-form-toggle .quick-table-items td, .quicksale-order-form-toggle .quick-table-items tr {
     width: 100% !important;
     display: block
   }
@@ -15513,11 +15513,11 @@ form.small-product-filter > span.ui-combobox > a.ui-button {
   float: left
 }
 
-.order-form-edit .well > h5 {
+.order-form-toggle .well > h5 {
   margin-top: 0
 }
 
-.order-form-edit .well .ui-combobox > input {
+.order-form-toggle .well .ui-combobox > input {
   width: 70%
 }
 

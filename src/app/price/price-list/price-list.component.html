@@ -1,0 +1,47 @@
+<div class="tab-content">
+  <div class="hpanel">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center small">
+          <table class="table content_tab tab-pane clearfix  edit-ref">
+            <thead>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button type="button" class="btn btn-success pull-right"
+                        [routerLink]="'/price/new'"
+                ><i class="fa fa-plus"></i> Новый </button>
+              </td>
+            </tr>
+            <tr>
+              <td>ID</td>
+              <td>ID услуги</td>
+              <td>Начало</td>
+              <td>Окончание</td>
+              <td>Цена</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let price of prices$ | async" (click)="edit(price.price_id)">
+              <td>{{price.price_id}}</td>
+              <td>{{price.income_id}}</td>
+              <td>{{price.dtfrom}}</td>
+              <td>{{price.dtto}}</td>
+              <td>{{price.amount}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

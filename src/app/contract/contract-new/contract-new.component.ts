@@ -106,7 +106,6 @@ export class ContractNewComponent implements OnInit {
   }
 
   newIncome(): FormGroup {
-    console.log('id -', this.incometypes[0].incometype_id);
     return this.fb.group({
       dtfrom: this.currentDate,
       dtto: '',

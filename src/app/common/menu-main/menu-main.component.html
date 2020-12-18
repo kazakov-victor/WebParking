@@ -47,6 +47,36 @@
         </a>
       </li>
       <li routerLinkActive="active">
+        <a [routerLink]="['/table']">
+          <fa-icon [icon]="faChartBar"></fa-icon>
+          <span class="nav-label">table</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/saldo/list']">
+          <fa-icon [icon]="faChartBar"></fa-icon>
+          <span class="nav-label">Сальдо</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/price/list']">
+          <fa-icon [icon]="faChartBar"></fa-icon>
+          <span class="nav-label">Цены</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/balance/list']">
+          <fa-icon [icon]="faChartBar"></fa-icon>
+          <span class="nav-label">Балансы</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/period/list']">
+          <fa-icon [icon]="faChartBar"></fa-icon>
+          <span class="nav-label">Периоды</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
         <a [routerLink]="['/unit/list']">
           <fa-icon [icon]="faChartBar"></fa-icon>
           <span class="nav-label">Ед.Изм.</span>
@@ -148,7 +178,7 @@
               Новый </a>
           </li>
           <li routerLinkActive="active">
-            <a [routerLink]="['/person/edit']">
+            <a [routerLink]="['/person/toggle']">
               Edit </a>
           </li>
 

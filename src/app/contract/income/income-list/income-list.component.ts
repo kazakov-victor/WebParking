@@ -36,7 +36,7 @@ export class IncomeListComponent implements OnInit {
 
   edit(incomeId: number): void {
     this.incomeService.getIncome(incomeId).subscribe(() => {
-      this.router.navigate(['/income/edit/', incomeId]);
+      this.router.navigate(['/income/toggle/', incomeId]);
     });
   }
 }

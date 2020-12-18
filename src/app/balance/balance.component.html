@@ -1,0 +1,39 @@
+<div class="tab-content">
+  <div class="hpanel">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center small">
+          <table class="table content_tab tab-pane clearfix edit-ref">
+            <thead>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>ID</td>
+              <td>Договор</td>
+              <td>trx_id</td>
+              <td>Начало</td>
+              <td>Окончание</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let balance of balances$ | async" (click)="edit(balance.balance_id)">
+              <td>{{balance.balance_id}}</td>
+              <td>{{balance.contract_id}}</td>
+              <td>{{balance.trx_id}}</td>
+              <td>{{balance.tsfrom}}</td>
+              <td>{{balance.tsto}}</td>
+            </tr>
+            </tbody>
+
+          </table>
+          <p>{{messages}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

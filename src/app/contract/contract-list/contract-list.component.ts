@@ -39,7 +39,7 @@ export class ContractListComponent implements OnInit {
 
   edit(contractId: number): void {
     this.contractService.getContract(contractId).subscribe(() => {
-        this.router.navigate(['/contract/edit/', contractId]);
+        this.router.navigate(['/contract/toggle/', contractId]);
       });
   }
   /*delete(contract: Contract): void {

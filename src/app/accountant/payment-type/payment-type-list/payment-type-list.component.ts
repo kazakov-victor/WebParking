@@ -42,7 +42,7 @@ export class PaymentTypeListComponent implements OnInit, OnDestroy {
 
   edit(paymentTypeId: number): void {
     this.paymentTypeService.getPaymentType(paymentTypeId).subscribe(() => {
-      this.router.navigate(['/accountant/paymenttype/edit/', paymentTypeId]);
+      this.router.navigate(['/accountant/paymenttype/toggle/', paymentTypeId]);
     });
   }
 }

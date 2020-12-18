@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {faAngleLeft, faChartBar, faCogs, faHandshake, faMoneyCheckAlt, faUser, faUsers} from '@fortawesome/free-solid-svg-icons';
-import {TokenStorageService} from '../services/auth/token-storage.service';
+import {TokenStorageService} from '../../services/auth/token-storage.service';
 import {Subject, Subscription} from 'rxjs';
 
 @Component({

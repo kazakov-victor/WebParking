@@ -36,7 +36,7 @@ export class UnitListComponent implements OnInit {
 
   edit(unitId: number): void {
     this.unitService.getUnit(unitId).subscribe(() => {
-      this.router.navigate(['/unit/edit/', unitId]);
+      this.router.navigate(['/unit/toggle/', unitId]);
     });
   }
 }

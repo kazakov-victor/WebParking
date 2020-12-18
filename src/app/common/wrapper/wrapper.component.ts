@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {faCar, faInfo, faPhone, faRandom, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
-import {Source} from '../shared/source.interface';
-import {ObservableService} from '../services/observable.service';
-import {MenuService} from '../shared/menu.service';
-import {TokenStorageService} from '../services/auth/token-storage.service';
+import {Source} from '../../shared/source.interface';
+import {ObservableService} from '../../services/observable.service';
+import {MenuService} from '../../shared/menu.service';
+import {TokenStorageService} from '../../services/auth/token-storage.service';
 import {Router} from '@angular/router';
 import {Subject, Subscription} from 'rxjs';
 
