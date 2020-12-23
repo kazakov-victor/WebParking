@@ -6,6 +6,7 @@ import {PeriodService} from '../services/period.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {MessageService} from '../services/message.service';
+import {BillingService} from '../services/billing.service';
 
 @Component({
   selector: 'app-period',
@@ -20,6 +21,7 @@ export class PeriodComponent implements OnInit {
   fTrash = faTrashAlt;
   fChange = faExchangeAlt;
   constructor(private periodService: PeriodService,
+              private billingService: BillingService,
               private messageService: MessageService,
               private route: ActivatedRoute,
               private router: Router) { }
@@ -38,6 +40,10 @@ export class PeriodComponent implements OnInit {
 
   toggle(periodId: number): void {
     this.periodService.toggleClosePeriod(periodId)
+      .subscribe(() => this.getPeriods());
+  }
+  count(periodId: number): void {
+    this.billingService.countBillingPeriodNo404(periodId)
       .subscribe(() => this.getPeriods());
   }
 }

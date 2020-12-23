@@ -53,6 +53,12 @@
         </a>
       </li>
       <li routerLinkActive="active">
+        <a [routerLink]="['/charge/list']">
+          <fa-icon [icon]="faChartBar"></fa-icon>
+          <span class="nav-label">Начисления</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
         <a [routerLink]="['/saldo/list']">
           <fa-icon [icon]="faChartBar"></fa-icon>
           <span class="nav-label">Сальдо</span>

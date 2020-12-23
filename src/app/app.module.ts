@@ -73,6 +73,10 @@ import { PriceEditComponent } from './price/price-edit/price-edit.component';
 import {MatNativeDateModule} from '@angular/material/core';
 import {TableSortingExampleComponent} from './mat/table-sorting-example.component';
 import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import {MaterialModule} from './mat/material-module';
+import { TableOwerviewComponent } from './mat/table-owerview/table-owerview.component';
+import { ChargeComponent } from './charge/charge.component';
 
 
 @NgModule({
@@ -136,22 +140,26 @@ import {MatTableModule} from '@angular/material/table';
     PriceListComponent,
     PriceNewComponent,
     PriceEditComponent,
-    TableSortingExampleComponent
+    TableSortingExampleComponent,
+    TableOwerviewComponent,
+    ChargeComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FontAwesomeModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    SharedModule,
-    MatNativeDateModule,
-    MatTableModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FontAwesomeModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        SharedModule,
+        MatNativeDateModule,
+        MatTableModule,
+        MatSortModule,
+        MaterialModule,
+    ],
   providers: [httpInterceptorProviders,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
   ],

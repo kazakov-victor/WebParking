@@ -1,0 +1,11 @@
+.parent > div {
+  float: left;
+  height: content-box;
+  margin-right: 1%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+// width: 30.5%;

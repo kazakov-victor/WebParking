@@ -1,1 +1,98 @@
 <p>price-toggle works!</p>
+<div *ngIf="visible" id="popup_window" class="modal fade left modal-large in">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button type="button" class="close popup-window-close"
+              (click)="goBack()" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="modal-header">
+        <h4 class="modal-title">Изменить вид услуги</h4>
+      </div>
+      <div class="modal-body">
+        <div class="tab-pane" id="repair">
+          <form [formGroup]="priceEditForm" (ngSubmit)="submit()" id="order-form-add" class="order-form-add">
+            <div class="row">
+              <div class="col-md-6 col-xs-12 js-fields">
+                <table class="table table-borderless table-paddingless" id="create-order-fields-table">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <input hidden formControlName="price_id" type="text">
+                    </td>
+                  </tr>
+                  <tr>
+                    <div class="form-group">
+                      <label for="incometypes">Вид услуги</label>
+                      <div>
+                        <select formControlName="incometype_id" id="incometypes">
+                          <option *ngFor="let incometype of incometypes; let i = index"
+                                  [value]="incometypes[i].incometype_id" >
+                            {{incometypes[i].name}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <label>Начало: </label>
+                        <input formControlName="dtfrom" type="date" name="dtfrom"
+                               class="form-control"
+                               id="dtfrom">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="sortable" >
+                    <td class="hide-field-td">
+                    <td>
+                      <div class="form-group">
+                        <label>Окончание: </label>
+                        <input formControlName="dtto" type="date" name="dtto"
+                               class="form-control" id="dtto">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="sortable" >
+                    <td class="hide-field-td">
+                    <td>
+                      <div class="form-group">
+                        <label>Цена: </label>
+                        <input formControlName="amount" type="text" name="amount"
+                               class="form-control" id="amount">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group col-sm-12" id="send-form-buttons">
+                        <button class="btn btn-margin" title="back"
+                                (click)="goBack()">
+                          <fa-icon [icon]="fBack"></fa-icon>
+                          Отмена
+                        </button>
+                        <button class="btn btn-success btn-margin" title="save unit">
+                          <fa-icon [icon]="fSave"></fa-icon>
+                          Сохранить
+                        </button>
+                        <button class="btn btn-danger btn-margin" title="delete unit"
+                                (click)="delete(price)">
+                          <fa-icon [icon]="fTrash"></fa-icon>
+                          Удалить
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

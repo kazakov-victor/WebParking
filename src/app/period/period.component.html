@@ -10,6 +10,7 @@
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
               <td>
                 <button type="button" class="btn btn-success pull-right"
                         [routerLink]="'/period/new'">
@@ -23,6 +24,7 @@
               <td>Окончание</td>
               <td>Статус</td>
               <td>Изменить</td>
+              <td>Расчитать</td>
             </tr>
             </thead>
             <tbody>
@@ -34,6 +36,10 @@
               <td>
                 <button (click)="toggle(period.period_id)">
                 <fa-icon [icon]="fChange"></fa-icon></button>
+              </td>
+              <td>
+                <button (click)="count(period.period_id)">
+                  <fa-icon [icon]="fChange"></fa-icon></button>
               </td>
             </tr>
             </tbody>

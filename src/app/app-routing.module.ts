@@ -47,6 +47,8 @@ import {PriceEditComponent} from './price/price-edit/price-edit.component';
 import {SaldoComponent} from './saldo/saldo.component';
 import {PriceComponent} from './price/price.component';
 import {TableSortingExampleComponent} from './mat/table-sorting-example.component';
+import {TableOwerviewComponent} from './mat/table-owerview/table-owerview.component';
+import {ChargeComponent} from './charge/charge.component';
 
 const contractRouts: Routes = [
   {path: 'list', component: ContractListComponent},
@@ -116,8 +118,9 @@ const routes: Routes = [
   {path: 'balance/list', component: BalanceComponent, canActivate: [AuthGuard]},
   {path: 'saldo/list', component: SaldoComponent, canActivate: [AuthGuard]},
   {path: 'price', component: PriceComponent, canActivate: [AuthGuard], children: priceRouts},
+  {path: 'charge/list', component: ChargeComponent, canActivate: [AuthGuard]},
   {path: 'other', component: OtherComponent},
-  {path: 'table', component: TableSortingExampleComponent},
+  {path: 'table', component: TableOwerviewComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

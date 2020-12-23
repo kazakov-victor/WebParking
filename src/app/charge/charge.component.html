@@ -1,0 +1,52 @@
+<form [formGroup]="chargeForm" (ngSubmit)="submit()" id="charge-form" class="order-form-add">
+  <div class="parent">
+    <div class="child">
+      <label>Выбрать период : </label>
+    </div>
+    <div class="child">
+      <input class="form-control" type="date"
+             formControlName="charge_date">
+    </div>
+    <div class="child" id="send-form-buttons" style="padding-left:0">
+        <button class="btn btn-success btn-margin" title="save unit">
+          <fa-icon [icon]="fSave"></fa-icon>
+          Начислить
+        </button>
+      </div>
+  </div>
+</form>
+<div class="tab-content">
+  <div class="hpanel">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center small">
+          <table class="table content_tab tab-pane clearfix">
+            <thead>
+            <tr>
+              <td>ID</td>
+              <td>Договор</td>
+              <td>Период</td>
+              <td>Вид услуги</td>
+              <td>Количество</td>
+              <td>Сумма</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let charge of charges$ | async; let i=index;" >
+              <td>{{charge.charge_id}}</td>
+              <td>{{charge.contract_id}}</td>
+              <td>{{charge.period_id}}</td>
+              <td >{{charge.incometype_id}}</td>
+              <td >{{charge.count}}</td>
+              <td >{{charge.amount}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <p>{{messages}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
