@@ -4,7 +4,6 @@ import {Observable, Subscription} from 'rxjs';
 import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {PaymentTypeService} from '../../../services/payment-type.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UnitService} from '../../../services/unit.service';
 import {switchMap} from 'rxjs/operators';
 
 @Component({

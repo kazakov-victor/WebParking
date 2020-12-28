@@ -27,10 +27,6 @@ import {PaymentTypeComponent} from './accountant/payment-type/payment-type.compo
 import {PaymentTypeEditComponent} from './accountant/payment-type/payment-type-edit/payment-type-edit.component';
 import {PaymentTypeNewComponent} from './accountant/payment-type/payment-type-new/payment-type-new.component';
 import {PaymentTypeListComponent} from './accountant/payment-type/payment-type-list/payment-type-list.component';
-import {UnitListComponent} from './contract/unit/unit-list/unit-list.component';
-import {UnitEditComponent} from './contract/unit/unit-edit/unit-edit.component';
-import {UnitNewComponent} from './contract/unit/unit-new/unit-new.component';
-import {UnitComponent} from './contract/unit/unit.component';
 import {IncomeTypeComponent} from './contract/income-type/income-type.component';
 import {IncomeEditComponent} from './contract/income/income-edit/income-edit.component';
 import {IncomeNewComponent} from './contract/income/income-new/income-new.component';
@@ -46,9 +42,9 @@ import {PriceNewComponent} from './price/price-new/price-new.component';
 import {PriceEditComponent} from './price/price-edit/price-edit.component';
 import {SaldoComponent} from './saldo/saldo.component';
 import {PriceComponent} from './price/price.component';
-import {TableSortingExampleComponent} from './mat/table-sorting-example.component';
 import {TableOwerviewComponent} from './mat/table-owerview/table-owerview.component';
 import {ChargeComponent} from './charge/charge.component';
+import {ToolbarComponent} from './toolbar/toolbar.component';
 
 const contractRouts: Routes = [
   {path: 'list', component: ContractListComponent},
@@ -64,11 +60,6 @@ const paymentTypeRouts: Routes = [
   {path: 'list', component: PaymentTypeListComponent},
   {path: 'toggle/:id', component: PaymentTypeEditComponent},
   {path: 'new', component: PaymentTypeNewComponent},
-];
-const unitRouts: Routes = [
-  {path: 'list', component: UnitListComponent},
-  {path: 'toggle/:id', component: UnitEditComponent},
-  {path: 'new', component: UnitNewComponent},
 ];
 const incomeRouts: Routes = [
   {path: 'list', component: IncomeListComponent},
@@ -110,13 +101,13 @@ const routes: Routes = [
 
   {path: 'contract', component: ContractComponent, canActivate: [AuthGuard], children: contractRouts},
   {path: 'accountant', component: AccountantComponent, canActivate: [AuthGuard], children: accountantRouts},
-  {path: 'unit', component: UnitComponent, canActivate: [AuthGuard], children: unitRouts},
-  {path: 'income', component: IncomeComponent, canActivate: [AuthGuard], children: incomeRouts},
+   {path: 'income', component: IncomeComponent, canActivate: [AuthGuard], children: incomeRouts},
   {path: 'incometype', component: IncomeTypeComponent, canActivate: [AuthGuard], children: incomeTypeRouts},
   {path: 'person', component: PersonsComponent, canActivate: [AuthGuard],  children: personRouts},
   {path: 'period/list', component: PeriodComponent, canActivate: [AuthGuard]},
   {path: 'balance/list', component: BalanceComponent, canActivate: [AuthGuard]},
   {path: 'saldo/list', component: SaldoComponent, canActivate: [AuthGuard]},
+  {path: 'toolbar', component: ToolbarComponent, canActivate: [AuthGuard]},
   {path: 'price', component: PriceComponent, canActivate: [AuthGuard], children: priceRouts},
   {path: 'charge/list', component: ChargeComponent, canActivate: [AuthGuard]},
   {path: 'other', component: OtherComponent},

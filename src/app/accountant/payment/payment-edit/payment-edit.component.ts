@@ -3,14 +3,11 @@ import {Payment} from '../../../shared/payment';
 import {Observable, Subscription} from 'rxjs';
 import {faEdit, faSave, faTimes, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {PaymentService} from '../../../services/payment.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {PaymentType} from '../../../shared/payment-type';
-import {Contract} from '../../../shared/contract';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {PaymentTypeService} from '../../../services/payment-type.service';
 import {ContractService} from '../../../services/contract.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
-import {Unit} from '../../../shared/unit';
 
 @Component({
   selector: 'app-payment-edit',

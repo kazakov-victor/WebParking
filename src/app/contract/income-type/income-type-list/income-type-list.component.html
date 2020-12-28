@@ -18,7 +18,7 @@
             <tr>
               <td>ID</td>
               <td>Название</td>
-              <td>Unit ID</td>
+              <td>База расчета</td>
               <td>Примечание</td>
             </tr>
             </thead>
@@ -27,7 +27,7 @@
                 (click)="edit(incometype.incometype_id)">
               <td>{{incometype.incometype_id}}</td>
               <td>{{incometype.name}}</td>
-              <td>{{incometype.unit_id}}</td>
+              <td>{{incometype.basis | lowercase}}</td>
               <td>{{incometype.note}}</td>
             </tr>
             </tbody>

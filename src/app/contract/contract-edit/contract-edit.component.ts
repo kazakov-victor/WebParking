@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Contract} from '../../shared/contract';
 import {ActivatedRoute, Router} from '@angular/router';
 import {formatDate, Location} from '@angular/common';
 import {ContractService} from '../../services/contract.service';
 import {Income} from '../../shared/income';
 import {IncomeType} from '../../shared/income-type';
-import {Unit} from '../../shared/unit';
 import {faEdit, faSave, faTimes, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {Person} from '../../shared/person';
 import {PersonService} from '../../services/person.service';
@@ -24,7 +23,6 @@ export class ContractEditComponent implements OnInit {
   currentDate: string;
   incomeType: IncomeType;
   persons: Person[];
-  unit: Unit;
   routeBack = '/contract/list';
   visible = true;
   contracts = [];

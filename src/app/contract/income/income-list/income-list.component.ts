@@ -3,7 +3,6 @@ import {Income} from '../../../shared/income';
 import {Observable} from 'rxjs';
 import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {IncomeService} from '../../../services/income.service';
-import {UnitService} from '../../../services/unit.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 
@@ -19,7 +18,6 @@ export class IncomeListComponent implements OnInit {
   fTrash = faTrashAlt;
 
   constructor(private incomeService: IncomeService,
-              private unitService: UnitService,
               private route: ActivatedRoute,
               private router: Router) {  }
 

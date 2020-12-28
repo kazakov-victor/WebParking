@@ -6,7 +6,7 @@ import {faEdit, faSave, faTimes, faTrashAlt} from '@fortawesome/free-solid-svg-i
 import {IncomeTypeService} from '../../../services/income-type.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
-import {UnitService} from '../../../services/unit.service';
+import {BasisService} from '../../../services/basis.service';
 
 @Component({
   selector: 'app-income-type-edit',
@@ -18,8 +18,8 @@ export class IncomeTypeEditComponent implements OnInit, OnDestroy {
   visible = true;
   incomeTypeEditForm: FormGroup;
   incometypes = [];
-  units = [];
   incomeType: IncomeType;
+  basises: string[];
   sub: Subscription;
   fEdit = faEdit;
   fTrash = faTrashAlt;
@@ -27,14 +27,14 @@ export class IncomeTypeEditComponent implements OnInit, OnDestroy {
   fBack = faTimes;
 
   constructor(private incomeTypeService: IncomeTypeService,
-              private unitService: UnitService,
+              private basisService: BasisService,
               private route: ActivatedRoute,
               private router: Router,
               private location: Location,
               private fb: FormBuilder) {
     this.incomeTypeEditForm = this.fb.group({
       incometype_id: [''],
-      unit_id: [''],
+      basis: [''],
       name: [''],
       note: [''],
     });
@@ -46,11 +46,16 @@ export class IncomeTypeEditComponent implements OnInit, OnDestroy {
 
   getIncomeType(): any {
     const id = +this.route.snapshot.paramMap.get('id');
+    this.basisService.getBasises()
+      .subscribe((basises) => {
+        this.basises = basises;
+        this.incomeTypeEditForm.controls.basises.patchValue(this.basises);
+      });
     this.incomeTypeService.getIncomeType(id)
       .subscribe((incomeType) => {
         this.incomeType = incomeType;
         this.incomeTypeEditForm.controls.incometype_id.patchValue(this.incomeType.incometype_id);
-        this.incomeTypeEditForm.controls.unit_id.patchValue(this.incomeType.unit_id);
+        this.incomeTypeEditForm.controls.basis.patchValue(this.incomeType.basis);
         this.incomeTypeEditForm.controls.name.patchValue(this.incomeType.name);
         this.incomeTypeEditForm.controls.note.patchValue(this.incomeType.note);
            });
@@ -59,11 +64,11 @@ export class IncomeTypeEditComponent implements OnInit, OnDestroy {
         this.incometypes = types;
         this.incomeTypeEditForm.controls.incometype_id.patchValue(this.incomeType.incometype_id);
       });
-    this.unitService.getUnits()
+   /* this.unitService.getUnits()
       .subscribe((units) => {
         this.units = units;
         this.incomeTypeEditForm.controls.unit_id.patchValue(this.incomeType.unit_id);
-      });
+      });*/
   }
 
   ngOnDestroy(): void {
@@ -78,7 +83,7 @@ export class IncomeTypeEditComponent implements OnInit, OnDestroy {
     }
     const incomeType: IncomeType = {
       incometype_id: this.incomeTypeEditForm.value.incometype_id,
-      unit_id: this.incomeTypeEditForm.value.unit_id,
+      basis: this.incomeTypeEditForm.value.basis,
       name: this.incomeTypeEditForm.value.name,
       note: this.incomeTypeEditForm.value.note
     };

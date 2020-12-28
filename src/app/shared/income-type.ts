@@ -1,6 +1,6 @@
 export interface IncomeType {
   incometype_id?: number;
-  unit_id: number;
+  basis: string;
   name: string;
   note: string;
 }

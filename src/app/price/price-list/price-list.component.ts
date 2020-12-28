@@ -3,7 +3,6 @@ import {Observable} from 'rxjs';
 import {Price} from '../../shared/price';
 import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {PriceService} from '../../services/price.service';
-import {UnitService} from '../../services/unit.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 
@@ -19,7 +18,6 @@ export class PriceListComponent implements OnInit {
   fTrash = faTrashAlt;
 
   constructor(private priceService: PriceService,
-              private unitService: UnitService,
               private route: ActivatedRoute,
               private router: Router) {  }
 
