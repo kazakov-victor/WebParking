@@ -3,12 +3,13 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BasisService {
-  private basisUrl = 'http://localhost:8080/basis';
+  private basisUrl = '/basis';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
       charset: 'UTF-8' })
@@ -19,7 +20,7 @@ export class BasisService {
 
   /** GET basises from the server */
   getBasises(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.basisUrl}/list`)
+    return this.http.get<string[]>(`${environment.BackUrl}${this.basisUrl}/list`)
       .pipe(
         tap(_ => this.log('fetched basises')),
         catchError(this.handleError<string[]>('getBasises', []))

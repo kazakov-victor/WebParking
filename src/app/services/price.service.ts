@@ -4,12 +4,13 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Price} from '../shared/price';
 import {MessageService} from './message.service';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PriceService {
-  private priceUrl = 'http://localhost:8080/price';
+  private priceUrl = '/price';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
                             charset: 'UTF-8' })
@@ -21,7 +22,7 @@ export class PriceService {
 
   /** GET prices from the server */
   getPrices(): Observable<Price[]> {
-    return this.http.get<Price[]>(`${this.priceUrl}/list`)
+    return this.http.get<Price[]>(`${environment.BackUrl}${this.priceUrl}/list`)
       .pipe(
         tap(_ => this.log('fetched prices')),
         catchError(this.handleError<Price[]>('getPrices', []))
@@ -30,7 +31,7 @@ export class PriceService {
 
   /** GET price by id. Return `undefined` when id not found */
   getPriceNo404<Data>(id: number): Observable<Price> {
-    const url = `${this.priceUrl}/?id=${id}`;
+    const url = `${environment.BackUrl}${this.priceUrl}/?id=${id}`;
     return this.http.get<Price[]>(url)
       .pipe(
         map(prices => prices[0]), // returns a {0|1} element array
@@ -44,7 +45,7 @@ export class PriceService {
 
   /** GET price by id. Will 404 if id not found */
   getPrice(id: number): Observable<Price> {
-    const url = `${this.priceUrl}/edit/${id}`;
+    const url = `${environment.BackUrl}${this.priceUrl}/edit/${id}`;
     return this.http.get<Price>(url).pipe(
       tap(_ => this.log(`fetched price id=${id}`)),
       catchError(this.handleError<Price>(`getPrice id=${id}`))
@@ -58,7 +59,7 @@ export class PriceService {
       term = 'all';
     }
 
-    return this.http.get<Price[]>(`${this.priceUrl}/search?keyword=${term}`).pipe(
+    return this.http.get<Price[]>(`${environment.BackUrl}${this.priceUrl}/search?keyword=${term}`).pipe(
       tap(x => x.length ?
         this.log(`found prices matching "${term}"`) :
         this.log(`no prices matching "${term}"`)),
@@ -71,7 +72,7 @@ export class PriceService {
   /** POST: add a new price to the server */
   savePrice(price: Price): Observable<Price> {
     console.log('addPrice works', price);
-    return this.http.post<Price>(`${this.priceUrl}/save`, price, this.httpOptions).pipe(
+    return this.http.post<Price>(`${environment.BackUrl}${this.priceUrl}/save`, price, this.httpOptions).pipe(
       tap((newPrice: Price) => this.log(`added price w/ id=${newPrice.price_id}`)),
       catchError(this.handleError<Price>('addPrice')));
   }
@@ -79,7 +80,7 @@ export class PriceService {
   /** DELETE: delete the price from the server */
   deletePrice(price: Price | number): Observable<Price> {
     const id = typeof price === 'number' ? price : price.price_id;
-    const url = `${this.priceUrl}/delete/${id}`;
+    const url = `${environment.BackUrl}${this.priceUrl}/delete/${id}`;
 
     return this.http.post<Price>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted price id=${id}`)),
@@ -89,7 +90,7 @@ export class PriceService {
 
   /** PUT: update the price on the server */
   updatePrice(price: Price): Observable<any> {
-    return this.http.put(`${this.priceUrl}/edit`, price, this.httpOptions).pipe(
+    return this.http.put(`${environment.BackUrl}${this.priceUrl}/edit`, price, this.httpOptions).pipe(
       tap(_ => this.log(`updated price id=${price.price_id}`)),
       catchError(this.handleError<any>('updatePrice'))
     );

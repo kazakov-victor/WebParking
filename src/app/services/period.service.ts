@@ -4,12 +4,13 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Period} from '../shared/period';
 import {MessageService} from './message.service';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PeriodService {
-  private periodUrl = 'http://localhost:8080/period';
+  private periodUrl = '/period';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
       charset: 'UTF-8' })
@@ -20,30 +21,28 @@ export class PeriodService {
 
   /** GET periods from the server */
   getPeriods(): Observable<Period[]> {
-    return this.http.get<Period[]>(`${this.periodUrl}/list`)
+    return this.http.get<Period[]>(`${environment.BackUrl}${this.periodUrl}/list`)
       .pipe(
         tap(_ => this.log('fetched periods')),
         catchError(this.handleError<Period[]>('getPeriods', []))
       );
   }
 
-  /** GET period by id. Return `undefined` when id not found */
-  getPeriodNo404<Data>(id: number): Observable<Period> {
-    const url = `${this.periodUrl}/?id=${id}`;
-    return this.http.get<Period[]>(url)
+  /** Create periods for given year . Return `undefined` when id not found */
+  createPeriod<Data>(year: number): Observable<Period> {
+    const url = `${environment.BackUrl}${this.periodUrl}/create/${year}`;
+    return this.http.get<string>(url)
       .pipe(
-        map(periods => periods[0]), // returns a {0|1} element array
         tap(h => {
-          const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} period id=${id}`);
+          this.log(`periods are created`);
         }),
-        catchError(this.handleError<Period>(`getPeriod id=${id}`))
+        catchError(this.handleError<string>(`Periods crashed`))
       );
   }
 
   /** GET period by id. Will 404 if id not found */
   getPeriod(id: number): Observable<Period> {
-    const url = `${this.periodUrl}/edit/${id}`;
+    const url = `${environment.BackUrl}${this.periodUrl}/edit/${id}`;
     return this.http.get<Period>(url).pipe(
       tap(_ => this.log(`fetched period id=${id}`)),
       catchError(this.handleError<Period>(`getPeriod id=${id}`))
@@ -57,7 +56,7 @@ export class PeriodService {
       term = 'all';
     }
 
-    return this.http.get<Period[]>(`${this.periodUrl}/search?keyword=${term}`).pipe(
+    return this.http.get<Period[]>(`${environment.BackUrl}${this.periodUrl}/search?keyword=${term}`).pipe(
       tap(x => x.length ?
         this.log(`found periods matching "${term}"`) :
         this.log(`no periods matching "${term}"`)),
@@ -70,32 +69,13 @@ export class PeriodService {
   /** POST: add a new period to the server */
   savePeriod(period: Period): Observable<Period> {
     console.log('savePeriod works', period);
-    return this.http.post<Period>(`${this.periodUrl}/save`, period, this.httpOptions).pipe(
+    return this.http.post<Period>(`${environment.BackUrl}${this.periodUrl}/save`, period, this.httpOptions).pipe(
       tap((newPeriod: Period) => this.log(`added period w/ id=${newPeriod.period_id}`)),
       catchError(this.handleError<Period>('savePeriod')));
   }
 
-  /** DELETE: delete the period from the server */
-  deletePeriod(period: Period | number): Observable<Period> {
-    const id = typeof period === 'number' ? period : period.period_id;
-    const url = `${this.periodUrl}/delete/${id}`;
-
-    return this.http.post<Period>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted period id=${id}`)),
-      catchError(this.handleError<Period>('deletePeriod'))
-    );
-  }
-
-  /** PUT: update the period on the server */
-  updatePeriod(period: Period): Observable<any> {
-    return this.http.put(`${this.periodUrl}/edit`, period, this.httpOptions).pipe(
-      tap(_ => this.log(`updated period id=${period.period_id}`)),
-      catchError(this.handleError<any>('updatePeriod'))
-    );
-  }
-
   toggleClosePeriod(id: number): Observable<Period> {
-    const url = `${this.periodUrl}/toggle/${id}`;
+    const url = `${environment.BackUrl}${this.periodUrl}/toggle/${id}`;
     return this.http.get<Period>(url).pipe(
       tap(_ => this.log(`toggled period id=${id}`)),
       catchError(this.handleError<Period>(`getPeriod id=${id}`))

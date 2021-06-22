@@ -4,13 +4,14 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Income} from '../shared/income';
 import {MessageService} from './message.service';
+import {environment} from '../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class IncomeService {
-  private incomeUrl = 'http://localhost:8080/income';  // URL to web api
+  private incomeUrl = '/income';  // URL to web api
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
       charset: 'UTF-8' })
@@ -21,7 +22,7 @@ export class IncomeService {
 
   /** GET incomes from the server */
   getIncomes(): Observable<Income[]> {
-    return this.http.get<Income[]>(`${this.incomeUrl}/list`)
+    return this.http.get<Income[]>(`${environment.BackUrl}${this.incomeUrl}/list`)
       .pipe(
         tap(_ => this.log('fetched incomes')),
         catchError(this.handleError<Income[]>('getIncomes', []))
@@ -30,7 +31,7 @@ export class IncomeService {
 
   /** GET income by id. Return `undefined` when id not found */
   getIncomeNo404<Data>(id: number): Observable<Income> {
-    const url = `${this.incomeUrl}/?id=${id}`;
+    const url = `${environment.BackUrl}${this.incomeUrl}/?id=${id}`;
     return this.http.get<Income[]>(url)
       .pipe(
         map(incomes => incomes[0]), // returns a {0|1} element array
@@ -44,7 +45,7 @@ export class IncomeService {
 
   /** GET income by id. Will 404 if id not found */
   getIncome(id: number): Observable<Income> {
-    const url = `${this.incomeUrl}/edit/${id}`;
+    const url = `${environment.BackUrl}${this.incomeUrl}/edit/${id}`;
     return this.http.get<Income>(url).pipe(
       tap(_ => this.log(`fetched income id=${id}`)),
       catchError(this.handleError<Income>(`getIncome id=${id}`))
@@ -58,7 +59,7 @@ export class IncomeService {
       term = 'all';
     }
 
-    return this.http.get<Income[]>(`${this.incomeUrl}/search?keyword=${term}`).pipe(
+    return this.http.get<Income[]>(`${environment.BackUrl}${this.incomeUrl}/search?keyword=${term}`).pipe(
       tap(x => x.length ?
         this.log(`found incomes matching "${term}"`) :
         this.log(`no incomes matching "${term}"`)),
@@ -70,7 +71,7 @@ export class IncomeService {
 
   saveIncome(income: Income): Observable<Income> {
     console.log('addIncome works', income);
-    return this.http.post<Income>(`${this.incomeUrl}/save`, income, this.httpOptions).pipe(
+    return this.http.post<Income>(`${environment.BackUrl}${this.incomeUrl}/save`, income, this.httpOptions).pipe(
       tap((newIncome: Income) => this.log(`added income w/ id=${newIncome.income_id}`)),
       catchError(this.handleError<Income>('addIncome')));
   }
@@ -78,7 +79,7 @@ export class IncomeService {
   /** DELETE: delete the income from the server */
   deleteIncome(income: Income | number): Observable<Income> {
     const id = typeof income === 'number' ? income : income.income_id;
-    const url = `${this.incomeUrl}/delete/${id}`;
+    const url = `${environment.BackUrl}${this.incomeUrl}/delete/${id}`;
 
     return this.http.post<Income>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted income id=${id}`)),
@@ -88,7 +89,7 @@ export class IncomeService {
 
   /** PUT: update the income on the server */
   updateIncome(income: Income): Observable<any> {
-    return this.http.put(`${this.incomeUrl}/edit`, income, this.httpOptions).pipe(
+    return this.http.put(`${environment.BackUrl}${this.incomeUrl}/edit`, income, this.httpOptions).pipe(
       tap(_ => this.log(`updated income id=${income.income_id}`)),
       catchError(this.handleError<any>('updateIncome'))
     );

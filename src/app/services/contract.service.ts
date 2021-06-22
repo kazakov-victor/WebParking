@@ -4,12 +4,13 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Contract} from '../shared/contract';
 import {MessageService} from './message.service';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContractService {
-  private contractUrl = 'http://localhost:8080/contract';  // URL to web api
+  private contractUrl = '/contract';  // URL to web api
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
       charset: 'UTF-8' })
@@ -20,7 +21,7 @@ export class ContractService {
 
   /** GET contracts$ from the server */
   getContracts(): Observable<Contract[]> {
-    return this.http.get<Contract[]>(`${this.contractUrl}/list`)
+    return this.http.get<Contract[]>(`${environment.BackUrl}${this.contractUrl}/list`)
       .pipe(
         tap(_ => this.log('fetched contracts$')),
         catchError(this.handleError<Contract[]>('getContracts', []))
@@ -29,7 +30,7 @@ export class ContractService {
 
   /** GET contract by id. Return `undefined` when id not found */
   getContractNo404<Data>(id: number): Observable<Contract> {
-    const url = `${this.contractUrl}/?id=${id}`;
+    const url = `${environment.BackUrl}${this.contractUrl}/?id=${id}`;
     return this.http.get<Contract[]>(url)
       .pipe(
         map(contracts => contracts[0]), // returns a {0|1} element array
@@ -43,7 +44,7 @@ export class ContractService {
 
   /** GET contract by id. Will 404 if id not found */
   getContract(id: number): Observable<Contract> {
-    const url = `${this.contractUrl}/edit/${id}`;
+    const url = `${environment.BackUrl}${this.contractUrl}/edit/${id}`;
     return this.http.get<Contract>(url).pipe(
       tap(_ => this.log(`fetched contract id=${id}`)),
       catchError(this.handleError<Contract>(`getContract id=${id}`))
@@ -57,7 +58,7 @@ export class ContractService {
       term = 'all';
     }
 
-    return this.http.get<Contract[]>(`${this.contractUrl}/search?keyword=${term}`).pipe(
+    return this.http.get<Contract[]>(`${environment.BackUrl}${this.contractUrl}/search?keyword=${term}`).pipe(
       tap(x => x.length ?
         this.log(`found contracts matching "${term}"`) :
         this.log(`no contracts matching "${term}"`)),
@@ -70,7 +71,7 @@ export class ContractService {
   /** POST: add a new contract to the server */
   saveContract(contract: Contract): Observable<Contract> {
     console.log('addContract works', contract);
-    return this.http.post<Contract>(`${this.contractUrl}/save`, contract, this.httpOptions).pipe(
+    return this.http.post<Contract>(`${environment.BackUrl}${this.contractUrl}/save`, contract, this.httpOptions).pipe(
       tap((newContract: Contract) => this.log(`added contract w/ id=${newContract.contract_id}`)),
       catchError(this.handleError<Contract>('addContract')));
   }
@@ -78,7 +79,7 @@ export class ContractService {
   /** DELETE: delete the contract from the server */
   deleteContract(contract: Contract | number): Observable<Contract> {
     const id = typeof contract === 'number' ? contract : contract.contract_id;
-    const url = `${this.contractUrl}/delete/${id}`;
+    const url = `${environment.BackUrl}${this.contractUrl}/delete/${id}`;
 
     return this.http.post<Contract>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted contract id=${id}`)),
@@ -88,7 +89,7 @@ export class ContractService {
 
   /** PUT: update the contract on the server */
   updateContract(contract: Contract): Observable<any> {
-    return this.http.put(`${this.contractUrl}/edit`, contract, this.httpOptions).pipe(
+    return this.http.put(`${environment.BackUrl}${this.contractUrl}/edit`, contract, this.httpOptions).pipe(
       tap(_ => this.log(`updated contract id=${contract.contract_id}`)),
       catchError(this.handleError<any>('updateContract'))
     );

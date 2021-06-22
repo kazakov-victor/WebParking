@@ -4,12 +4,13 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Payment} from '../shared/payment';
 import {MessageService} from './message.service';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
-  private paymentUrl = 'http://localhost:8080/payment';  // URL to web api
+  private paymentUrl = '/payment';  // URL to web api
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
       charset: 'UTF-8' })
@@ -20,7 +21,7 @@ export class PaymentService {
 
   /** GET payments from the server */
   getPayments(): Observable<Payment[]> {
-    return this.http.get<Payment[]>(`${this.paymentUrl}/list`)
+    return this.http.get<Payment[]>(`${environment.BackUrl}${this.paymentUrl}/list`)
       .pipe(
         tap(_ => this.log('fetched payments')),
         catchError(this.handleError<Payment[]>('getPayments', []))
@@ -29,7 +30,7 @@ export class PaymentService {
 
   /** GET payment by id. Return `undefined` when id not found */
   getPaymentNo404<Data>(id: number): Observable<Payment> {
-    const url = `${this.paymentUrl}/?id=${id}`;
+    const url = `${environment.BackUrl}${this.paymentUrl}/?id=${id}`;
     return this.http.get<Payment[]>(url)
       .pipe(
         map(payments => payments[0]), // returns a {0|1} element array
@@ -43,7 +44,7 @@ export class PaymentService {
 
   /** GET payment by id. Will 404 if id not found */
   getPayment(id: number): Observable<Payment> {
-    const url = `${this.paymentUrl}/edit/${id}`;
+    const url = `${environment.BackUrl}${this.paymentUrl}/edit/${id}`;
     return this.http.get<Payment>(url).pipe(
       tap(_ => this.log(`fetched payment id=${id}`)),
       catchError(this.handleError<Payment>(`getPayment id=${id}`))
@@ -57,7 +58,7 @@ export class PaymentService {
       term = 'all';
     }
 
-    return this.http.get<Payment[]>(`${this.paymentUrl}/search?keyword=${term}`).pipe(
+    return this.http.get<Payment[]>(`${environment.BackUrl}${this.paymentUrl}/search?keyword=${term}`).pipe(
       tap(x => x.length ?
         this.log(`found payments matching "${term}"`) :
         this.log(`no payments matching "${term}"`)),
@@ -70,7 +71,7 @@ export class PaymentService {
   /** POST: add a new payment to the server */
   savePayment(payment: Payment): Observable<Payment> {
     console.log('savePayment works', payment);
-    return this.http.post<Payment>(`${this.paymentUrl}/save`, payment, this.httpOptions).pipe(
+    return this.http.post<Payment>(`${environment.BackUrl}${this.paymentUrl}/save`, payment, this.httpOptions).pipe(
       tap((newPayment: Payment) => this.log(`added payment w/ id=${newPayment.payment_id}`)),
       catchError(this.handleError<Payment>('savePayment')));
   }
@@ -78,7 +79,7 @@ export class PaymentService {
   /** DELETE: delete the payment from the server */
   deletePayment(payment: Payment | number): Observable<Payment> {
     const id = typeof payment === 'number' ? payment : payment.payment_id;
-    const url = `${this.paymentUrl}/delete/${id}`;
+    const url = `${environment.BackUrl}${this.paymentUrl}/delete/${id}`;
 
     return this.http.post<Payment>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted payment id=${id}`)),
@@ -88,7 +89,7 @@ export class PaymentService {
 
   /** PUT: update the payment on the server */
   updatePayment(payment: Payment): Observable<any> {
-    return this.http.put(`${this.paymentUrl}/edit`, payment, this.httpOptions).pipe(
+    return this.http.put(`${environment.BackUrl}${this.paymentUrl}/edit`, payment, this.httpOptions).pipe(
       tap(_ => this.log(`updated payment id=${payment.payment_id}`)),
       catchError(this.handleError<any>('updatePayment'))
     );

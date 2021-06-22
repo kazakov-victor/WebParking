@@ -4,12 +4,13 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Saldo} from '../shared/saldo';
 import {MessageService} from './message.service';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SaldoService {
-  private saldoUrl = 'http://localhost:8080/saldo';
+  private saldoUrl = '/saldo';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
       charset: 'UTF-8' })
@@ -20,7 +21,7 @@ export class SaldoService {
 
   /** GET saldos from the server */
   getSaldos(): Observable<Saldo[]> {
-    return this.http.get<Saldo[]>(`${this.saldoUrl}/list`)
+    return this.http.get<Saldo[]>(`${environment.BackUrl}${this.saldoUrl}/list`)
       .pipe(
         tap(_ => this.log('fetched saldos')),
         catchError(this.handleError<Saldo[]>('getSaldos', []))
@@ -29,7 +30,7 @@ export class SaldoService {
 
   /** GET saldo by id. Return `undefined` when id not found */
   getSaldoNo404<Data>(id: number): Observable<Saldo> {
-    const url = `${this.saldoUrl}/?id=${id}`;
+    const url = `${environment.BackUrl}${this.saldoUrl}/?id=${id}`;
     return this.http.get<Saldo[]>(url)
       .pipe(
         map(saldos => saldos[0]), // returns a {0|1} element array
@@ -43,7 +44,7 @@ export class SaldoService {
 
   /** GET saldo by id. Will 404 if id not found */
   getSaldo(id: number): Observable<Saldo> {
-    const url = `${this.saldoUrl}/edit/${id}`;
+    const url = `${environment.BackUrl}${this.saldoUrl}/edit/${id}`;
     return this.http.get<Saldo>(url).pipe(
       tap(_ => this.log(`fetched saldo id=${id}`)),
       catchError(this.handleError<Saldo>(`getSaldo id=${id}`))
@@ -57,7 +58,7 @@ export class SaldoService {
       term = 'all';
     }
 
-    return this.http.get<Saldo[]>(`${this.saldoUrl}/search?keyword=${term}`).pipe(
+    return this.http.get<Saldo[]>(`${environment.BackUrl}${this.saldoUrl}/search?keyword=${term}`).pipe(
       tap(x => x.length ?
         this.log(`found saldos matching "${term}"`) :
         this.log(`no saldos matching "${term}"`)),

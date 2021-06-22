@@ -9,7 +9,7 @@ import {MessageService} from './message.service';
   providedIn: 'root'
 })
 export class ToolbarService {
-  private chargeUrl = 'http://localhost:8080/charge';
+  private toolbarUrl = 'http://localhost:8080/';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
       charset: 'UTF-8' })
@@ -20,7 +20,7 @@ export class ToolbarService {
 
   /** GET charges from the server */
   getCharges(): Observable<Charge[]> {
-    return this.http.get<Charge[]>(`${this.chargeUrl}/list`)
+    return this.http.get<Charge[]>(`${this.toolbarUrl}/list`)
       .pipe(
         tap(_ => this.log('fetched charges')),
         catchError(this.handleError<Charge[]>('getCharges', []))
@@ -29,7 +29,7 @@ export class ToolbarService {
 
   /** GET charge by id. Return `undefined` when id not found */
   getChargeNo404<Data>(id: number): Observable<Charge> {
-    const url = `${this.chargeUrl}/?id=${id}`;
+    const url = `${this.toolbarUrl}/?id=${id}`;
     return this.http.get<Charge[]>(url)
       .pipe(
         map(charges => charges[0]), // returns a {0|1} element array
@@ -43,7 +43,7 @@ export class ToolbarService {
 
   /** GET charge by id. Will 404 if id not found */
   getCharge(id: number): Observable<Charge> {
-    const url = `${this.chargeUrl}/edit/${id}`;
+    const url = `${this.toolbarUrl}/edit/${id}`;
     return this.http.get<Charge>(url).pipe(
       tap(_ => this.log(`fetched charge id=${id}`)),
       catchError(this.handleError<Charge>(`getCharge id=${id}`))
@@ -57,7 +57,7 @@ export class ToolbarService {
       term = 'all';
     }
 
-    return this.http.get<Charge[]>(`${this.chargeUrl}/search?keyword=${term}`).pipe(
+    return this.http.get<Charge[]>(`${this.toolbarUrl}/search?keyword=${term}`).pipe(
       tap(x => x.length ?
         this.log(`found charges matching "${term}"`) :
         this.log(`no charges matching "${term}"`)),
@@ -70,14 +70,14 @@ export class ToolbarService {
   /** POST: add a new charge to the server */
   countCharge(date: string): Observable<string> {
     console.log('countCharge works. Send - ', date);
-    return this.http.post<string>(`${this.chargeUrl}/count`, date, this.httpOptions).pipe(
+    return this.http.post<string>(`${this.toolbarUrl}/count`, date, this.httpOptions).pipe(
       catchError(this.handleError<Charge>('saveCharge')));
   }
 
   /** DELETE: delete the charge from the server */
   deleteCharge(charge: Charge | number): Observable<Charge> {
     const id = typeof charge === 'number' ? charge : charge.charge_id;
-    const url = `${this.chargeUrl}/delete/${id}`;
+    const url = `${this.toolbarUrl}/delete/${id}`;
 
     return this.http.post<Charge>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted charge id=${id}`)),
@@ -87,14 +87,14 @@ export class ToolbarService {
 
   /** PUT: update the charge on the server */
   updateCharge(charge: Charge): Observable<any> {
-    return this.http.put(`${this.chargeUrl}/edit`, charge, this.httpOptions).pipe(
+    return this.http.put(`${this.toolbarUrl}/edit`, charge, this.httpOptions).pipe(
       tap(_ => this.log(`updated charge id=${charge.charge_id}`)),
       catchError(this.handleError<any>('updateCharge'))
     );
   }
 
   toggleCloseCharge(id: number): Observable<Charge> {
-    const url = `${this.chargeUrl}/toggle/${id}`;
+    const url = `${this.toolbarUrl}/toggle/${id}`;
     return this.http.get<Charge>(url).pipe(
       tap(_ => this.log(`toggled charge id=${id}`)),
       catchError(this.handleError<Charge>(`getCharge id=${id}`))

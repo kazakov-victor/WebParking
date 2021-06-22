@@ -7,7 +7,8 @@ import {Environment} from './interface';
 export const environment: Environment = {
   production: false,
  // apiKey: '',
-  DbUrl: 'http://localhost:8080/'
+//  BackUrl: 'http://localhost:8080'
+  BackUrl: 'https://parking-billing.herokuapp.com'
 };
 
 /*

@@ -3,12 +3,13 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BillingService {
-  private billingUrl = 'http://localhost:8080/billing';
+  private billingUrl = '/billing';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
       charset: 'UTF-8' })
@@ -20,7 +21,7 @@ export class BillingService {
 
   /** GET billing by id. Return `undefined` when id not found */
   countBillingPeriodNo404<Data>(id: number): Observable<string> {
-    const url = `${this.billingUrl}/${id}`;
+    const url = `${environment.BackUrl}${this.billingUrl}/${id}`;
     return this.http.get<string>(url)
       .pipe(
         tap(() => {

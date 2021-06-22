@@ -5,6 +5,7 @@ import { JwtResponse } from './auth/jwt-response';
 import { AuthLoginInfo } from './auth/login-info';
 import { SignUpInfo } from './auth/signup-info';
 import {TokenStorageService} from './auth/token-storage.service';
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,8 +16,8 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private loginUrl = 'http://localhost:8080/api/auth/signin';
-  private signupUrl = 'http://localhost:8080/api/auth/signup';
+  private loginUrl = '/api/auth/signin';
+  private signupUrl = '/api/auth/signup';
   isLoggedIn = false;
   roles: string[] = [];
   // store the URL so we can redirect after logging in
@@ -26,7 +27,7 @@ export class AuthService {
   }
 
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
-    return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
+    return this.http.post<JwtResponse>(`${environment.BackUrl}${this.loginUrl}`, credentials, httpOptions);
   }
 
   signUp(info: SignUpInfo): Observable<string> {

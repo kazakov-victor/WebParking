@@ -4,12 +4,13 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Person} from '../shared/person';
 import {MessageService} from './message.service';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonService {
-  private personUrl = 'http://localhost:8080/person';  // URL to web api
+  private personUrl = '/person';  // URL to web api
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
                             charset: 'UTF-8' })
@@ -21,7 +22,7 @@ export class PersonService {
 
   /** GET persons from the server */
   getPersons(): Observable<Person[]> {
-    return this.http.get<Person[]>(`${this.personUrl}/list`)
+    return this.http.get<Person[]>(`${environment.BackUrl}${this.personUrl}/list`)
       .pipe(
         tap(_ => this.log('fetched persons')),
         catchError(this.handleError<Person[]>('getPersons', []))
@@ -30,7 +31,7 @@ export class PersonService {
 
   /** GET person by id. Return `undefined` when id not found */
   getPersonNo404<Data>(id: number): Observable<Person> {
-    const url = `${this.personUrl}/?id=${id}`;
+    const url = `${environment.BackUrl}${this.personUrl}/?id=${id}`;
     return this.http.get<Person[]>(url)
       .pipe(
         map(persons => persons[0]), // returns a {0|1} element array
@@ -44,7 +45,7 @@ export class PersonService {
 
   /** GET person by id. Will 404 if id not found */
   getPerson(id: number): Observable<Person> {
-    const url = `${this.personUrl}/edit/${id}`;
+    const url = `${environment.BackUrl}${this.personUrl}/edit/${id}`;
     return this.http.get<Person>(url).pipe(
       tap(_ => this.log(`fetched person id=${id}`)),
       catchError(this.handleError<Person>(`getPerson id=${id}`))
@@ -58,7 +59,7 @@ export class PersonService {
       term = 'all';
     }
 
-    return this.http.get<Person[]>(`${this.personUrl}/search?keyword=${term}`).pipe(
+    return this.http.get<Person[]>(`${environment.BackUrl}${this.personUrl}/search?keyword=${term}`).pipe(
       tap(x => x.length ?
         this.log(`found persons matching "${term}"`) :
         this.log(`no persons matching "${term}"`)),
@@ -71,7 +72,7 @@ export class PersonService {
   /** POST: add a new person to the server */
   savePerson(person: Person): Observable<Person> {
     console.log('addPerson works', person);
-    return this.http.post<Person>(`${this.personUrl}/save`, person, this.httpOptions).pipe(
+    return this.http.post<Person>(`${environment.BackUrl}${this.personUrl}/save`, person, this.httpOptions).pipe(
       tap((newPerson: Person) => this.log(`added person w/ id=${newPerson.person_id}`)),
       catchError(this.handleError<Person>('addPerson')));
   }
@@ -79,7 +80,7 @@ export class PersonService {
   /** DELETE: delete the person from the server */
   deletePerson(person: Person | number): Observable<Person> {
     const id = typeof person === 'number' ? person : person.person_id;
-    const url = `${this.personUrl}/delete/${id}`;
+    const url = `${environment.BackUrl}${this.personUrl}/delete/${id}`;
 
     return this.http.post<Person>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted person id=${id}`)),
@@ -89,7 +90,7 @@ export class PersonService {
 
   /** PUT: update the person on the server */
   updatePerson(person: Person): Observable<any> {
-    return this.http.put(`${this.personUrl}/edit`, person, this.httpOptions).pipe(
+    return this.http.put(`${environment.BackUrl}${this.personUrl}/edit`, person, this.httpOptions).pipe(
       tap(_ => this.log(`updated person id=${person.person_id}`)),
       catchError(this.handleError<any>('updatePerson'))
     );

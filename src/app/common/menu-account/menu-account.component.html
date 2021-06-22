@@ -1,1 +1,119 @@
-<p>menu-account works!</p>
+<nav id="menu">
+  <div id="navigation">
+      <div class="profile-picture">
+      <img src="../assets/images/default.png" width="79"
+           class="img-circle m-b upload_avatar_btn"
+           alt="logo">
+      <div class="stats-label text-color">
+        <span class="font-extra-bold ">Имя: {{username}}</span>
+      </div>
+    </div>
+
+    <ul class="nav" id="side-menu">
+
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a [routerLink]="['/saldo/list']">
+          <fa-icon [icon]="faChartBar"></fa-icon>
+          <span class="nav-label">Аналитика</span>
+          <span class="arrow">
+            <span><fa-icon [icon]="faAngleLeft"></fa-icon></span>
+          </span>
+        </a>
+        <ul class="nav nav-second-level collapse" aria-expanded="false">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/saldo/list']">
+              <span class="nav-label">Сальдо</span>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/charge/list']">
+              <span class="nav-label">Начисления</span>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/accountant/payment/list']">
+              <span class="nav-label">Оплаты</span>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/balance/list']">
+              <span class="nav-label">Балансы</span>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/income/list']">
+              <span class="nav-label">Услуги</span>
+            </a>
+          </li>
+        </ul>
+
+      </li>
+
+      <li routerLinkActive="active">
+        <a [routerLink]="['/contract/list']">
+          <fa-icon [icon]="faUsers"></fa-icon>
+          <span class="nav-label">Договора</span>
+          <span class="arrow">
+            <span><fa-icon [icon]="faAngleLeft"></fa-icon></span>
+          </span>
+        </a>
+        <ul class="nav nav-second-level collapse" aria-expanded="false">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/contract/list']">
+              <span class="nav-label">Договора</span>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/person/list']">
+              <span class="nav-label">Клиенты</span>
+            </a>
+          </li>
+          <li  class="" routerLinkActive="active">
+            <a [routerLink]="['/user']">
+              <span class="nav-label">Сотрудники</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li routerLinkActive="active">
+        <a [routerLink]="['/person/list']">
+          <fa-icon [icon]="faGear"></fa-icon>
+          <span class="nav-label">Настройки</span>
+          <span class="arrow">
+            <span><fa-icon [icon]="faAngleLeft"></fa-icon></span>
+          </span>
+        </a>
+        <ul class="nav nav-second-level collapse" aria-expanded="false">
+          <li routerLinkActive="active">
+            <a [routerLink]="['/price/list']">
+              <span class="nav-label">Цены</span>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/period/list']">
+              <span class="nav-label">Периоды</span>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/incometype/list']">
+              <span class="nav-label">Виды услуг</span>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/accountant/paymenttype/list']">
+              <span class="nav-label">Виды оплат</span>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/toolbar']">
+              <span class="nav-label">Toolbar</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+

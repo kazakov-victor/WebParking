@@ -46,4 +46,8 @@ export class PeriodComponent implements OnInit {
     this.billingService.countBillingPeriodNo404(periodId)
       .subscribe(() => this.getPeriods());
   }
+  create(date: number): void {
+    this.periodService.createPeriod(date)
+      .subscribe(() => this.getPeriods());
+  }
 }

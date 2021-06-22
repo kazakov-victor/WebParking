@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Payment} from '../../../shared/payment';
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {faEdit, faSave, faTimes, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {PaymentService} from '../../../services/payment.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
@@ -60,7 +60,6 @@ export class PaymentEditComponent implements OnInit, OnDestroy {
       });
     this.paymentTypeService.getPaymentTypes()
       .subscribe((types) => {
-        console.log('Types = ', types);
         this.paymenttypes = types;
         this.paymentEditForm.controls.payment_type_id.patchValue(this.payment.payment_type_id);
         });

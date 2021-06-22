@@ -1,65 +1,36 @@
+<form [formGroup]="toolbarForm" (ngSubmit)="onSubmit(toolbarForm.value)" class="form">
 
-    <mat-form-field appearance="fill">
-      <mat-label>Month and Year</mat-label>
-      <input matInput [matDatepicker]="dp" [formControl]="date">
-      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-      <mat-datepicker #dp
-                      startView="multi-year"
-                      (yearSelected)="chosenYearHandler($event)"
-                      (monthSelected)="chosenMonthHandler($event, dp)"
-                      panelClass="example-month-picker">
-      </mat-datepicker>
-    </mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Month and Year</mat-label>
+  <input matInput [matDatepicker]="dp" [formControl]="date">
+  <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+  <mat-datepicker #dp
+                  startView="multi-year"
+                  (yearSelected)="chosenYearHandler($event)"
+                  (monthSelected)="chosenMonthHandler($event, dp)"
+                  panelClass="example-month-picker">
+  </mat-datepicker>
+</mat-form-field>
 
-    <div class="child" id="send-form-buttons" style="padding-left:0">
-      <button (click)="dateValue()" class="btn btn-success btn-margin" title="save unit">
-        <fa-icon [icon]="fSave"></fa-icon>
-        Отправить
-      </button>
-    </div>
-
-
-<div class="tab-content">
-  <div class="hpanel">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="text-center small">
-          <table class="table content_tab tab-pane clearfix edit-ref">
-            <thead>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>ID</td>
-              <td>Договор</td>
-              <td>Период</td>
-              <td>Дебет</td>
-              <td>Кредит</td>
-              <td>Начальное сальдо</td>
-              <td>Конечное сальдо</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let saldo of saldos$ | async" (click)="edit(saldo.saldo_id)">
-              <td>{{saldo.saldo_id}}</td>
-              <td>{{saldo.contract_id}}</td>
-              <td>{{saldo.period_id}}</td>
-              <td>{{saldo.debet}}</td>
-              <td>{{saldo.credit}}</td>
-              <td>{{saldo.openingbalance}}</td>
-              <td>{{saldo.closingbalance}}</td>
-            </tr>
-            </tbody>
-
-          </table>
-          <p>{{messages}}</p>
-        </div>
-      </div>
-    </div>
+<!--<div class="form-group">
+  <label for="contracts">Номер договора </label>
+  <div>
+    <select formControlName="contract_id" id="contracts">
+      <option *ngFor="let contract of contracts; let i = index"
+              [value]="contracts[i].contract_id">
+        {{contracts[i].number}}
+      </option>
+    </select>
   </div>
-</div>
-
+</div>-->
+  <mat-form-field appearance="fill">
+    <mat-label>Номер договора</mat-label>
+    <select matNativeControl formControlName="contract_id" id="contracts">
+      <option *ngFor="let contract of contracts; let i = index"
+              [value]="contracts[i].contract_id">
+        {{contracts[i].number}}
+    </select>
+  </mat-form-field>
+<!--  <button type="button" (click)="dateValue()">Click</button>-->
+  <button  mat-flat-button color="primary" (click)="dateValue()">Отправить</button>
+</form>
