@@ -1,4 +1,3 @@
-<p>income-type-new works!</p>
 <div *ngIf="visible" id="popup_window" class="modal fade left modal-large in">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -18,12 +17,12 @@
                   <tbody>
                   <tr>
                     <div class="form-group">
-                      <label for="units">Единица измерения </label>
+                      <label for="basis">Единица измерения </label>
                       <div>
-                        <select formControlName="unit_id" id="units">
-                          <option *ngFor="let unit of units; let i = index"
-                                  [value]="units[i].unit_id" >
-                            {{units[i].name}}
+                        <select formControlName="basis" id="basis">
+                          <option *ngFor="let basis of basises; let i = index"
+                                  [value]="basises[i]" >
+                            {{basises[i]}}
                           </option>
                         </select>
                       </div>

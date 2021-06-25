@@ -93,7 +93,7 @@ const priceRouts: Routes = [
 ];
 const routes: Routes = [
   {path: 'home', component: AppComponent, canActivate: [AuthGuard]},
-  {path: 'main', component: NestedFormArrayComponent, canActivate: [AuthGuard]},
+  {path: 'main', component: OtherComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
  // {path: '', redirectTo: 'user', pathMatch: 'full'},
   {path: 'auth/login', component: LoginPageComponent},

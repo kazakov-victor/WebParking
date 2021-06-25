@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {faAngleLeft, faChartBar, faCogs, faHandshake, faMoneyCheckAlt, faUser, faUsers} from '@fortawesome/free-solid-svg-icons';
+import {faAngleLeft, faChartBar, faCogs, faCoins, faHandshake, faMoneyCheckAlt, faUser, faUsers, faBalanceScale} from '@fortawesome/free-solid-svg-icons';
 import {TokenStorageService} from '../../services/auth/token-storage.service';
 
 @Component({
@@ -15,6 +15,8 @@ export class MenuMainComponent implements OnInit {
   faUser = faUser;
   faUsers = faUsers;
   faGear = faCogs;
+  faBalanceScale = faBalanceScale;
+  faCoins = faCoins;
   roles: string[];
 
   constructor(private tokenStorage: TokenStorageService) {}

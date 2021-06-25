@@ -8,7 +8,7 @@ export const environment: Environment = {
   production: false,
  // apiKey: '',
 //  BackUrl: 'http://localhost:8080'
-  BackUrl: 'https://parking-billing.herokuapp.com'
+  BackUrl: 'https://parking-back.herokuapp.com'
 };
 
 /*

@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "parking-remoute",
+    "parking": "parking-remoute"
+  }
+}

@@ -54,11 +54,11 @@ export class IncomeNewComponent implements OnInit {
         this.incometypes = incomeTypes;
         this.incomeNewForm.controls.incometype_id.patchValue(this.incometypes[0].incometype_id);
       });
-    this.incomeTypeService.getIncomeTypes()
-      .subscribe((incomeTypes) => {
-        this.incometypes = incomeTypes;
-     //   this.incomeNewForm.controls.incometype_id.patchValue(this.incometypes[0].incometype_id);
-      });
+    // this.incomeTypeService.getIncomeTypes()
+    //   .subscribe((incomeTypes) => {
+    //     this.incometypes = incomeTypes;
+    //  //   this.incomeNewForm.controls.incometype_id.patchValue(this.incometypes[0].incometype_id);
+    //   });
     this.contractService.getContracts()
       .subscribe((contracts) => {
         this.contracts = contracts;
